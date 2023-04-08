@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-import FundsForm from './components/FundsForm/FundsForm';
 import Navbar from './components/Navbar';
-import FullTable from './components/Table/FullTable';
+import FundsFormWithTable from './components/Table/FundsFormWithTable';
 
 function App() {
 	return (
@@ -10,14 +9,10 @@ function App() {
 			<body>
 				<Navbar></Navbar>
 				<div>
-						<header className="App-header">
-							<FundsForm></FundsForm>
-						</header>
+				<FundsFormWithTable></FundsFormWithTable>
 				</div>
 				<div>
-					<main className="main_table--container">
-						<FullTable></FullTable>
-					</main>
+				
 				</div>
 			</body>
 		</html>

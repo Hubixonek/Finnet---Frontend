@@ -1,11 +1,11 @@
 import '../UI/FundsForm.css';
-import React, { useState } from 'react';
 import { useFormik } from 'formik';
+import { useState } from 'react';
+
+
 
 const NUMBER_REGEX =
 	/^(?:-(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*))|(?:0|(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*))))(?:.\d+|)$/;
-const DATE_REGEX =
-	/^(?:(?:1[6-9]|[2-9]\d)?\d{2})(?:(?:(\/|-|\.)(?:0?[13578]|1[02])\1(?:31))|(?:(\/|-|\.)(?:0?[13-9]|1[0-2])\2(?:29|30)))$/;
 
 const validate = (values) => {
 	const errors = {};
@@ -20,26 +20,16 @@ const validate = (values) => {
 	} else if (!values.rate.match(NUMBER_REGEX)) {
 		errors.rate = '* Wartość musi być liczbą!';
 	}
-	if (!values.date.match(DATE_REGEX)) {
-		errors.date =
-			'* Data jest nieprawidłowa! Upewnij się, że wpisana data jest w poprawnym formacie!';
-	}
 	if (!values.currencyOne) {
 		errors.currencyOne = '* Proszę wybrać posiadaną walutę!';
 	}
-	if (!values.currencyTwo) {
-		errors.currencyTwo = '* Proszę wybrać wymienianą walutę!';
-	}
+
 	return errors;
 };
 
-const FundsForm = () => {
-	const [enteredDate, setEnteredDate] = useState();
-	const [enteredAmount] = useState();
-	const [enteredCurrencyOne, setEnteredCurrencyOne] = useState();
-	const [enteredRate, setEnteredRate] = useState();
-	const [enteredCurrencyTwo, setEnteredCurrencyTwo] = useState();
-	const [enteredResult, setEnteredResult] = useState();
+const FundsForm = (props) => {
+	const [currencyText, setCurrencyText] = useState();
+	const [currencyTwoText, setCurrencyTwoText] = useState();
 
 	const formik = useFormik({
 		initialValues: {
@@ -48,10 +38,11 @@ const FundsForm = () => {
 			currencyOne: '',
 			rate: '',
 			currencyTwo: '',
+			result: '',
 		},
 		validate,
 		onSubmit: (values) => {
-			alert(JSON.stringify(values));
+			console.log(values);
 		},
 	});
 
@@ -74,73 +65,70 @@ const FundsForm = () => {
 	) : null;
 
 	const dateChangeHandler = (event) => {
-		setEnteredDate(event.target.value);
-		console.log(event.target.value);
+		formik.handleChange(event);
 	};
-	// const amountEnteredHandler = (event) => {
-	// 	const amountValue = event.target.value;
-	// 	if (amountValue !== '' && enteredRate !== '') {
-	// 		setEnteredAmount(amountValue);
-	// 		setEnteredResult(amountValue * enteredRate);
-	// 	} else {
-	// 		const resultValidation = `Wpisz kwotę!`;
-	// 		setEnteredAmount(resultValidation);
-	// 		setEnteredResult('');
-	// 	}
-	// 	console.log(event.target.value);
-	// };
+
+	const amountEnteredHandler = (event) => {
+		formik.handleChange(event);
+
+		if (formik.values.rate) {
+			formik.setFieldValue('result', event.target.value * formik.values.rate);
+		} else {
+			formik.setFieldValue('result', '');
+		}
+	};
+
 	const currencyOneChangeHandler = (event) => {
-		setEnteredCurrencyOne(event.target.value);
-		console.log(event.target.value);
+		formik.setFieldValue('currencyOne', event.target.value);
+		setCurrencyText(event.target.value);
+	};
+	const currencyTwoChangeHandler = (event) => {
+		formik.setFieldValue('currencyTwo', event.target.value);
+		setCurrencyTwoText(`/${event.target.value}`);
 	};
 
 	const rateEnteredHandler = (event) => {
-		const rateValue = event.target.value;
+		formik.handleChange(event);
 
-		if (enteredAmount != '' && rateValue != '') {
-			setEnteredRate(rateValue);
-			setEnteredResult(enteredAmount * rateValue);
+		if (formik.values.amount) {
+			formik.setFieldValue('result', event.target.value * formik.values.amount);
 		} else {
-			const rateValidation = <span>Wpisz kurs</span>;
-			setEnteredRate(rateValidation);
-			setEnteredResult('');
+			formik.setFieldValue('result', '');
 		}
 	};
-	const currencyTwoChangeHandler = (event) => {
-		setEnteredCurrencyTwo(event.target.value);
-		console.log(event.target.value);
-	};
+
 	const resultEnteredHandler = (event) => {
-		console.log(event.target.value);
+		formik.handleChange(event);
 	};
-	// const submitHandler = (event) => {
-	// 	event.preventDefault();
-	// 	const fundsFormData = {
-	// 		date: new Date(enteredDate),
-	// 		amount: enteredAmount,
-	// 		currencyOne: enteredCurrencyOne,
-	// 		course: enteredRate,
-	// 		currencyTwo: enteredCurrencyTwo,
-	// 		result: enteredResult,
-	// 	};
-	// 	console.log(fundsFormData);
-	// };
+	const submitHandler = (event) => {
+		event.preventDefault();
+		const fundsFormData = {
+			date: new Date(formik.values.date),
+			amount: formik.values.amount,
+			currencyOne: formik.values.currencyOne,
+			rate: formik.values.rate,
+			currencyTwo: formik.values.currencyTwo,
+			result: formik.values.result,
+		};
+		props.onSaveFundsData(fundsFormData);
+	};
 
 	return (
-		<form onSubmit={formik.handleSubmit}>
+		<form onSubmit={submitHandler}>
 			<div className="form_input--container">
 				<h1 className="h1-style">Finnet</h1>
 				<div className="input-group">
-					<label className="input-group-text w-70" htmlFor="date">
-						Data
+					<label className="input-group-text w-50" htmlFor="date">
+						Data operacji
 					</label>
+
 					<input
-						className={`form-control w-50 ${
+						className={`form-control ${
 							formik.errors.date ? 'has-error error-p' : ''
 						}`}
 						name="date"
 						value={formik.values.date}
-						onChange={formik.handleChange}
+						onChange={dateChangeHandler}
 						type="date"
 					></input>
 				</div>
@@ -152,7 +140,7 @@ const FundsForm = () => {
 						}`}
 						name="amount"
 						value={formik.values.amount}
-						onChange={formik.handleChange}
+						onChange={amountEnteredHandler}
 						required
 						type="text"
 						placeholder="Kwota"
@@ -165,12 +153,10 @@ const FundsForm = () => {
 							formik.errors.currencyOne ? 'has-error' : ''
 						}`}
 						value={formik.values.currencyOne}
-						onChange={formik.handleChange}
+						onChange={currencyOneChangeHandler}
 						name="currencyOne"
 					>
-						<option value="" selected disabled hidden>
-							Wybierz walutę
-						</option>
+						<option value="choose-value">Wybierz walutę</option>
 						<option value="PLN">PLN</option>
 						<option value="EUR">EUR</option>
 						<option value="USD">USD</option>
@@ -189,27 +175,27 @@ const FundsForm = () => {
 						}`}
 						name="rate"
 						value={formik.values.rate}
-						onChange={formik.handleChange}
+						onChange={rateEnteredHandler}
 						required
 						type="text"
 						placeholder="Kurs"
 					/>
-					<span className="input-group-text w-50" id="currencyText">
-						EUR/PLN
+					<span className="input-group-text w-50">
+						{currencyText}
+						{currencyTwoText}
 					</span>
 				</div>
 				<div className="input-group">
 					<label htmlFor="currencyTwo"></label>
 					<select
 						className={`form-control w-50 ${
-							formik.errors.currencyTwo ? 'has-error' : ''
+							formik.errors.currencyTwo ? 'has-error' : 'd'
 						}`}
 						value={formik.values.currencyTwo}
-						onChange={formik.handleChange}
+						onChange={currencyTwoChangeHandler}
+						name="currencyTwo"
 					>
-						<option value="" selected disabled hidden>
-							Wymiana waluty
-						</option>
+						<option value="choose-one">Wymiana waluty</option>
 						<option value="PLN">PLN</option>
 						<option value="EUR">EUR</option>
 						<option value="USD">USD</option>
@@ -226,8 +212,10 @@ const FundsForm = () => {
 					</label>
 					<input
 						type="number"
-						value={enteredResult}
+						value={formik.values.result}
 						onChange={resultEnteredHandler}
+						name="result"
+						required
 						className="form-control"
 						aria-describedby="basic-addon1"
 					></input>
@@ -260,4 +248,5 @@ const FundsForm = () => {
 		</form>
 	);
 };
+
 export default FundsForm;

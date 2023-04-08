@@ -20,20 +20,18 @@
 .input-group {
 	margin-top: 10px;
 }
-.input-group-text {
-	width: 50%;
-}
+
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
 .has-error {
-	border: 1px solid rgb(255, 0, 0) !important;
+	border: 0.5px solid rgb(255, 0, 0) !important;
 }
 .error-p{
 	color: #f44336; /* kolor czerwony */
 	font-size: 14px;
-	margin-top: 5px;
+	margin: 0 auto;
 }
 @media only screen and (max-width: 760px),
 	(min-device-width: 768px) and (max-device-width: 1024px) {
