@@ -1,8 +1,7 @@
 import '../UI/FundsForm.css';
 import { useFormik } from 'formik';
 import { useState } from 'react';
-
-
+import PropTypes from 'prop-types';
 
 const NUMBER_REGEX =
 	/^(?:-(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*))|(?:0|(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*))))(?:.\d+|)$/;
@@ -28,8 +27,8 @@ const validate = (values) => {
 };
 
 const FundsForm = (props) => {
-	const [currencyText, setCurrencyText] = useState();
-	const [currencyTwoText, setCurrencyTwoText] = useState();
+	const [fromCurrency, setFromCurrency] = useState();
+	const [toCurrency, setToCurrency] = useState();
 
 	const formik = useFormik({
 		initialValues: {
@@ -53,15 +52,15 @@ const FundsForm = (props) => {
 	const amountError = formik.errors.amount ? (
 		<p className="error-p">{formik.errors.amount}</p>
 	) : null;
-	const currencyOneError = formik.errors.currencyOne ? (
-		<p className="error-p">{formik.errors.currencyOne}</p>
+	const fromCurrencyError = formik.errors.fromCurrency ? (
+		<p className="error-p">{formik.errors.fromCurrency}</p>
 	) : null;
 	const rateError = formik.errors.rate ? (
 		<p className="error-p">{formik.errors.rate}</p>
 	) : null;
 
-	const currencyTwoError = formik.errors.currencyTwo ? (
-		<p className="error-p">{formik.errors.currencyTwo}</p>
+	const toCurrencyError = formik.errors.toCurrency ? (
+		<p className="error-p">{formik.errors.toCurrency}</p>
 	) : null;
 
 	const dateChangeHandler = (event) => {
@@ -78,13 +77,19 @@ const FundsForm = (props) => {
 		}
 	};
 
-	const currencyOneChangeHandler = (event) => {
-		formik.setFieldValue('currencyOne', event.target.value);
-		setCurrencyText(event.target.value);
+	const fromCurrencyChangeHandler = (event) => {
+		formik.setFieldValue('fromCurrency', event.target.value);
+		if (event.target.value === toCurrency) {
+			setToCurrency(fromCurrency);
+		}
+		setFromCurrency(event.target.value);
 	};
-	const currencyTwoChangeHandler = (event) => {
-		formik.setFieldValue('currencyTwo', event.target.value);
-		setCurrencyTwoText(`/${event.target.value}`);
+	const toCurrencyChangeHandler = (event) => {
+		formik.setFieldValue('toCurrency', event.target.value);
+		if (event.target.value === fromCurrency) {
+			setFromCurrency(toCurrency);
+		}
+		setToCurrency(event.target.value);
 	};
 
 	const rateEnteredHandler = (event) => {
@@ -105,13 +110,16 @@ const FundsForm = (props) => {
 		const fundsFormData = {
 			date: new Date(formik.values.date),
 			amount: formik.values.amount,
-			currencyOne: formik.values.currencyOne,
+			fromCurrency: fromCurrency,
 			rate: formik.values.rate,
-			currencyTwo: formik.values.currencyTwo,
+			toCurrency: toCurrency,
 			result: formik.values.result,
 		};
+
 		props.onSaveFundsData(fundsFormData);
 	};
+
+	
 
 	return (
 		<form onSubmit={submitHandler}>
@@ -147,14 +155,14 @@ const FundsForm = (props) => {
 					/>
 				</div>
 				<div className="input-group">
-					<label htmlFor="currencyOne"></label>
+					<label htmlFor="fromCurrency"></label>
 					<select
 						className={`form-control w-50 ${
-							formik.errors.currencyOne ? 'has-error' : ''
+							formik.errors.fromCurrency ? 'has-error' : ''
 						}`}
-						value={formik.values.currencyOne}
-						onChange={currencyOneChangeHandler}
-						name="currencyOne"
+						value={fromCurrency}
+						onChange={fromCurrencyChangeHandler}
+						name="fromCurrency"
 					>
 						<option value="choose-value">Wybierz walutę</option>
 						<option value="PLN">PLN</option>
@@ -181,19 +189,18 @@ const FundsForm = (props) => {
 						placeholder="Kurs"
 					/>
 					<span className="input-group-text w-50">
-						{currencyText}
-						{currencyTwoText}
+						{fromCurrency}/{toCurrency}
 					</span>
 				</div>
 				<div className="input-group">
-					<label htmlFor="currencyTwo"></label>
+					<label htmlFor="toCurrency"></label>
 					<select
 						className={`form-control w-50 ${
-							formik.errors.currencyTwo ? 'has-error' : 'd'
+							formik.errors.toCurrency ? 'has-error' : 'd'
 						}`}
-						value={formik.values.currencyTwo}
-						onChange={currencyTwoChangeHandler}
-						name="currencyTwo"
+						value={toCurrency}
+						onChange={toCurrencyChangeHandler}
+						name="toCurrency"
 					>
 						<option value="choose-one">Wymiana waluty</option>
 						<option value="PLN">PLN</option>
@@ -242,11 +249,14 @@ const FundsForm = (props) => {
 			</div>
 			{dateError}
 			{amountError}
-			{currencyOneError}
+			{fromCurrencyError}
 			{rateError}
-			{currencyTwoError}
+			{toCurrencyError}
 		</form>
 	);
+};
+FundsForm.propTypes = {
+	onSaveFundsData: PropTypes.func.isRequired,
 };
 
 export default FundsForm;

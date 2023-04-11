@@ -14,6 +14,12 @@ const FundsFormWithTable = () => {
 		setFundsData((prevFundsData) => [...prevFundsData, fundsFormData]);
 	};
 
+	const removeFundsData = (id) => {
+		setFundsData((prevFundsData) =>
+			prevFundsData.filter((funds) => funds.id !== id)
+		);
+	};
+
 	return (
 		<div>
 			<header className="App-header">
@@ -26,13 +32,9 @@ const FundsFormWithTable = () => {
 						<table className="table table-striped table-dark">
 							<thead>
 								<tr>
-									<th className="fundsdata_table--th--td" scope="col">
-										Data
-									</th>
+									<th scope="col">Data</th>
 									<th scope="col">Kwota</th>
-									<th className="fundsdata_table--th--td" scope="col">
-										Kurs
-									</th>
+									<th scope="col">Kurs</th>
 									<th scope="col">Wynik</th>
 									<th scope="col">Aktualnie</th>
 									<th scope="col">Zyski/Straty</th>
@@ -45,11 +47,17 @@ const FundsFormWithTable = () => {
 										<td>{funds.date.toLocaleDateString('pl-PL')}</td>
 										<td>{funds.amount}</td>
 										<td>{funds.rate}</td>
-										<td>{`${funds.result} ${funds.currencyTwo}`}</td>
+										<td>{`${funds.result} ${funds.toCurrency}`}</td>
 										<td>4.65</td>
 										<td>5%</td>
-										<td>X</td>
-									
+										<td>
+											<button
+												className="btn btn-danger"
+												onClick={() => removeFundsData(funds.id)}
+											>
+												X
+											</button>
+										</td>
 									</tr>
 								))}
 							</tbody>
@@ -61,7 +69,8 @@ const FundsFormWithTable = () => {
 		</div>
 	);
 };
-export default FundsFormWithTable;
+
 FundsFormWithTable.propTypes = {
 	onSaveFundsData: PropTypes.func.isRequired,
 };
+export default FundsFormWithTable;

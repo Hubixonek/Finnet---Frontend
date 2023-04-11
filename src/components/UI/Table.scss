@@ -27,7 +27,13 @@ table {
 	max-width: 1050px;
 	margin: 0 auto;
 }
-
+.cancel{
+	
+	color: red;
+	background-color: red !important;
+	border: 1px solid black;
+	cursor: pointer;
+}
 @media only screen and (max-width: 760px),
 	(min-device-width: 768px) and (max-device-width: 1024px) {
 	.main_table--container {
