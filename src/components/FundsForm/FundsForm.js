@@ -1,67 +1,17 @@
 import '../UI/FundsForm.css';
-import { useFormik } from 'formik';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-
-const NUMBER_REGEX =
-	/^(?:-(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*))|(?:0|(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*))))(?:.\d+|)$/;
-
-const validate = (values) => {
-	const errors = {};
-	if (!values.amount) {
-		errors.amount = '* Kwota jest wymagana!';
-	} else if (!values.amount.match(NUMBER_REGEX)) {
-		errors.amount = '* Wartość musi być liczbą!';
-	}
-
-	if (!values.rate) {
-		errors.rate = '* Kurs jest wymagany!';
-	} else if (!values.rate.match(NUMBER_REGEX)) {
-		errors.rate = '* Wartość musi być liczbą!';
-	}
-	if (!values.currencyOne) {
-		errors.currencyOne = '* Proszę wybrać posiadaną walutę!';
-	}
-
-	return errors;
-};
+import MultiplyingTheAmountByTheRate from '../helpers/MultiplyingTheAmountByTheRate';
+import MultiplyingTheRateByTheAmount from '../helpers/MultiplyingTheRatetByTheAmount';
+import DividingTheResultByRate from '../helpers/DividingTheResultByRate';
+import useCustomFormik from '../hooks/useCustomFormik';
+import FormikValidationErrors from './helpers/FormikValidationErrors';
 
 const FundsForm = (props) => {
-	const [fromCurrency, setFromCurrency] = useState();
-	const [toCurrency, setToCurrency] = useState();
-
-	const formik = useFormik({
-		initialValues: {
-			date: '',
-			amount: '',
-			currencyOne: '',
-			rate: '',
-			currencyTwo: '',
-			result: '',
-		},
-		validate,
-		onSubmit: (values) => {
-			console.log(values);
-		},
-	});
-
-	const dateError = formik.errors.date ? (
-		<p className="error-p">{formik.errors.date}</p>
-	) : null;
-
-	const amountError = formik.errors.amount ? (
-		<p className="error-p">{formik.errors.amount}</p>
-	) : null;
-	const fromCurrencyError = formik.errors.fromCurrency ? (
-		<p className="error-p">{formik.errors.fromCurrency}</p>
-	) : null;
-	const rateError = formik.errors.rate ? (
-		<p className="error-p">{formik.errors.rate}</p>
-	) : null;
-
-	const toCurrencyError = formik.errors.toCurrency ? (
-		<p className="error-p">{formik.errors.toCurrency}</p>
-	) : null;
+	const [fromCurrency, setFromCurrency] = useState('');
+	const [toCurrency, setToCurrency] = useState('');
+	const { formik } = useCustomFormik();
+	const errors = FormikValidationErrors(formik.errors);
 
 	const dateChangeHandler = (event) => {
 		formik.handleChange(event);
@@ -69,20 +19,34 @@ const FundsForm = (props) => {
 
 	const amountEnteredHandler = (event) => {
 		formik.handleChange(event);
-
-		if (formik.values.rate) {
-			formik.setFieldValue('result', event.target.value * formik.values.rate);
-		} else {
-			formik.setFieldValue('result', '');
-		}
+		const result = MultiplyingTheAmountByTheRate(
+			event.target.value,
+			formik.values.rate
+		);
+		formik.setFieldValue('result', result);
 	};
 
+	const rateEnteredHandler = (event) => {
+		formik.handleChange(event);
+		const result = MultiplyingTheRateByTheAmount(
+			event.target.value,
+			formik.values.amount
+		);
+		formik.setFieldValue('result', result);
+	};
+	const resultEnteredHandler = (event) => {
+		formik.handleChange(event);
+		const amount = DividingTheResultByRate(
+			event.target.value,
+			formik.values.rate
+		);
+		formik.setFieldValue('amount', amount);
+	};
 	const fromCurrencyChangeHandler = (event) => {
 		formik.setFieldValue('fromCurrency', event.target.value);
 		if (event.target.value === toCurrency) {
 			setToCurrency(fromCurrency);
-		}
-		setFromCurrency(event.target.value);
+		} else setFromCurrency(event.target.value);
 	};
 	const toCurrencyChangeHandler = (event) => {
 		formik.setFieldValue('toCurrency', event.target.value);
@@ -92,19 +56,6 @@ const FundsForm = (props) => {
 		setToCurrency(event.target.value);
 	};
 
-	const rateEnteredHandler = (event) => {
-		formik.handleChange(event);
-
-		if (formik.values.amount) {
-			formik.setFieldValue('result', event.target.value * formik.values.amount);
-		} else {
-			formik.setFieldValue('result', '');
-		}
-	};
-
-	const resultEnteredHandler = (event) => {
-		formik.handleChange(event);
-	};
 	const submitHandler = (event) => {
 		event.preventDefault();
 		const fundsFormData = {
@@ -118,8 +69,6 @@ const FundsForm = (props) => {
 
 		props.onSaveFundsData(fundsFormData);
 	};
-
-	
 
 	return (
 		<form onSubmit={submitHandler}>
@@ -189,7 +138,7 @@ const FundsForm = (props) => {
 						placeholder="Kurs"
 					/>
 					<span className="input-group-text w-50">
-						{fromCurrency}/{toCurrency}
+						{`${fromCurrency}/${toCurrency}`}
 					</span>
 				</div>
 				<div className="input-group">
@@ -247,11 +196,7 @@ const FundsForm = (props) => {
 					</button>
 				</div>
 			</div>
-			{dateError}
-			{amountError}
-			{fromCurrencyError}
-			{rateError}
-			{toCurrencyError}
+			{errors.map((error) => error)}
 		</form>
 	);
 };
