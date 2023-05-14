@@ -1,3 +1,13 @@
+.formHeader {
+	background-color: #ffffff;
+	margin: 20px auto;
+	max-width: 525px;
+	padding: 35px;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
 .form_input--container {
 	display: block;
 	justify-content: center;
@@ -6,33 +16,37 @@
 	margin: 0 auto;
 }
 
-.form_button--savebtn {
+.formButton {
 	background-color: #005bea !important;
 	width: 100%;
 	height: 5vh;
 	margin: 0 auto;
 	margin-top: 8px;
 	transition-duration: 0.4s;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.875) !important;
+	}
 }
-.form_button--savebtn:hover {
-	background-color: rgba(0, 0, 0, 0.875) !important;
-}
-.input-group {
+
+.inputStyle {
 	margin-top: 10px;
 }
 
-input::-webkit-inner-spin-button {
+input.input-class::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
 .has-error {
 	border: 0.5px solid rgb(255, 0, 0) !important;
 }
-.error-p{
-	color: #f44336; /* kolor czerwony */
+
+.errorMessage {
+	color: #f44336;
 	font-size: 14px;
 	margin: 0 auto;
 }
+
 @media only screen and (max-width: 760px),
 	(min-device-width: 768px) and (max-device-width: 1024px) {
 	.form_input--container {
@@ -40,10 +54,10 @@ input::-webkit-inner-spin-button {
 		max-width: 380px;
 		padding: 15px;
 	}
-	.input-group {
+	.inputStyle {
 		margin-top: 15px;
 	}
-	.form_button--savebtn {
+	.formButton {
 		padding: 10px;
 		margin-top: 10px;
 	}
@@ -54,10 +68,10 @@ input::-webkit-inner-spin-button {
 		max-width: 280px;
 		padding: 15px;
 	}
-	.input-group {
+	.inputStyle {
 		margin-top: 15px;
 	}
-	.form_button--savebtn {
+	.formButton {
 		height: 50px;
 		margin-top: 10px;
 	}

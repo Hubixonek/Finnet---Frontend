@@ -1,0 +1,62 @@
+/* Navbar styles */
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.navLinks li a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 15.5px;
+}
+
+.navLinks li {
+  margin-right: 20px;
+}
+
+.navLinks li:last-child {
+  margin-left: 720px;
+}
+
+.navLinks li:nth-child(5) a {
+  color: rgb(33, 150, 243);
+}
+
+.signInButton {
+  display: flex;
+  margin-right: 190px;
+  background-color: rgb(33, 150, 243);
+}
+.signInButton:hover {
+  background-color: rgb(2, 126, 227);
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  .navbar {
+    width: 100vw;
+    height: 5%;
+    float: none;
+  }
+}
+@media only screen and (max-width: 375), (min-device-width: 383) and (max-device-width: 667) {
+  .navbar {
+    width: 100vw;
+    float: none;
+    height: 5%;
+  }
+}
+@media only screen and (max-width: 568px) {
+  .navbar {
+    width: 100vw;
+    height: 5%;
+    float: none;
+  }
+} /*# sourceMappingURL=Navbar.module.css.map */

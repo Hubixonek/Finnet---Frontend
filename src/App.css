@@ -8,12 +8,6 @@ html{
   height: 100%;
 
 }
-body{
-  overflow:auto;
-  background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
-  background-size: cov;
-  min-height: 100vh;
-}
 
 .h1-style{
   margin-bottom: 15px;
@@ -23,17 +17,8 @@ body{
   font-weight: bold;
 }
 
-.App-header{
- 
-  background-color: #FFFFFF;
-  margin: 20px auto;
-  max-width: 525px;
-  padding: 35px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 
-}
+
 
 @media 
 only screen and (max-width: 760px),
