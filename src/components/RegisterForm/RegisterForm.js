@@ -1,6 +1,23 @@
+import { useState } from "react";
 import styles from "../styles/RegisterForm.module.css";
 
 const RegisterForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    if (id === "email") {
+      setEmail(value);
+    }
+    if (id === "password") {
+      setPassword(value);
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log(email, password);
+  };
   return (
     <>
       <div className={styles["container"]}>
@@ -10,16 +27,23 @@ const RegisterForm = () => {
           <input
             className="form-control "
             name="email"
+            id="email"
             type="text"
+            value={email}
+            onChange={(e) => handleInputChange(e)}
             placeholder="Wprowadź adres e-mail"
           />
         </div>
         <div className={styles["password"]}>
           <span>Hasło</span>
           <input
-            className="form-control "
-            name="email"
+            className="form-control"
+            name="password"
+            id="password"
             type="password"
+            htmlFor="password"
+            value={password}
+            onChange={(e) => handleInputChange(e)}
             placeholder="Wprowadź hasło"
           />
         </div>
@@ -29,12 +53,10 @@ const RegisterForm = () => {
           className={`form-check-input' ${styles.checkInput}`}
           id="flexCheckOne"
           type="checkbox"
-          value=""
-        ></input>
+          value=""></input>
         <label
           className={`form-check-label' ${styles.checkLabel}`}
-          htmlFor="flexCheckOne"
-        >
+          htmlFor="flexCheckOne">
           Oświadczam, że zapoznałem(-am) się z Regulaminem oraz Polityką
           Prywatności i chcę korzystać z Usługi Finnet.
         </label>
@@ -44,12 +66,10 @@ const RegisterForm = () => {
           className={`form-check-input' ${styles.checkInput}`}
           type="checkbox"
           id="flexCheckTwo"
-          value=""
-        ></input>
+          value=""></input>
         <label
           className={`form-check-label' ${styles.checkLabel}`}
-          htmlFor="flexCheckTwo"
-        >
+          htmlFor="flexCheckTwo">
           Wyrażam zgodę na otrzymywanie na podany adres poczty elektronicznej
           informacji handlowych od FINNET.COM SPÓŁKA Z OGRANICZONĄ
           ODPOWIEDZIALNOŚCIĄ z siedzibą w Poznaniu, ul. MaćkowoHubisiowej 113/3,
@@ -62,12 +82,10 @@ const RegisterForm = () => {
           className={`form-check-input' ${styles.checkInput}`}
           id="flexCheckThree"
           type="checkbox"
-          value=""
-        ></input>
+          value=""></input>
         <label
           className={`form-check-label' ${styles.checkLabel}`}
-          htmlFor="flexCheckThree"
-        >
+          htmlFor="flexCheckThree">
           Wyrażam zgodę na przetwarzanie moich danych osobowych przez FINNET.COM
           SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ z siedzibą w Sopocie, ul.
           MaćkowoHubisiowej 113/3, KRS: 000023384, na zlecenie jej Partnera:
@@ -80,8 +98,8 @@ const RegisterForm = () => {
       <div className="save-btn mt-2">
         <button
           type="submit"
-          className={`btn btn-primary form_button--savebtn ${styles.registerButton}`}
-        >
+          onClick={handleSubmit}
+          className={`btn btn-primary form_button--savebtn ${styles.registerButton}`}>
           Zarejestruj się
         </button>
       </div>
