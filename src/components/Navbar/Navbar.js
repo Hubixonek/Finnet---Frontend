@@ -17,24 +17,17 @@ const Navbar = () => (
         <li>
           <Link to="#">Subskrypcje</Link>
         </li>
-        <li>
-          <Link to="/registerform">
-            Zarejestruj się by uzyskać dostęp do Finneta
-          </Link>
-        </li>
       </ul>
-
-      <div className={styles["signInButtonContainer"]}>
-        <button
-          type="submit"
-          className={`btn btn-primary ${styles.signInButton}`}
-        >
-          Zaloguj się
-        </button>
+      <div className={styles["buttonGroup"]}>
+        <div className={styles["signInButton"]}>
+          <Link to="/loginform">Zaloguj</Link>
+        </div>
+        <div className={styles["registerNav"]}>
+          <Link to="/registerform">Korzystaj z Finnet za darmo</Link>
+        </div>
       </div>
     </nav>
-	<Outlet />
-
+    <Outlet />
   </div>
 );
 

@@ -14,6 +14,7 @@ export default function App() {
         <Route path="/" element={<Home />}>
           <Route path="registerform" element={<RegisterForm />} />
           <Route path="fundsform" element={<FundsForm />} />
+          <Route path="loginform" element={<LoginForm />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -63,3 +63,12 @@
   text-decoration: none;
   cursor: pointer;
 }
+.errorInput {
+	border: 0.5px solid rgb(255, 0, 0) !important;
+}
+
+.errorMessage {
+	color: #f44336;
+	font-size: 12px;
+	margin: 0 auto;
+}

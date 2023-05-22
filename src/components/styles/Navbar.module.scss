@@ -1,61 +1,76 @@
 /* Navbar styles */
 .navBar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem;
 }
 
 .navLinks {
-	display: flex;
-	gap: 30px;
-	list-style: none;
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  align-items: center;
 }
 
 .navLinks li a {
-	color: #000000;
-	text-decoration: none;
-	font-size: 15.5px;
+  color: rgb(23, 43, 77);
+  text-decoration: none;
+  font-size: 15.5px;
 }
-.navLinks li {
-	margin-right: 20px;
+
+.buttonGroup {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-right: 20rem;
 }
-.navLinks li:last-child {
-	margin-left: 720px;
-}
-.navLinks li:nth-child(5) a {
-	color: rgb(33, 150, 243);
+.registerNav {
+  cursor: pointer;
+  a {
+    text-decoration: none;
+    color: white;
+    padding: 0.8rem;
+    background-color: rgb(0, 101, 255);
+
+    &:hover {
+      color: white;
+      background-color: rgb(2, 81, 199);
+    }
+  }
 }
 .signInButton {
-	display: flex;
-	margin-right: 190px;
-	background-color: rgb(33, 150, 243);
+  display: flex;
+  margin-right: -7rem;
 
-	&:hover {
-		background-color: rgb(2, 126, 227);
-	}
+  a {
+    margin-right: 8rem;
+    font-size: 18.5px;
+    color: rgb(23, 43, 77);
+    text-decoration: none;
+  }
 }
 
 @media only screen and (max-width: 760px),
-	(min-device-width: 768px) and (max-device-width: 1024px) {
-	.navbar {
-		width: 100vw;
-		height: 5%;
-		float: none;
-	}
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  .navbar {
+    width: 100vw;
+    height: 5%;
+    float: none;
+  }
 }
 @media only screen and (max-width: 375),
-	(min-device-width: 383) and (max-device-width: 667) {
-	.navbar {
-		width: 100vw;
-		float: none;
-		height: 5%;
-	}
+  (min-device-width: 383) and (max-device-width: 667) {
+  .navbar {
+    width: 100vw;
+    float: none;
+    height: 5%;
+  }
 }
 @media only screen and (max-width: 568px) {
-	.navbar {
-		width: 100vw;
-		height: 5%;
-		float: none;
-	}
+  .navbar {
+    width: 100vw;
+    height: 5%;
+    float: none;
+  }
 } /*# sourceMappingURL=Navbar.css.map */
