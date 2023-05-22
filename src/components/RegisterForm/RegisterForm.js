@@ -1,4 +1,5 @@
 import styles from "../styles/RegisterForm.module.css";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 
 const RegisterForm = () => {
@@ -158,7 +159,9 @@ const RegisterForm = () => {
         </div>
         <br></br>
         <div className="redirection">
-          <a className={styles["signIn"]}>Masz już konto? Zaloguj się</a>
+          <Link to="/loginform" className={styles["signIn"]}>
+            Masz już konto? Zaloguj się
+          </Link>
         </div>
       </form>
     </>

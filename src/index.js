@@ -6,6 +6,7 @@ import Home from "./Home";
 import "bootstrap/dist/css/bootstrap.css";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import FundsForm from "./components/FundsForm/FundsForm";
+import LoginForm from "./components/LoginForm/LoginForm";
 
 export default function App() {
   return (
