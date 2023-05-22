@@ -91,13 +91,14 @@ const RegisterForm = () => {
             className={`form-check-input' ${styles.checkInput}`}
             id="flexCheckOne"
             type="checkbox"
-            value=""
-          ></input>
-          <label
-            className={`form-check-label' ${styles.checkLabel}`}
+            name="checkboxPrivacyPolicy"
             value={formik.values.checkboxPrivacyPolicy}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            htmlFor="flexCheckOne"
+          ></input>
+          <label
+            className={`form-check-label' ${styles.checkLabel}`}
             htmlFor="flexCheckOne"
           >
             Oświadczam, że zapoznałem(-am) się z Regulaminem oraz Polityką
