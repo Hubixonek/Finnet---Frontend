@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/FundsForm.module.css";
 import TableWithFundsDatas from "../Table/TableWithFundsDatas";
 
@@ -27,6 +27,24 @@ const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState("");
   const [toCurrency, setToCurrency] = useState("");
   const [funds, setFunds] = useState([]);
+  const [data, setData] = useState("");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "http://api.nbp.pl/api/exchangerates/tables/A/"
+      );
+      const jsonData = await response.json();
+      setData(jsonData);
+    } catch (error) {
+      console.log("Wystąpił błąd:", error);
+    }
+  };
+  console.log(data);
 
   const formik = useFormik({
     initialValues: {
@@ -52,6 +70,7 @@ const FundsForm = () => {
       console.log(JSON.stringify(values, null));
     },
   });
+
   const handleRemoveFundsData = (id) => {
     setFunds(funds.filter((funds) => funds.id !== id));
   };
@@ -122,7 +141,7 @@ const FundsForm = () => {
               onChange={fromCurrencyChangeHandler}
               onBlur={formik.handleBlur}
               name="fromCurrency">
-              <option value="Wybór">Wybierz walutę</option>
+              <option value="">Wybierz walutę</option>
               <option value="PLN">PLN</option>
               <option value="EUR">EUR</option>
               <option value="USD">USD</option>
@@ -164,7 +183,7 @@ const FundsForm = () => {
               onChange={toCurrencyChangeHandler}
               onBlur={formik.handleBlur}
               name="toCurrency">
-              <option value="Wymiana">Wymiana waluty</option>
+              <option value="">Wymiana waluty</option>
               <option value="PLN">PLN</option>
               <option value="EUR">EUR</option>
               <option value="USD">USD</option>
