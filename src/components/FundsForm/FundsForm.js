@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import { useState, useEffect } from "react";
 import styles from "../styles/FundsForm.module.css";
 import TableWithFundsDatas from "../Table/TableWithFundsDatas";
+import axios from "axios";
 
 const validate = (values) => {
   const errors = {};
@@ -27,24 +28,37 @@ const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState("");
   const [toCurrency, setToCurrency] = useState("");
   const [funds, setFunds] = useState([]);
-  const [data, setData] = useState("");
-
+  // const [nbpRate, setNbpRate] = useState("");
+  const [currencies, setCurrencies] = useState([]);
+  const [selectedCurrencyRate, setSelectedCurrencyRate] = useState(0);
+  const [missingRateForPln] = useState(1);
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        "http://api.nbp.pl/api/exchangerates/tables/A/"
+      const response = await axios.get(
+        `http://api.nbp.pl/api/exchangerates/tables/C/${toCurrency}`
       );
-      const jsonData = await response.json();
-      setData(jsonData);
+      const allCurrencies = response.data[0].rates.map((rate) => ({
+        code: rate.code,
+        name: rate.currency,
+        rate: rate.ask,
+      }));
+      setCurrencies(allCurrencies);
+
+      const selectedCurrency = allCurrencies.find(
+        (currency) => currency.code === toCurrency
+      );
+      if (selectedCurrency) {
+        setSelectedCurrencyRate(selectedCurrency.rate);
+      }
     } catch (error) {
-      console.log("Wystąpił błąd:", error);
+      console.error("Błąd przy pobieraniu danych", error);
     }
   };
-  console.log(data);
+  console.log(currencies);
 
   const formik = useFormik({
     initialValues: {
@@ -84,14 +98,18 @@ const FundsForm = () => {
     setFromCurrency(event.target.value);
   };
   const toCurrencyChangeHandler = (event) => {
-    formik.setFieldValue("toCurrency", event.target.value);
-    if (event.target.value === fromCurrency) {
+    const selectedCurrency = event.target.value;
+    formik.setFieldValue("toCurrency", selectedCurrency);
+    if (selectedCurrency === fromCurrency) {
       setFromCurrency(toCurrency);
       formik.setFieldValue("fromCurrency", toCurrency);
     }
-    setToCurrency(event.target.value);
+    setToCurrency(selectedCurrency);
+    const selectedCurrencyRate = currencies.find(
+      (currency) => currency.code === selectedCurrency
+    ).rate;
+    setSelectedCurrencyRate(selectedCurrencyRate);
   };
-
   return (
     <div>
       <form className={styles["formHeader"]} onSubmit={formik.handleSubmit}>
@@ -143,13 +161,11 @@ const FundsForm = () => {
               name="fromCurrency">
               <option value="">Wybierz walutę</option>
               <option value="PLN">PLN</option>
-              <option value="EUR">EUR</option>
-              <option value="USD">USD</option>
-              <option value="CHF">CHF</option>
-              <option value="AUD">AUD</option>
-              <option value="SEK">SEK</option>
-              <option value="CZK">CZK</option>
-              <option value="GBP">GBP</option>
+              {currencies.map((currency) => (
+                <option key={currency.code} value={currency.code}>
+                  {currency.code} - {currency.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className={`input-group ${styles.inputStyle}`}>
@@ -183,15 +199,12 @@ const FundsForm = () => {
               onChange={toCurrencyChangeHandler}
               onBlur={formik.handleBlur}
               name="toCurrency">
-              <option value="">Wymiana waluty</option>
-              <option value="PLN">PLN</option>
-              <option value="EUR">EUR</option>
-              <option value="USD">USD</option>
-              <option value="CHF">CHF</option>
-              <option value="AUD">AUD</option>
-              <option value="SEK">SEK</option>
-              <option value="CZK">CZK</option>
-              <option value="GBP">GBP</option>
+              <option value="">Wybierz walutę</option>
+              {currencies.map((currency) => (
+                <option key={currency.code} value={currency.code}>
+                  {currency.code} - {currency.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className={`input-group ${styles.inputStyle}`}>
@@ -210,12 +223,13 @@ const FundsForm = () => {
           </div>
           <div className={`input-group ${styles.inputStyle}`}>
             <label className="input-group-text w-50" htmlFor="currently">
-              Aktualnie
+              Kurs {toCurrency}
             </label>
             <input
               type="text"
               className="form-control"
               id="api-courses"
+              value={selectedCurrencyRate}
               readOnly={true}></input>
           </div>
           <div className="save-btn mt-2">
