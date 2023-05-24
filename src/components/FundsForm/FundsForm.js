@@ -57,7 +57,6 @@ const FundsForm = () => {
       console.error("Błąd przy pobieraniu danych", error);
     }
   };
-  console.log(currencies);
 
   const formik = useFormik({
     initialValues: {
@@ -78,7 +77,7 @@ const FundsForm = () => {
         fromCurrency: fromCurrency,
         result: formik.values.result,
         toCurrency: toCurrency,
-        selectedCurrencyRate: selectedCurrencyRate
+        selectedCurrencyRate: selectedCurrencyRate,
       };
       setFunds([...funds, fundsObject]);
       console.log(JSON.stringify(values, null));
@@ -160,7 +159,7 @@ const FundsForm = () => {
               onBlur={formik.handleBlur}
               name="fromCurrency">
               <option value="">Wybierz walutę</option>
-              <option value="PLN">PLN</option>
+              <option value="PLN">PLN - polski złoty</option>
               {currencies.map((currency) => (
                 <option key={currency.code} value={currency.code}>
                   {currency.code} - {currency.name}
