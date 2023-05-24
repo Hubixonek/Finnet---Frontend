@@ -31,7 +31,6 @@ const FundsForm = () => {
   // const [nbpRate, setNbpRate] = useState("");
   const [currencies, setCurrencies] = useState([]);
   const [selectedCurrencyRate, setSelectedCurrencyRate] = useState(0);
-  const [missingRateForPln] = useState(1);
   useEffect(() => {
     fetchData();
   }, []);
@@ -79,6 +78,7 @@ const FundsForm = () => {
         fromCurrency: fromCurrency,
         result: formik.values.result,
         toCurrency: toCurrency,
+        selectedCurrencyRate: selectedCurrencyRate
       };
       setFunds([...funds, fundsObject]);
       console.log(JSON.stringify(values, null));
