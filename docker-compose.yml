@@ -6,7 +6,6 @@ services:
     image: finnet-frontend
     build:
       context: .
-      target: production
     volumes:
       - ./src:/app/src
     ports:

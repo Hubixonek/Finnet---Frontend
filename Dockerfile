@@ -1,5 +1,4 @@
-FROM node:20-alpine as production
-ENV NODE_ENV production
+FROM node:20-alpine
 WORKDIR /app
 COPY . .
 RUN npm install
