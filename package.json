@@ -1,5 +1,5 @@
 {
-  "name": "react-complete-guide",
+  "name": "finnet-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,7 @@
     "bootstrap": "^5.2.3",
     "firebase": "^9.22.0",
     "formik": "^2.2.9",
+    "next": "^13.4.4",
     "react": "^18.2.0",
     "react-date-picker": "^9.2.0",
     "react-dom": "^18.2.0",
@@ -20,7 +21,8 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts build && next build",
+    "build-next": "react-scripts build && next build",
+    "build": "react-scripts build",
     "dev": "next dev",
     "start-next": "next start",
     "test": "react-scripts test",
