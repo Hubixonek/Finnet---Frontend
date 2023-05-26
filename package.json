@@ -9,7 +9,7 @@
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.3",
-    "firebase": "^9.22.0",
+    "firebase": "^9.22.1",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-date-picker": "^9.2.0",
