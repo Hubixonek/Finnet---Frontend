@@ -17,7 +17,6 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
                   <th scope="col">Kurs</th>
                   <th scope="col">Wynik</th>
                   <th scope="col">Kurs NBP</th>
-                  <th scope="col">Zyski/Straty</th>
                   <th scope="col">Usuń</th>
                 </tr>
               </thead>
@@ -31,7 +30,6 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
                       {funds.result} {funds.toCurrency}
                     </td>
                     <td>{funds.selectedCurrencyRate}</td>
-                    <td>5%</td>
                     <td>
                       <button
                         className="btn btn-danger"

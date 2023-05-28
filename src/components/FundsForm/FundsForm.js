@@ -28,9 +28,14 @@ const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState("");
   const [toCurrency, setToCurrency] = useState("");
   const [funds, setFunds] = useState([]);
-  // const [nbpRate, setNbpRate] = useState("");
   const [currencies, setCurrencies] = useState([]);
   const [selectedCurrencyRate, setSelectedCurrencyRate] = useState(0);
+  const [selectedFromCurrencyRate, setSelectedFromCurrencyRate] = useState(0);
+
+  //logowanie w konsoli kursu dla pierwszej waluty
+  console.log(`Kurs ${fromCurrency} ${selectedFromCurrencyRate}`);
+  console.log(selectedCurrencyRate);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -38,7 +43,9 @@ const FundsForm = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://api.nbp.pl/api/exchangerates/tables/C/${toCurrency}`
+        `https://api.nbp.pl/api/exchangerates/tables/C/${
+          toCurrency && fromCurrency
+        }`
       );
       const allCurrencies = response.data[0].rates.map((rate) => ({
         code: rate.code,
@@ -50,6 +57,14 @@ const FundsForm = () => {
       const selectedCurrency = allCurrencies.find(
         (currency) => currency.code === toCurrency
       );
+      const selectedFromCurrency = allCurrencies.find(
+        (currency) => currency.code === fromCurrency
+      );
+      //Odczytywanie kursu dla pierwszego selektora options
+      if (selectedFromCurrency) {
+        setSelectedFromCurrencyRate(selectedFromCurrency.rate);
+      }
+      //Odczytywanie kursu dla drugiego selektora options
       if (selectedCurrency) {
         setSelectedCurrencyRate(selectedCurrency.rate);
       }
@@ -89,26 +104,61 @@ const FundsForm = () => {
   };
 
   const fromCurrencyChangeHandler = (event) => {
+    const selectedCurrency = event.target.value;
+    setFromCurrency(selectedCurrency);
+
+    //Po wyborze pierwszej waluty mogę wylogować jej kurs w konsoli
     formik.setFieldValue("fromCurrency", event.target.value);
-    if (event.target.value === toCurrency) {
+    const selectedCurrencyRate = currencies.find(
+      (currency) => currency.code === selectedCurrency
+    )?.rate;
+    setSelectedFromCurrencyRate(selectedCurrencyRate);
+
+    if (selectedCurrency === toCurrency) {
       setToCurrency(fromCurrency);
+      const selectedCurrencyRate = currencies.find(
+        (currency) => currency.code === fromCurrency
+      )?.rate;
+      setSelectedCurrencyRate(selectedCurrencyRate);
       formik.setFieldValue("toCurrency", fromCurrency);
     }
-    setFromCurrency(event.target.value);
+    if (selectedCurrency === "PLN") {
+      const inverseRate = (1 / parseFloat(selectedCurrencyRate)).toFixed(2);
+      setSelectedCurrencyRate(inverseRate);
+    }
+    if (toCurrency) {
+      const rate = (
+        selectedCurrencyRate / parseFloat(selectedFromCurrencyRate)
+      ).toFixed(2);
+      setSelectedCurrencyRate(rate);
+    }
   };
   const toCurrencyChangeHandler = (event) => {
     const selectedCurrency = event.target.value;
+    setToCurrency(selectedCurrency);
+    const selectedCurrencyRate = currencies.find(
+      (currency) => currency.code === selectedCurrency
+    )?.rate;
+
+    setSelectedCurrencyRate(selectedCurrencyRate);
     formik.setFieldValue("toCurrency", selectedCurrency);
+
     if (selectedCurrency === fromCurrency) {
       setFromCurrency(toCurrency);
       formik.setFieldValue("fromCurrency", toCurrency);
     }
-    setToCurrency(selectedCurrency);
-    const selectedCurrencyRate = currencies.find(
-      (currency) => currency.code === selectedCurrency
-    ).rate;
-    setSelectedCurrencyRate(selectedCurrencyRate);
+    if (fromCurrency === "PLN") {
+      const inverseRate = (1 / parseFloat(selectedCurrencyRate)).toFixed(2);
+      setSelectedCurrencyRate(inverseRate);
+    }
+    if (fromCurrency) {
+      const rate = (
+        selectedFromCurrencyRate / parseFloat(selectedCurrencyRate)
+      ).toFixed(2);
+      setSelectedCurrencyRate(rate);
+    }
   };
+
   return (
     <div>
       <form className={styles["formHeader"]} onSubmit={formik.handleSubmit}>
@@ -199,6 +249,7 @@ const FundsForm = () => {
               onBlur={formik.handleBlur}
               name="toCurrency">
               <option value="">Wybierz walutę</option>
+              <option value="PLN">PLN - polski złoty</option>
               {currencies.map((currency) => (
                 <option key={currency.code} value={currency.code}>
                   {currency.code} - {currency.name}
