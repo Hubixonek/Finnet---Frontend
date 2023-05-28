@@ -126,12 +126,6 @@ const FundsForm = () => {
       const inverseRate = (1 / parseFloat(selectedCurrencyRate)).toFixed(2);
       setSelectedCurrencyRate(inverseRate);
     }
-    if (toCurrency) {
-      const rate = (
-        selectedCurrencyRate / parseFloat(selectedFromCurrencyRate)
-      ).toFixed(2);
-      setSelectedCurrencyRate(rate);
-    }
   };
   const toCurrencyChangeHandler = (event) => {
     const selectedCurrency = event.target.value;
@@ -151,12 +145,12 @@ const FundsForm = () => {
       const inverseRate = (1 / parseFloat(selectedCurrencyRate)).toFixed(2);
       setSelectedCurrencyRate(inverseRate);
     }
-    if (fromCurrency) {
-      const rate = (
-        selectedFromCurrencyRate / parseFloat(selectedCurrencyRate)
-      ).toFixed(2);
-      setSelectedCurrencyRate(rate);
-    }
+    // if (fromCurrency) {
+    //   const rate = (
+    //     selectedFromCurrencyRate / parseFloat(selectedCurrencyRate)
+    //   ).toFixed(2);
+    //   setSelectedCurrencyRate(rate);
+    // }
   };
 
   return (
