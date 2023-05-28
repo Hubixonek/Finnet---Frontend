@@ -112,7 +112,7 @@ const FundsForm = () => {
     const selectedCurrencyRate = currencies.find(
       (currency) => currency.code === selectedCurrency
     )?.rate;
-    setSelectedFromCurrencyRate(selectedCurrencyRate);
+    setSelectedCurrencyRate(selectedCurrencyRate);
 
     if (selectedCurrency === toCurrency) {
       setToCurrency(fromCurrency);
@@ -121,10 +121,6 @@ const FundsForm = () => {
       )?.rate;
       setSelectedCurrencyRate(selectedCurrencyRate);
       formik.setFieldValue("toCurrency", fromCurrency);
-    }
-    if (selectedCurrency === "PLN") {
-      const inverseRate = (1 / parseFloat(selectedCurrencyRate)).toFixed(2);
-      setSelectedCurrencyRate(inverseRate);
     }
   };
   const toCurrencyChangeHandler = (event) => {
