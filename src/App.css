@@ -41,3 +41,7 @@ only screen and (max-width: 375),
     max-width: 362px;
   }
 }
+
+body > p:has(a[href="https://mikr.us/?ref=bystre"]) {
+  display: none;
+}
