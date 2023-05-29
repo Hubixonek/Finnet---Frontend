@@ -1,7 +1,7 @@
-FROM node:20-alpine
+FROM node:20-alpine as production
 WORKDIR /app
 COPY . .
-RUN npm install
+RUN npm ci --omit=dev
 RUN npm run build
 EXPOSE 80
 RUN npm install -g serve
