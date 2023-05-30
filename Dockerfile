@@ -5,6 +5,7 @@ RUN npm ci --omit=dev
 
 FROM node:20-alpine as production
 WORKDIR /app
+COPY . .
 COPY --from=dependencies /app/node_modules ./node_modules
 
 ARG NODE_ENV=production
