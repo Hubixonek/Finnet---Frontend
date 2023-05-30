@@ -7,7 +7,5 @@ services:
     build:
       context: .
       target: production
-    volumes:
-      - .:/app/
     ports:
       - 80:80
