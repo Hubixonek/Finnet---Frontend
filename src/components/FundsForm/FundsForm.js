@@ -29,12 +29,12 @@ const FundsForm = () => {
   const [toCurrency, setToCurrency] = useState("");
   const [funds, setFunds] = useState([]);
   const [currencies, setCurrencies] = useState([]);
-  const [selectedCurrencyRate, setSelectedCurrencyRate] = useState(0);
-  const [selectedFromCurrencyRate, setSelectedFromCurrencyRate] = useState(0);
+  const [selectedToCurrencyRate, setSelectedToCurrencyRate] = useState("");
+  const [selectedFromCurrencyRate, setSelectedFromCurrencyRate] = useState("");
 
   //logowanie w konsoli kursu dla pierwszej waluty
   console.log(`Kurs ${fromCurrency} ${selectedFromCurrencyRate}`);
-  console.log(selectedCurrencyRate);
+  console.log(selectedToCurrencyRate);
 
   useEffect(() => {
     fetchData();
@@ -53,21 +53,6 @@ const FundsForm = () => {
         rate: rate.ask,
       }));
       setCurrencies(allCurrencies);
-
-      const selectedCurrency = allCurrencies.find(
-        (currency) => currency.code === toCurrency
-      );
-      const selectedFromCurrency = allCurrencies.find(
-        (currency) => currency.code === fromCurrency
-      );
-      //Odczytywanie kursu dla pierwszego selektora options
-      if (selectedFromCurrency) {
-        setSelectedFromCurrencyRate(selectedFromCurrency.rate);
-      }
-      //Odczytywanie kursu dla drugiego selektora options
-      if (selectedCurrency) {
-        setSelectedCurrencyRate(selectedCurrency.rate);
-      }
     } catch (error) {
       console.error("Błąd przy pobieraniu danych", error);
     }
@@ -92,7 +77,7 @@ const FundsForm = () => {
         fromCurrency: fromCurrency,
         result: formik.values.result,
         toCurrency: toCurrency,
-        selectedCurrencyRate: selectedCurrencyRate,
+        selectedToCurrencyRate: selectedToCurrencyRate,
       };
       setFunds([...funds, fundsObject]);
       console.log(JSON.stringify(values, null));
@@ -107,30 +92,36 @@ const FundsForm = () => {
     const selectedCurrency = event.target.value;
     setFromCurrency(selectedCurrency);
 
-    //Po wyborze pierwszej waluty mogę wylogować jej kurs w konsoli
-    formik.setFieldValue("fromCurrency", event.target.value);
-    const selectedCurrencyRate = currencies.find(
+    const selectedToCurrencyRate = currencies.find(
       (currency) => currency.code === selectedCurrency
     )?.rate;
-    setSelectedCurrencyRate(selectedCurrencyRate);
+    setSelectedFromCurrencyRate(selectedToCurrencyRate);
 
     if (selectedCurrency === toCurrency) {
       setToCurrency(fromCurrency);
-      const selectedCurrencyRate = currencies.find(
-        (currency) => currency.code === fromCurrency
-      )?.rate;
-      setSelectedCurrencyRate(selectedCurrencyRate);
+      setSelectedToCurrencyRate(fromCurrency);
       formik.setFieldValue("toCurrency", fromCurrency);
     }
+
+    if (toCurrency === "PLN") {
+      const inverseRate = selectedToCurrencyRate;
+      setSelectedToCurrencyRate(inverseRate);
+    } else {
+      const rate = (
+        selectedToCurrencyRate / parseFloat(selectedFromCurrencyRate)
+      ).toFixed(2);
+      setSelectedToCurrencyRate(rate);
+    }
   };
+
   const toCurrencyChangeHandler = (event) => {
     const selectedCurrency = event.target.value;
     setToCurrency(selectedCurrency);
-    const selectedCurrencyRate = currencies.find(
+
+    const selectedToCurrencyRate = currencies.find(
       (currency) => currency.code === selectedCurrency
     )?.rate;
-
-    setSelectedCurrencyRate(selectedCurrencyRate);
+    setSelectedToCurrencyRate(selectedToCurrencyRate);
     formik.setFieldValue("toCurrency", selectedCurrency);
 
     if (selectedCurrency === fromCurrency) {
@@ -138,15 +129,14 @@ const FundsForm = () => {
       formik.setFieldValue("fromCurrency", toCurrency);
     }
     if (fromCurrency === "PLN") {
-      const inverseRate = (1 / parseFloat(selectedCurrencyRate)).toFixed(2);
-      setSelectedCurrencyRate(inverseRate);
+      const inverseRate = (1 / parseFloat(selectedToCurrencyRate)).toFixed(2);
+      setSelectedToCurrencyRate(inverseRate);
+    } else {
+      const rate = (
+        selectedFromCurrencyRate / parseFloat(selectedToCurrencyRate)
+      ).toFixed(2);
+      setSelectedToCurrencyRate(rate);
     }
-    // if (fromCurrency) {
-    //   const rate = (
-    //     selectedFromCurrencyRate / parseFloat(selectedCurrencyRate)
-    //   ).toFixed(2);
-    //   setSelectedCurrencyRate(rate);
-    // }
   };
 
   return (
@@ -269,7 +259,7 @@ const FundsForm = () => {
               type="text"
               className="form-control"
               id="api-courses"
-              value={selectedCurrencyRate}
+              value={selectedToCurrencyRate}
               readOnly={true}></input>
           </div>
           <div className="save-btn mt-2">
