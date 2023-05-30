@@ -5,4 +5,4 @@ RUN npm ci --omit=dev
 RUN npm run build
 RUN npm install -g serve
 
-CMD [ "serve", "build", "-l", "80" ]
+CMD [ "serve", "-s", "build", "-l", "80" ]
