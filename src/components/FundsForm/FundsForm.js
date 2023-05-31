@@ -290,9 +290,12 @@ const FundsForm = () => {
           ) : null}
         </div>
       </form>
-      <TableWithFundsDatas
+      { (funds.length > 0) 
+      && <TableWithFundsDatas
         funds={funds}
-        removeFundsData={handleRemoveFundsData}></TableWithFundsDatas>
+        removeFundsData={handleRemoveFundsData}
+        />
+      }
     </div>
   );
 };
