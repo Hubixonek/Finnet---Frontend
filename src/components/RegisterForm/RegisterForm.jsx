@@ -1,4 +1,4 @@
-import styles from "../styles/RegisterForm.module.css";
+import styles from "../styles/RegisterForm.module.scss";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 

@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { useState, useEffect } from "react";
-import styles from "../styles/FundsForm.module.css";
+import styles from "../styles/FundsForm.module.scss";
 import TableWithFundsDatas from "../Table/TableWithFundsDatas";
 import axios from "axios";
 

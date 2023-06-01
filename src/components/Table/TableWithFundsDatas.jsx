@@ -1,4 +1,4 @@
-import styles from "../styles/Table.module.css";
+import styles from "../styles/Table.module.scss";
 import SummaryDataTable from "./SummaryDataTable";
 import PropTypes from "prop-types";
 

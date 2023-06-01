@@ -1,4 +1,4 @@
-import styles from '../styles/Table.module.css';
+import styles from '../styles/Table.module.scss';
 const SummaryDataTable = () => {
 	return (
 		<div className={styles['summarydatas_table--tr']}>
