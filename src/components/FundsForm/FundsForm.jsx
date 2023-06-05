@@ -31,7 +31,7 @@ const FundsForm = () => {
   const [currencies, setCurrencies] = useState([]);
   const [selectedToRate, setSelectedToRate] = useState("");
   const [selectedFromRate, setSelectedFromRate] = useState("");
-  const [rate, setRate] = useState(1);
+  const [rate, setRate] = useState("");
 
   //logowanie w konsoli kursu dla pierwszej waluty
   console.log(`Kurs ${fromCurrency} ${selectedFromRate}`);
@@ -276,7 +276,7 @@ const FundsForm = () => {
               type="text"
               className="form-control"
               id="api-courses"
-              value={rate}
+              value={isNaN(rate) ? "Przeliczony" : rate}
               readOnly={true}></input>
           </div>
           <div className="save-btn mt-2">
