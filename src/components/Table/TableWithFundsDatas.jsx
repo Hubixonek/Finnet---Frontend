@@ -29,7 +29,7 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
                     <td>
                       {funds.result} {funds.toCurrency}
                     </td>
-                    <td>{funds.selectedCurrencyRate}</td>
+                    <td>{funds.apiRate}</td>
                     <td>
                       <button
                         className="btn btn-danger"
