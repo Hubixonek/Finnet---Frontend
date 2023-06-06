@@ -1,11 +1,22 @@
-version: "3.4"
+version: "3.5"
 
 services:
   frontend:
     container_name: finnet-frontend
     image: finnet-frontend
+    networks:
+      - finnet
     build:
+      dockerfile: Dockerfile
       context: .
       target: production
     ports:
       - 80:80
+
+    
+networks:
+  finnet:
+    external: true
+    name: finnet
+
+#test commit
