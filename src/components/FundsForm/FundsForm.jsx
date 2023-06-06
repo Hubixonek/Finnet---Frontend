@@ -34,11 +34,11 @@ const FundsForm = () => {
   const [rate, setRate] = useState("");
 
   //logowanie w konsoli kursu dla pierwszej waluty
-  console.log(`Kurs ${fromCurrency} ${selectedFromRate}`);
+  // console.log(`Kurs ${fromCurrency} ${selectedFromRate}`);
 
-  console.log(`Kurs ${toCurrency} ${selectedToRate}`);
+  // console.log(`Kurs ${toCurrency} ${selectedToRate}`);
 
-  console.log(`${fromCurrency} / ${toCurrency} = ${rate}`);
+  // console.log(`${fromCurrency} / ${toCurrency} = ${rate}`);
 
   useEffect(() => {
     fetchData();
@@ -47,14 +47,14 @@ const FundsForm = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://api.nbp.pl/api/exchangerates/tables/C/${
+        `https://api.nbp.pl/api/exchangerates/tables/A/${
           fromCurrency && toCurrency
         }`
       );
       const allCurrencies = response.data[0].rates.map((rate) => ({
         code: rate.code,
         name: rate.currency,
-        rate: rate.ask,
+        rate: rate.mid,
       }));
       setCurrencies(allCurrencies);
     } catch (error) {
@@ -82,6 +82,10 @@ const FundsForm = () => {
         result: formik.values.result,
         toCurrency: toCurrency,
         apiRate: rate,
+        selectedFromRate: selectedFromRate,
+        selectedToRate: selectedToRate,
+        profitAndLoss:
+          formik.values.result - (formik.values.amount * rate).toFixed(2),
       };
       setFunds([...funds, fundsObject]);
       console.log(JSON.stringify(values, null));
@@ -151,7 +155,7 @@ const FundsForm = () => {
       const rate = (1 / selectedToRate).toFixed(2);
       setRate(rate);
     } else if (toCurrency === "PLN") {
-      const rate = selectedFromRate / 1;
+      const rate = (selectedFromRate / 1).toFixed(2);
       setRate(rate);
     }
   }, [selectedFromRate, selectedToRate, fromCurrency, toCurrency]);

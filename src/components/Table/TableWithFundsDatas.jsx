@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react";
 import styles from "../styles/Table.module.scss";
 import SummaryDataTable from "./SummaryDataTable";
 import PropTypes from "prop-types";
 
 const TableWithFundsDatas = ({ funds, removeFundsData }) => {
+  const [profitOrLossInPln, setProfitOrLossInPln] = useState("");
+
+  const profitAndLoss = () => {
+    const profitLossArray = funds.map((fund) => {
+      return (fund.profitAndLoss * fund.selectedToRate).toFixed(2);
+    });
+    setProfitOrLossInPln(profitLossArray);
+  };
+
+  useEffect(() => {
+    profitAndLoss();
+  }, [funds]);
+
   return (
     <div>
       <div>
@@ -17,23 +31,33 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
                   <th scope="col">Kurs</th>
                   <th scope="col">Wynik</th>
                   <th scope="col">Kurs NBP</th>
+                  <th scope="col">Zysk/Strata</th>
                   <th scope="col">Usuń</th>
                 </tr>
               </thead>
               <tbody>
-                {funds.map((funds) => (
-                  <tr key={funds.id}>
-                    <td>{funds.date}</td>
-                    <td>{funds.amount}</td>
-                    <td>{funds.rate}</td>
+                {funds.map((fund, index) => (
+                  <tr key={fund.id}>
+                    <td>{fund.date}</td>
+                    <td>{fund.amount}</td>
+                    <td>{fund.rate}</td>
                     <td>
-                      {funds.result} {funds.toCurrency}
+                      {fund.result} {fund.toCurrency}
                     </td>
-                    <td>{funds.apiRate}</td>
+                    <td>{fund.apiRate}</td>
+                    <td
+                      style={{
+                        color:
+                          parseFloat(profitOrLossInPln[index]) < 0
+                            ? "red"
+                            : "lime"
+                      }}>
+                      {`${profitOrLossInPln[index]} PLN`}
+                    </td>
                     <td>
                       <button
                         className="btn btn-danger"
-                        onClick={() => removeFundsData(funds.id)}>
+                        onClick={() => removeFundsData(fund.id)}>
                         X
                       </button>
                     </td>
