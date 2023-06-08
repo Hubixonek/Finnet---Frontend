@@ -29,7 +29,8 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
         <main className={styles["main_table--container"]}>
           <h1 className={styles["h1_table"]}>Zapisane dane</h1>
           <div className="table-responsive">
-            <table className={`table table-striped table-dark ${styles.table}`}>
+            <table
+              className={`table table-striped table-light ${styles.table}`}>
               <thead>
                 <tr>
                   <th scope="col">Data</th>
@@ -56,7 +57,7 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
                         color:
                           parseFloat(profitOrLossInPln[index]) < 0
                             ? "red"
-                            : "lime",
+                            : "green",
                       }}>
                       {`${parseFloat(profitOrLossInPln[index]) > 0 ? "+" : ""}${
                         profitOrLossInPln[index]

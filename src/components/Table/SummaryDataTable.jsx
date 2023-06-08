@@ -1,5 +1,4 @@
 import styles from "../styles/Table.module.scss";
-
 const SummaryDataTable = ({ totalProfitOrLoss }) => {
   return (
     <div className={styles["summarydatas_table--tr"]}>
@@ -7,11 +6,12 @@ const SummaryDataTable = ({ totalProfitOrLoss }) => {
       <p
         className={styles["profitOrLoss"]}
         style={{
-          color: parseFloat(totalProfitOrLoss) < 0 ? "red" : "lime",
+          color: parseFloat(totalProfitOrLoss) < 0 ? "red" : "green",
         }}>
         {`${
-          parseFloat(totalProfitOrLoss) > 0 ? "Zysk :" : "Strata:"
+          parseFloat(totalProfitOrLoss) > 0 ? "Zysk : " : "Strata:" 
         } ${totalProfitOrLoss} PLN`}
+        
       </p>
     </div>
   );

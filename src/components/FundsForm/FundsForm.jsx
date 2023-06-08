@@ -33,13 +33,6 @@ const FundsForm = () => {
   const [selectedFromRate, setSelectedFromRate] = useState("");
   const [rate, setRate] = useState("");
 
-  //logowanie w konsoli kursu dla pierwszej waluty
-  // console.log(`Kurs ${fromCurrency} ${selectedFromRate}`);
-
-  // console.log(`Kurs ${toCurrency} ${selectedToRate}`);
-
-  // console.log(`${fromCurrency} / ${toCurrency} = ${rate}`);
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -244,7 +237,10 @@ const FundsForm = () => {
               placeholder="Kurs"
             />
             <span className="input-group-text w-50">
-              {fromCurrency} {toCurrency}
+              {/* Jeśli oba warunki są prawdziwe to wstawiamy "/" pomiędzy wartościami*/}
+              {fromCurrency}
+              {formik.values.fromCurrency && formik.values.toCurrency && "/"}
+              {toCurrency}
             </span>
           </div>
           <div className={`input-group ${styles.inputStyle}`}>
