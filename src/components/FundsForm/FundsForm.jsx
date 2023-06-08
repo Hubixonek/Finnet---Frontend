@@ -61,6 +61,16 @@ const FundsForm = () => {
       console.error("Błąd przy pobieraniu danych", error);
     }
   };
+  useEffect(() => {
+    const data = localStorage.getItem("fundsData");
+    if (data) {
+      setFunds(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("fundsData", JSON.stringify(funds));
+  }, [funds]);
 
   const formik = useFormik({
     initialValues: {
@@ -84,7 +94,7 @@ const FundsForm = () => {
         apiRate: rate,
         selectedFromRate: selectedFromRate,
         selectedToRate: selectedToRate,
-        profitAndLoss:
+        resultByRateFromApi:
           formik.values.result - (formik.values.amount * rate).toFixed(2),
       };
       setFunds([...funds, fundsObject]);
