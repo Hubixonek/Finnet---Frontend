@@ -33,13 +33,6 @@ const FundsForm = () => {
   const [selectedFromRate, setSelectedFromRate] = useState("");
   const [rate, setRate] = useState("");
 
-  //logowanie w konsoli kursu dla pierwszej waluty
-  // console.log(`Kurs ${fromCurrency} ${selectedFromRate}`);
-
-  // console.log(`Kurs ${toCurrency} ${selectedToRate}`);
-
-  // console.log(`${fromCurrency} / ${toCurrency} = ${rate}`);
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -61,6 +54,16 @@ const FundsForm = () => {
       console.error("Błąd przy pobieraniu danych", error);
     }
   };
+  useEffect(() => {
+    const data = localStorage.getItem("fundsData");
+    if (data) {
+      setFunds(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("fundsData", JSON.stringify(funds));
+  }, [funds]);
 
   const formik = useFormik({
     initialValues: {
@@ -84,7 +87,7 @@ const FundsForm = () => {
         apiRate: rate,
         selectedFromRate: selectedFromRate,
         selectedToRate: selectedToRate,
-        profitAndLoss:
+        resultByRateFromApi:
           formik.values.result - (formik.values.amount * rate).toFixed(2),
       };
       setFunds([...funds, fundsObject]);
@@ -234,7 +237,10 @@ const FundsForm = () => {
               placeholder="Kurs"
             />
             <span className="input-group-text w-50">
-              {fromCurrency} {toCurrency}
+              {/* Jeśli oba warunki są prawdziwe to wstawiamy "/" pomiędzy wartościami*/}
+              {fromCurrency}
+              {formik.values.fromCurrency && formik.values.toCurrency && "/"}
+              {toCurrency}
             </span>
           </div>
           <div className={`input-group ${styles.inputStyle}`}>

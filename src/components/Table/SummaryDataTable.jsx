@@ -1,19 +1,20 @@
-import styles from '../styles/Table.module.scss';
-const SummaryDataTable = () => {
-	return (
-		<div className={styles['summarydatas_table--tr']}>
-			<table className={styles['table table-striped table-dark']}>
-				<thead>
-					<tr>
-						<th scope="col">Podsumowanie</th>
-					</tr>
-					<tr>
-						<td></td>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
-		</div>
-	);
+import styles from "../styles/Table.module.scss";
+const SummaryDataTable = ({ totalProfitOrLoss }) => {
+  return (
+    <div className={styles["summarydatas_table--tr"]}>
+      <h3>Podsumowanie operacji</h3>
+      <p
+        className={styles["profitOrLoss"]}
+        style={{
+          color: parseFloat(totalProfitOrLoss) < 0 ? "red" : "green",
+        }}>
+        {`${
+          parseFloat(totalProfitOrLoss) > 0 ? "Zysk : " : "Strata:" 
+        } ${totalProfitOrLoss} PLN`}
+        
+      </p>
+    </div>
+  );
 };
+
 export default SummaryDataTable;

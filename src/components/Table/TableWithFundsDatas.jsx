@@ -4,15 +4,21 @@ import SummaryDataTable from "./SummaryDataTable";
 import PropTypes from "prop-types";
 
 const TableWithFundsDatas = ({ funds, removeFundsData }) => {
-  const [profitOrLossInPln, setProfitOrLossInPln] = useState("");
+  const [profitOrLossInPln, setProfitOrLossInPln] = useState([]);
+  const [totalProfitOrLoss, setTotalProfitOrLoss] = useState([]);
 
   const profitAndLoss = () => {
-    const profitLossArray = funds.map((fund) => {
-      return (fund.profitAndLoss * fund.selectedToRate).toFixed(2);
+    const updatedProfitOrLossInPln = funds.map((fund) => {
+      return (fund.resultByRateFromApi * fund.selectedToRate).toFixed(2);
     });
-    setProfitOrLossInPln(profitLossArray);
-  };
+    setProfitOrLossInPln(updatedProfitOrLossInPln);
 
+    const sum = updatedProfitOrLossInPln.reduce(
+      (acc, val) => acc + parseFloat(val),
+      0
+    );
+    setTotalProfitOrLoss(sum.toFixed(2));
+  };
   useEffect(() => {
     profitAndLoss();
   }, [funds]);
@@ -23,7 +29,8 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
         <main className={styles["main_table--container"]}>
           <h1 className={styles["h1_table"]}>Zapisane dane</h1>
           <div className="table-responsive">
-            <table className={`table table-striped table-dark ${styles.table}`}>
+            <table
+              className={`table table-striped table-light ${styles.table}`}>
               <thead>
                 <tr>
                   <th scope="col">Data</th>
@@ -50,9 +57,11 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
                         color:
                           parseFloat(profitOrLossInPln[index]) < 0
                             ? "red"
-                            : "lime"
+                            : "green",
                       }}>
-                      {`${profitOrLossInPln[index]} PLN`}
+                      {`${parseFloat(profitOrLossInPln[index]) > 0 ? "+" : ""}${
+                        profitOrLossInPln[index]
+                      } PLN`}
                     </td>
                     <td>
                       <button
@@ -65,10 +74,11 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
                 ))}
               </tbody>
             </table>
-            <SummaryDataTable></SummaryDataTable>
           </div>
         </main>
       </div>
+      <SummaryDataTable
+        totalProfitOrLoss={totalProfitOrLoss}></SummaryDataTable>
     </div>
   );
 };
