@@ -11,27 +11,9 @@ import RateOfApiField from "../forms/TextField/RateOfApiField";
 import FormikErrorValidation from "../forms/Errors/FormikErrorValidation";
 import TableWithFundsDatas from "../Table/TableWithFundsDatas";
 import Button from "../forms/Button/Button";
-import axios from "axios";
-
-const validate = (values) => {
-  const errors = {};
-  if (!values.date) {
-    errors.date = "* Data jest wymagana!";
-  }
-  if (!values.amount) {
-    errors.amount = "* Kwota jest wymagana!";
-  }
-  if (!values.fromCurrency) {
-    errors.fromCurrency = "* Proszę wybrać posiadaną walutę!";
-  }
-  if (!values.rate) {
-    errors.rate = "* Kurs jest wymagany!";
-  }
-  if (!values.toCurrency) {
-    errors.toCurrency = "* Proszę wybrać wymienianą walutę!";
-  }
-  return errors;
-};
+import validate from "../../utils/helpers/validation.helpers";
+import { LocalStorage } from "../../services/LocalStorage.service";
+import { fetchData } from "../../api/NBP_API";
 
 const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState("");
@@ -43,35 +25,18 @@ const FundsForm = () => {
   const [rate, setRate] = useState("");
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(fromCurrency, toCurrency, setCurrencies);
+  }, [fromCurrency, toCurrency]);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.nbp.pl/api/exchangerates/tables/A/${
-          fromCurrency && toCurrency
-        }`
-      );
-      const allCurrencies = response.data[0].rates.map((rate) => ({
-        code: rate.code,
-        name: rate.currency,
-        rate: rate.mid,
-      }));
-      setCurrencies(allCurrencies);
-    } catch (error) {
-      console.error("Błąd przy pobieraniu danych", error);
-    }
-  };
   useEffect(() => {
-    const data = localStorage.getItem("fundsData");
+    const data = LocalStorage.get("fundsData");
     if (data) {
-      setFunds(JSON.parse(data));
+      setFunds(data);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("fundsData", JSON.stringify(funds));
+    LocalStorage.set("fundsData", funds);
   }, [funds]);
 
   const formik = useFormik({
@@ -177,31 +142,30 @@ const FundsForm = () => {
       <form className={styles["formHeader"]} onSubmit={formik.handleSubmit}>
         <div className={styles["form_input--container"]}>
           <h1 className={styles["h1-style"]}>Przelicz kursy</h1>
-          <DateField formik={formik}></DateField>
-          <AmountField formik={formik}></AmountField>
+          <DateField formik={formik} />
+          <AmountField formik={formik} />
           <SelectFromCurrency
             formik={formik}
             fromCurrency={fromCurrency}
             currencies={currencies}
-            fromCurrencyChangeHandler={
-              fromCurrencyChangeHandler
-            }></SelectFromCurrency>
+            fromCurrencyChangeHandler={fromCurrencyChangeHandler}
+          />
           <RateField
             formik={formik}
             toCurrency={toCurrency}
-            fromCurrency={fromCurrency}></RateField>
+            fromCurrency={fromCurrency}
+          />
           <SelectToCurrency
             formik={formik}
             fromCurrency={fromCurrency}
             currencies={currencies}
             toCurrency={toCurrency}
-            toCurrencyChangeHandler={
-              toCurrencyChangeHandler
-            }></SelectToCurrency>
-          <ResultField formik={formik}></ResultField>
-          <RateOfApiField toCurrency={toCurrency} rate={rate}></RateOfApiField>
-          <Button></Button>
-          <FormikErrorValidation formik={formik}></FormikErrorValidation>
+            toCurrencyChangeHandler={toCurrencyChangeHandler}
+          />
+          <ResultField formik={formik} />
+          <RateOfApiField toCurrency={toCurrency} rate={rate} />
+          <Button />
+          <FormikErrorValidation formik={formik} />
         </div>
       </form>
       {funds.length > 0 && (
