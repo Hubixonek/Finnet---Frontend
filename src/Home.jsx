@@ -3,11 +3,7 @@ import "./App.scss";
 import Navbar from "./components/Navbar/Navbar";
 
 function Home() {
-  return (
-    <>
-      <Navbar></Navbar>
-    </>
-  );
+  return <Navbar />;
 }
 
 export default Home;

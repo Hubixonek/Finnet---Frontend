@@ -1,7 +1,15 @@
 import { useFormik } from "formik";
 import { useState, useEffect } from "react";
 import styles from "../styles/FundsForm.module.scss";
+import DateField from "../forms/TextField/DateField";
+import AmountField from "../forms/TextField/AmountField";
+import SelectFromCurrency from "../forms/Select/SelectFromCurrency";
+import SelectToCurrency from "../forms/Select/SelectToCurrency";
+import RateField from "../forms/TextField/RateField";
+import ResultField from "../forms/TextField/ResultField";
+import RateOfApiField from "../forms/TextField/RateOfApiField";
 import TableWithFundsDatas from "../Table/TableWithFundsDatas";
+import Button from "../forms/Button/Button";
 import axios from "axios";
 
 const validate = (values) => {
@@ -167,135 +175,31 @@ const FundsForm = () => {
     <div>
       <form className={styles["formHeader"]} onSubmit={formik.handleSubmit}>
         <div className={styles["form_input--container"]}>
-          <h1 className={styles["h1-style"]}>Finnet</h1>
-          <div className="input-group">
-            <label className="input-group-text w-50" htmlFor="date">
-              Data operacji
-            </label>
-            <input
-              className={`form-control ${
-                formik.touched.date && formik.errors.date
-                  ? styles.errorInput
-                  : ""
-              }`}
-              name="date"
-              type="date"
-              value={formik.values.date}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}></input>
-          </div>
-          <div className={`input-group ${styles.inputStyle}`}>
-            <label htmlFor="amount"></label>
-            <input
-              className={`form-control ${
-                formik.touched.amount && formik.errors.amount
-                  ? styles.errorInput
-                  : ""
-              }`}
-              name="amount"
-              type="text"
-              value={formik.values.amount}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder="Kwota"
-            />
-          </div>
-          <div className={`input-group ${styles.inputStyle}`}>
-            <label htmlFor="fromCurrency"></label>
-            <select
-              className={`form-control ${
-                formik.touched.fromCurrency && formik.errors.fromCurrency
-                  ? styles.errorInput
-                  : ""
-              }`}
-              value={fromCurrency}
-              onChange={fromCurrencyChangeHandler}
-              onBlur={formik.handleBlur}
-              name="fromCurrency">
-              <option value="">Wybierz walutę</option>
-              <option value="PLN">PLN - polski złoty</option>
-              {currencies.map((currency) => (
-                <option key={currency.code} value={currency.code}>
-                  {currency.code} - {currency.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className={`input-group ${styles.inputStyle}`}>
-            <label htmlFor="rate"></label>
-            <input
-              className={`form-control ${
-                formik.touched.rate && formik.errors.rate
-                  ? styles.errorInput
-                  : ""
-              }`}
-              name="rate"
-              value={formik.values.rate}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              type="text"
-              placeholder="Kurs"
-            />
-            <span className="input-group-text w-50">
-              {/* Jeśli oba warunki są prawdziwe to wstawiamy "/" pomiędzy wartościami*/}
-              {fromCurrency}
-              {formik.values.fromCurrency && formik.values.toCurrency && "/"}
-              {toCurrency}
-            </span>
-          </div>
-          <div className={`input-group ${styles.inputStyle}`}>
-            <label htmlFor="toCurrency"></label>
-            <select
-              className={`form-control ${
-                formik.touched.toCurrency && formik.errors.toCurrency
-                  ? styles.errorInput
-                  : ""
-              }`}
-              value={toCurrency}
-              onChange={toCurrencyChangeHandler}
-              onBlur={formik.handleBlur}
-              name="toCurrency">
-              <option value="">Wybierz walutę</option>
-              <option value="PLN">PLN - polski złoty</option>
-              {currencies.map((currency) => (
-                <option key={currency.code} value={currency.code}>
-                  {currency.code} - {currency.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className={`input-group ${styles.inputStyle}`}>
-            <label className="input-group-text" htmlFor="result">
-              Wynik
-            </label>
-            <input
-              type="number"
-              name="result"
-              value={`${(formik.values.result = (
-                formik.values.amount * formik.values.rate
-              ).toFixed(2))}`}
-              onChange={formik.handleChange}
-              className="form-control"
-              aria-describedby="basic-addon1"></input>
-          </div>
-          <div className={`input-group ${styles.inputStyle}`}>
-            <label className="input-group-text w-50" htmlFor="currently">
-              Kurs {toCurrency}
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="api-courses"
-              value={isNaN(rate) ? "Przeliczony" : rate}
-              readOnly={true}></input>
-          </div>
-          <div className="save-btn mt-2">
-            <button
-              type="submit"
-              className={`btn btn-primary form_button--savebtn ${styles.formButton}`}>
-              Zapisz
-            </button>
-          </div>
+          <h1 className={styles["h1-style"]}>Przelicz kursy</h1>
+          <DateField formik={formik}></DateField>
+          <AmountField formik={formik}></AmountField>
+          <SelectFromCurrency
+            formik={formik}
+            fromCurrency={fromCurrency}
+            currencies={currencies}
+            fromCurrencyChangeHandler={
+              fromCurrencyChangeHandler
+            }></SelectFromCurrency>
+          <RateField
+            formik={formik}
+            toCurrency={toCurrency}
+            fromCurrency={fromCurrency}></RateField>
+          <SelectToCurrency
+            formik={formik}
+            fromCurrency={fromCurrency}
+            currencies={currencies}
+            toCurrency={toCurrency}
+            toCurrencyChangeHandler={
+              toCurrencyChangeHandler
+            }></SelectToCurrency>
+          <ResultField formik={formik}></ResultField>
+          <RateOfApiField toCurrency={toCurrency} rate={rate}></RateOfApiField>
+          <Button></Button>
           {formik.touched.date && formik.errors.date ? (
             <div className={styles["errorMessage"]}>{formik.errors.date}</div>
           ) : null}

@@ -3,34 +3,4 @@
 * {
   font-family: "Kanit", sans-serif;
 }
-html {
-  height: 100%;
-}
 
-.h1-style {
-  margin-bottom: 15px;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  font-size: 45px;
-  font-weight: bold;
-}
-
-@media only screen and (max-width: 760px),
-  (min-device-width: 768px) and (max-device-width: 1024px) {
-  .App-header {
-    margin: 10px auto;
-    max-width: 379px;
-  }
-}
-@media only screen and (max-width: 375),
-  (min-device-width: 383) and (max-device-width: 667) {
-  .App-header {
-    margin: 5px auto;
-    max-width: 250px;
-  }
-}
-@media only screen and (max-width: 568px) {
-  .App-header {
-    max-width: 362px;
-  }
-}
