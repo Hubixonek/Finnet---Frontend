@@ -1,4 +1,3 @@
-import { useFormik } from "formik";
 import { useState, useEffect } from "react";
 import styles from "../styles/FundsForm.module.scss";
 import DateField from "../forms/TextField/DateField";
@@ -11,9 +10,12 @@ import RateOfApiField from "../forms/TextField/RateOfApiField";
 import FormikErrorValidation from "../forms/Errors/FormikErrorValidation";
 import TableWithFundsDatas from "../Table/TableWithFundsDatas";
 import Button from "../forms/Button/Button";
-import validate from "../../utils/helpers/validation.helpers";
+import useFormikHook from "../../hooks/useFormik.hooks";
+import FromAndToCurrencyChangeHandler from "../../utils/helpers/fromandtocurrencychangehandler.helpers";
 import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/NBP_API";
+import Switch from "../forms/Switches/SwitchNBP";
+import SwitchGoogle from "../forms/Switches/SwitchGoogle";
 
 const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState("");
@@ -39,90 +41,33 @@ const FundsForm = () => {
     LocalStorage.set("fundsData", funds);
   }, [funds]);
 
-  const formik = useFormik({
-    initialValues: {
-      date: "",
-      amount: "",
-      rate: "",
-      fromCurrency: "",
-      result: "",
-      toCurrency: "",
-    },
-    validate,
-    onSubmit: (values) => {
-      const fundsObject = {
-        id: Math.random().toString(),
-        date: formik.values.date,
-        amount: formik.values.amount,
-        rate: formik.values.rate,
-        fromCurrency: fromCurrency,
-        result: formik.values.result,
-        toCurrency: toCurrency,
-        apiRate: rate,
-        selectedFromRate: selectedFromRate,
-        selectedToRate: selectedToRate,
-        resultByRateFromApi:
-          formik.values.result - (formik.values.amount * rate).toFixed(2),
-      };
-      setFunds([...funds, fundsObject]);
-      console.log(JSON.stringify(values, null));
-    },
+  const formik = useFormikHook({
+    toCurrency,
+    fromCurrency,
+    rate,
+    selectedFromRate,
+    selectedToRate,
+    setFunds,
+    funds,
   });
 
   const handleRemoveFundsData = (id) => {
     setFunds(funds.filter((funds) => funds.id !== id));
   };
-  const fromCurrencyChangeHandler = (event) => {
-    const selectedCurrency = event.target.value;
-    setFromCurrency(selectedCurrency);
-
-    const selectedRate = currencies.find(
-      (currency) => currency.code === selectedCurrency
-    )?.rate;
-    setSelectedFromRate(selectedRate);
-    formik.setFieldValue("fromCurrency", selectedCurrency);
-
-    if (selectedCurrency === "PLN") {
-      setSelectedFromRate(1);
-      setRate(1);
-      formik.setFieldValue("fromCurrency", selectedCurrency);
-      setRate(selectedFromRate / selectedToRate);
-    } else if (fromCurrency !== "PLN") {
-      setRate((selectedRate / selectedToRate).toFixed(2));
-    }
-
-    if (selectedCurrency === toCurrency) {
-      setToCurrency(fromCurrency);
-      setSelectedToRate(selectedFromRate);
-      formik.setFieldValue("toCurrency", fromCurrency);
-    }
-  };
-
-  const toCurrencyChangeHandler = (event) => {
-    const selectedCurrency = event.target.value;
-    setToCurrency(selectedCurrency);
-
-    const selectedRate = currencies.find(
-      (currency) => currency.code === selectedCurrency
-    )?.rate;
-    setSelectedToRate(selectedRate);
-    formik.setFieldValue("toCurrency", selectedCurrency);
-
-    if (selectedCurrency === "PLN") {
-      setSelectedToRate(1);
-      setRate(1);
-      formik.setFieldValue("toCurrency", selectedCurrency);
-      setRate(selectedFromRate / selectedToRate);
-    } else if (toCurrency !== "PLN") {
-      setRate((selectedFromRate / selectedRate).toFixed(2));
-    }
-
-    if (selectedCurrency === fromCurrency) {
-      setFromCurrency(toCurrency);
-      setSelectedFromRate(selectedToRate);
-      formik.setFieldValue("fromCurrency", toCurrency);
-    }
-  };
+  const { fromCurrencyChangeHandler, toCurrencyChangeHandler } =
+    FromAndToCurrencyChangeHandler({
+      fromCurrency,
+      toCurrency,
+      setFromCurrency,
+      setToCurrency,
+      selectedFromRate,
+      selectedToRate,
+      setSelectedFromRate,
+      setSelectedToRate,
+      setRate,
+      formik,
+      currencies,
+    });
 
   useEffect(() => {
     if (fromCurrency !== "PLN" && toCurrency !== "PLN") {
@@ -164,10 +109,13 @@ const FundsForm = () => {
           />
           <ResultField formik={formik} />
           <RateOfApiField toCurrency={toCurrency} rate={rate} />
+          <Switch />
+          <SwitchGoogle />
           <Button />
           <FormikErrorValidation formik={formik} />
         </div>
       </form>
+
       {funds.length > 0 && (
         <TableWithFundsDatas
           funds={funds}

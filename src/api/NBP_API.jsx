@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchData = async (fromCurrency, toCurrency, setCurrencies) => {
   try {
     const response = await axios.get(
-      `https://api.nbp.pl/api/exchangerates/tables/A/${
+      `https://api.nbp.pl/api/exchangerates/tables/A/?format=json${
         fromCurrency && toCurrency
       }`
     );

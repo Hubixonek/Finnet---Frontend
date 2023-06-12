@@ -1,16 +1,15 @@
 import styles from "../../styles/FundsForm.module.scss";
-
 const RateOfApiField = ({ toCurrency, rate }) => {
   return (
     <div className={`input-group ${styles.inputStyle}`}>
-      <label className="input-group-text w-50" htmlFor="currently">
-        Kurs {toCurrency}
+      <label className="input-group-text w-70" htmlFor="currently">
+        Kurs NBP {`${toCurrency}`}
       </label>
       <input
         type="text"
         className="form-control"
         id="api-courses"
-        value={isNaN(rate) ? "Przeliczony" : rate}
+        value={isNaN(rate) ? "" : rate}
         readOnly={true}></input>
     </div>
   );

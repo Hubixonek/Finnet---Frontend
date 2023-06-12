@@ -46,7 +46,6 @@ const LoginForm = () => {
           </Link>
         </div>
       </form>
-      
     </>
   );
 };

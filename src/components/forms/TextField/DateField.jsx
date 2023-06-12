@@ -17,7 +17,11 @@ const DateField = ({ formik }) => {
         }`}
         name="date"
         type="date"
-        value={formik.values.date}
+        value={
+          formik.values.date
+            ? formik.values.date
+            : new Date().toISOString().substr(0, 10)
+        }
         onChange={formik.handleChange}
         onBlur={handleDateOnBlur}
       />

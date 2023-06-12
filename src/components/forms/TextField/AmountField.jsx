@@ -7,7 +7,9 @@ const AmountField = ({ formik }) => {
   };
   return (
     <div className={`input-group ${styles.inputStyle}`}>
-      <label htmlFor="amount"></label>
+      <label className="input-group-text w-50" htmlFor="amount">
+        Twoja kwota
+      </label>
       <input
         className={`form-control ${
           formik.touched.amount && formik.errors.amount ? styles.errorInput : ""
@@ -17,7 +19,7 @@ const AmountField = ({ formik }) => {
         value={formik.values.amount}
         onChange={formik.handleChange}
         onBlur={handleAmountOnBlur}
-        placeholder="Kwota"
+        placeholder="Wpisz kwotę!"
       />
     </div>
   );
