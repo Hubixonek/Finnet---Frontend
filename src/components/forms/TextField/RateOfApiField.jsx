@@ -6,7 +6,7 @@ const RateOfApiField = ({ toCurrency, rate }) => {
         Kurs NBP {`${toCurrency}`}
       </label>
       <input
-        type="text"
+        type="number"
         className="form-control"
         id="api-courses"
         value={isNaN(rate) ? "" : rate}

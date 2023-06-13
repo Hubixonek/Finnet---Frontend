@@ -5,6 +5,7 @@ const RateField = ({ formik, fromCurrency, toCurrency }) => {
   const handleRateOnBlur = () => {
     formik.handleBlur("rate");
   };
+  
   return (
     <div className={`input-group ${styles.inputStyle}`}>
       <label htmlFor="rate"></label>
@@ -16,7 +17,7 @@ const RateField = ({ formik, fromCurrency, toCurrency }) => {
         value={formik.values.rate}
         onChange={formik.handleChange}
         onBlur={handleRateOnBlur}
-        type="text"
+        type="number"
         placeholder="Kurs"
       />
       <span className="input-group-text w-50">

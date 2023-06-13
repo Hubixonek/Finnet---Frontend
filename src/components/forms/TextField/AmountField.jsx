@@ -15,7 +15,7 @@ const AmountField = ({ formik }) => {
           formik.touched.amount && formik.errors.amount ? styles.errorInput : ""
         }`}
         name="amount"
-        type="text"
+        type="number"
         value={formik.values.amount}
         onChange={formik.handleChange}
         onBlur={handleAmountOnBlur}

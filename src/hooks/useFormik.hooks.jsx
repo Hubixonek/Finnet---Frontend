@@ -8,6 +8,7 @@ const useFormikHook = ({
   selectedToRate,
   setFunds,
   funds,
+  result
 }) => {
   const formik = useFormik({
     initialValues: {

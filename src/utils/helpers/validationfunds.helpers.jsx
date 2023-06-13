@@ -1,8 +1,6 @@
 const validate = (values) => {
   const errors = {};
-  if (!values.date) {
-    errors.date = "* Data jest wymagana!";
-  }
+
   if (!values.amount) {
     errors.amount = "* Kwota jest wymagana!";
   }

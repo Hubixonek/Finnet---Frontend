@@ -43,7 +43,12 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
             <tbody>
               {funds.map((fund, index) => (
                 <tr key={fund.id}>
-                  <td>{fund.date}</td>
+                  <td>
+                    {fund.date
+                      ? fund.date
+                      : new Date().toISOString().substr(0, 10)}
+                  </td>
+
                   <td>{fund.amount}</td>
                   <td>{fund.rate}</td>
                   <td>
