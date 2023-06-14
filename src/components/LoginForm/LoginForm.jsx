@@ -1,19 +1,29 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/LoginForm.module.scss";
+import useLogin from "../../api/login.api";
 
 const LoginForm = () => {
+  const { formik } = useLogin();
+
   return (
     <>
-      <form>
+      <form onSubmit={formik.handleSubmit}>
         <div className={styles["container"]}>
           <h1>Cześć, dobrze Cię widzieć</h1>
           <div className={styles["id"]}>
             <span>Indetyfikator</span>
             <input
-              className="form-control"
+              className={`form-control ${
+                formik.touched.email && formik.errors.email
+                  ? styles.errorInput
+                  : ""
+              }`}
               name="email"
               id="email"
               type="text"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               placeholder="Wprowadź adres e-mail"
             />
           </div>
@@ -22,6 +32,9 @@ const LoginForm = () => {
             <input
               className="form-control"
               name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               id="password"
               type="password"
               placeholder="Wprowadź hasło"

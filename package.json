@@ -17,11 +17,13 @@
     "eslint-plugin-react": "^7.32.2",
     "firebase": "^9.22.1",
     "formik": "^2.2.9",
+    "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-date-picker": "^9.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.1",
     "sass": "^1.62.1",
+    "swagger-client": "^3.19.8",
     "vite": "^4.3.9",
     "vite-plugin-svgr": "^3.2.0",
     "vite-tsconfig-paths": "^4.2.0",
@@ -54,5 +56,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "swagger-jsdoc": "^6.2.8"
   }
 }

@@ -1,20 +1,8 @@
+import useRegister from "../../api/register.api";
 import styles from "../styles/RegisterForm.module.scss";
 import { Link } from "react-router-dom";
-import { useFormik } from "formik";
-import validate from "../../utils/helpers/validationregister.helpers";
-
 const RegisterForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-      checkboxPrivacyPolicy: "",
-    },
-    validate,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+  const { formik } = useRegister();
 
   return (
     <>
