@@ -10,14 +10,14 @@ const useLogin = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          "http://95.217.122.131:20152/auth/login",
+          "https://95.217.122.131:20152/auth/login",
           values,
           {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
+              credentials: "include",
             },
-            credentials: "same-origin",
             body: JSON.stringify({
               email: formik.values.email,
               password: formik.values.password,
@@ -28,6 +28,9 @@ const useLogin = () => {
         console.log("Zalogowany");
       } catch (error) {
         console.error(error);
+        formik.setErrors({
+          email: "* Niepoprawny adres e-mail lub hasło!",
+        });
         console.log("Błąd przy logowaniu");
       }
     },

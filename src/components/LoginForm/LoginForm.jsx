@@ -39,6 +39,11 @@ const LoginForm = () => {
               type="password"
               placeholder="Wprowadź hasło"
             />
+            {formik.errors.email && (
+              <div className={styles["errorMessage"]}>
+                {formik.errors.email}
+              </div>
+            )}
           </div>
         </div>
         <div className="save-btn mt-2">

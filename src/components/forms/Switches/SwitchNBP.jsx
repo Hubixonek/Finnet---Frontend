@@ -7,10 +7,12 @@ const SwitchNBP = () => {
         <input
           className="form-check-input"
           type="checkbox"
-          id="flexSwitchCheckDefault"
+          id="flexSwitchCheckDefaultNBP"
           defaultChecked
         />
-        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+        <label
+          className="form-check-label"
+          htmlFor="flexSwitchCheckDefaultNBP">
           Korzystaj z kursów NBP{" "}
         </label>
       </div>

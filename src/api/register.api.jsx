@@ -1,8 +1,10 @@
 import { useFormik } from "formik";
 import validate from "../utils/helpers/validationregister.helpers";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const useRegister = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -10,25 +12,31 @@ const useRegister = () => {
       checkboxPrivacyPolicy: false,
     },
     validate,
-    onSubmit: async () => {
+    onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          "http://95.217.122.131:20152/auth/users",
+          "https://95.217.122.131:20152/auth/users",
           {
-            email: formik.values.email,
-            password: formik.values.password,
+            email: values.email,
+            password: values.password,
           }
         );
-        if (response.data.token) {
-          console.log("Token uwierzytelniający:", response.data.token);
-        } else {
-          console.log("Brak tokena uwierzytelniającego w odpowiedzi");
-        }
         console.log(response.data);
         console.log("Zarejestrowano pomyślnie");
+        navigate("/fundsform");
       } catch (error) {
-        console.error(error);
-        console.log("Błąd przy rejestracji");
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.error
+        ) {
+          formik.setErrors({
+            email: "* Adres e-mail jest już zajęty!",
+          });
+        } else {
+          console.error(error);
+          console.log("Błąd przy rejestracji");
+        }
       }
     },
   });
