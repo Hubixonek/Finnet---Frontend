@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  width: 50%;
   margin-top: 5rem;
   align-items: center;
   h1 {
@@ -47,7 +46,7 @@
 .registerButton {
   display: flex;
   background-color: #005bea !important;
-  width: 25%;
+  width: 30rem;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -64,11 +63,11 @@
   cursor: pointer;
 }
 .errorInput {
-	border: 0.5px solid rgb(255, 0, 0) !important;
+  border: 0.5px solid rgb(255, 0, 0) !important;
 }
 
 .errorMessage {
-	color: #f44336;
-	font-size: 12px;
-	margin: 0 auto;
+  color: #f44336;
+  font-size: 12px;
+  margin: 0 auto;
 }

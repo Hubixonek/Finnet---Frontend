@@ -15,7 +15,7 @@ const useRegister = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          "https://95.217.122.131:20152/auth/users",
+          "http://95.217.122.131:20152/auth/users",
           {
             email: values.email,
             password: values.password,

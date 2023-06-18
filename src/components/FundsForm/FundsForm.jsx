@@ -14,8 +14,8 @@ import useFormikHook from "../../hooks/useFormik.hooks";
 import FromAndToCurrencyChangeHandler from "../../utils/helpers/fromandtocurrencychangehandler.helpers";
 import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/nbp.api";
-import Switch from "../forms/Switches/SwitchNBP";
 import SwitchGoogle from "../forms/Switches/SwitchGoogle";
+import SwitchNBP from "../forms/Switches/SwitchNBP";
 
 const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState("");
@@ -109,8 +109,7 @@ const FundsForm = () => {
           />
           <ResultField formik={formik} />
           <RateOfApiField toCurrency={toCurrency} rate={rate} />
-          <Switch />
-          <SwitchGoogle />
+          <SwitchNBP />
           <Button />
           <FormikErrorValidation formik={formik} />
         </div>

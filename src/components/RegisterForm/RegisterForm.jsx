@@ -6,8 +6,7 @@ const RegisterForm = () => {
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit}>
-        <div className={styles["container"]}>
+      <form className={styles["container"]} onSubmit={formik.handleSubmit}>
           <h1>Dołącz do nas</h1>
           <div className={styles["email"]}>
             <span>E-mail</span>
@@ -54,7 +53,6 @@ const RegisterForm = () => {
               </div>
             ) : null}
           </div>
-        </div>
         <div className={`form-check' ${styles.checkForm}`}>
           <input
             className={`form-check-input' ${styles.checkInput}`}
@@ -116,7 +114,7 @@ const RegisterForm = () => {
         <div className="save-btn mt-2">
           <button
             type="submit"
-            className={`btn btn-primary form_button--savebtn ${styles.registerButton}`}>
+            className={`btn btn-primary ${styles.registerButton}`}>
             Zarejestruj się
           </button>
         </div>
@@ -127,6 +125,7 @@ const RegisterForm = () => {
           </Link>
         </div>
       </form>
+  
     </>
   );
 };

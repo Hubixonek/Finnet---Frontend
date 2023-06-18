@@ -10,13 +10,13 @@ const useLogin = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          "https://95.217.122.131:20152/auth/login",
+          "http://95.217.122.131:20152/auth/login",
           values,
           {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
-              credentials: "include",
+              withCredentials: true,
             },
             body: JSON.stringify({
               email: formik.values.email,

@@ -45,14 +45,15 @@ const LoginForm = () => {
               </div>
             )}
           </div>
+          <div className="save-btn mt-2">
+            <button
+              type="submit"
+              className={`btn btn-primary form_button--savebtn ${styles.registerButton}`}>
+              Zaloguj się
+            </button>
+          </div>
         </div>
-        <div className="save-btn mt-2">
-          <button
-            type="submit"
-            className={`btn btn-primary form_button--savebtn ${styles.registerButton}`}>
-            Zaloguj się
-          </button>
-        </div>
+
         <br></br>
         <div className="redirection">
           <a className={styles["signIn"]}>Nie pamiętam hasła</a>
