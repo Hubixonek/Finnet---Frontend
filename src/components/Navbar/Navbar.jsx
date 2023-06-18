@@ -6,7 +6,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const NavigationBar = () => {
   return (
-    <Navbar className={styles["navbar"]} expand="lg">
+    <Navbar className={styles["navbar"]}  expand="lg">
       <Navbar.Brand className={styles["brand"]} href="#">
         Finnet
       </Navbar.Brand>
