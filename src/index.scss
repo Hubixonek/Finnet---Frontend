@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
-element.style {
+
+a:contains("Powered by MIKR.US") {
   display: none;
 }
