@@ -48,7 +48,7 @@ const LoginForm = () => {
           <div className="save-btn mt-2">
             <button
               type="submit"
-              className={`btn btn-primary form_button--savebtn ${styles.registerButton}`}>
+              className={`btn btn-primary form_button--savebtn ${styles.loginButton}`}>
               Zaloguj się
             </button>
           </div>

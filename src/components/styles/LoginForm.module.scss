@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  width: 50%;
   margin-top: 5rem;
   align-items: center;
   h1 {
@@ -19,7 +18,7 @@
     font-size: 12px;
   }
 }
-.registerButton {
+.loginButton {
   display: flex;
   background-color: #005bea !important;
   width: 30rem;
@@ -39,4 +38,29 @@
   margin-bottom: -15px;
   color: #f44336;
   font-size: 14px;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    align-items: center;
+    h1 {
+      margin: 0 auto;
+      font-size: 25px;
+    }
+    .id {
+      width: 23rem;
+    }
+    .password {
+      width: 23rem;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
+  .loginButton {
+    width: 23rem;
+  }
+  .signIn {
+    margin-top: -0.5rem;
+  }
 }

@@ -71,3 +71,34 @@
   font-size: 12px;
   margin: 0 auto;
 }
+@media screen and (max-width: 480px) {
+  .container {
+    align-items: center;
+    h1 {
+      margin: 0 auto;
+      font-size: 25px;
+    }
+    .email {
+      width: 23rem;
+    }
+    .password {
+      width: 23rem;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
+  .registerButton {
+    width: 23rem;
+  }
+  .checkForm {
+    display: flex;
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 1rem;
+  }
+  .signIn {
+    margin-top: -2rem;
+    padding: 15px;
+  }
+}
