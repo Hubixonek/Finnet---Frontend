@@ -5,4 +5,11 @@ import Root from "./App";
 import "bootstrap/dist/css/bootstrap.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Root />); // Zmiana nazwy komponentu z App na Root
+root.render(<Root />);
+
+useEffect(() => {
+  const element = document.querySelector('p[style*="Powered by MIKR.US"]');
+  if (element) {
+    element.style.display = "none";
+  }
+}, []);
