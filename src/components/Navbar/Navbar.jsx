@@ -2,24 +2,24 @@ import React from "react";
 import styles from "../styles/Navbar.module.scss";
 import { Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const NavigationBar = () => {
   return (
-    <Navbar className={styles["navbar"]}  expand="lg">
+    <Navbar className={styles["navbar"]} expand="lg">
       <Navbar.Brand className={styles["brand"]} href="#">
         Finnet
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="navbarNavDropdown" />
       <Navbar.Collapse id="navbarNavDropdown">
         <Nav className={styles["Links"]}>
-          <NavLink className={styles["firstNavLink"]} href="#" active>
+          <NavLink className={styles["firstNavLink"]} href="#">
             O nas
           </NavLink>
           <NavLink
             className={styles["OtherNavs"]}
             to="/fundsform"
-            activeClassName={styles["active"]}>
+            activeclassname={styles["active"]}>
             Funds
           </NavLink>
           <NavLink className={styles["OtherNavs"]} to="/blog">
