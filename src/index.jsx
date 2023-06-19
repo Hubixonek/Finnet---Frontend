@@ -7,10 +7,10 @@ import "bootstrap/dist/css/bootstrap.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Root />);
 
-//usunięcie loga mikrusa
-useEffect(() => {
-  const element = document.querySelector('p[style*="Powered by MIKR.US"]');
-  if (element) {
-    element.style.display = "none";
-  }
-}, []);
+// usunięcie loga mikrusa
+// useEffect(() => {
+//   const element = document.querySelector('p[style*="Powered by MIKR.US"]');
+//   if (element) {
+//     element.style.display = "none";
+//   }
+// }, []);
