@@ -11,6 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-p:contains("Powered by MIKR.US") {
+
+element.style {
   display: none;
 }
