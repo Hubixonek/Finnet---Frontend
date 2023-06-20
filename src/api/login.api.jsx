@@ -1,7 +1,16 @@
 import axios from "axios";
 import { useFormik } from "formik";
+import { useState } from "react";
 
 const useLogin = () => {
+  const [user, setUser] = useState(() => {
+    let user = localStorage.getItem("user");
+    if (user) {
+      return JSON.parse(user);
+    }
+    return null;
+  });
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -14,17 +23,12 @@ const useLogin = () => {
           values,
           {
             headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
               withCredentials: true,
             },
-            body: JSON.stringify({
-              email: formik.values.email,
-              password: formik.values.password,
-            }),
           }
         );
-        console.log(response.data);
+        setUser(response.data);
+        localStorage.setItem("user", JSON.stringify(response.data));
         console.log("Zalogowany");
       } catch (error) {
         console.error(error);
@@ -35,6 +39,6 @@ const useLogin = () => {
       }
     },
   });
-  return { formik };
+  return { formik, user };
 };
 export default useLogin;

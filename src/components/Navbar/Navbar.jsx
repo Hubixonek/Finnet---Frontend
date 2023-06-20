@@ -5,6 +5,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from "react-router-dom";
 
 const NavigationBar = () => {
+  const loggedInUser = localStorage.getItem("user");
+  // {loggedInUser ? (
+  //       <div>Witamy w szeregach Finnetu {JSON.parse(loggedInUser).email}</div>
+  //     ) : (
   return (
     <Navbar className={styles["navbar"]} expand="lg">
       <Navbar.Brand className={styles["brand"]} href="#">
@@ -32,11 +36,17 @@ const NavigationBar = () => {
           <NavLink className={styles["navLink"]} to="/loginform">
             Zaloguj
           </NavLink>
-          <NavLink to="/registerform">
+          {loggedInUser ? (
             <button className={styles["registerNav"]}>
-              Korzystaj z Finnet za darmo
+              {JSON.parse(loggedInUser).email}
             </button>
-          </NavLink>
+          ) : (
+            <NavLink to="/registerform">
+              <button className={styles["registerNav"]}>
+                Korzystaj z Finnet za darmo
+              </button>
+            </NavLink>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
