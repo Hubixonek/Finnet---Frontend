@@ -1,11 +1,26 @@
 import styles from "../../styles/FundsForm.module.scss";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { LocalStorage } from "../../../services/LocalStorage.service";
 
 const RateField = ({ formik, fromCurrency, toCurrency }) => {
   const handleRateOnBlur = () => {
     formik.handleBlur("rate");
   };
-  
+  const [, setRate] = useState("");
+
+  useEffect(() => {
+    const data = LocalStorage.get("rate");
+    if (data) {
+      setRate(data);
+      formik.setFieldValue("rate", data);
+    }
+  }, []);
+
+  useEffect(() => {
+    LocalStorage.set("rate", formik.values.rate);
+  }, [formik.values.rate]);
+
   return (
     <div className={`input-group ${styles.inputStyle}`}>
       <label htmlFor="rate"></label>

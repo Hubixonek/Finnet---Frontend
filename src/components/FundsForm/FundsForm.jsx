@@ -40,6 +40,27 @@ const FundsForm = () => {
   useEffect(() => {
     LocalStorage.set("fundsData", funds);
   }, [funds]);
+  useEffect(() => {
+    const data = LocalStorage.get("LocalFromCurrency");
+    if (data) {
+      setFromCurrency(data);
+    }
+  }, []);
+
+  useEffect(() => {
+    LocalStorage.set("LocalFromCurrency", fromCurrency);
+  }, [fromCurrency]);
+
+  useEffect(() => {
+    const data = LocalStorage.get("LocalToCurrency");
+    if (data) {
+      setToCurrency(data);
+    }
+  }, []);
+
+  useEffect(() => {
+    LocalStorage.set("LocalToCurrency", toCurrency);
+  }, [toCurrency]);
 
   const formik = useFormikHook({
     toCurrency,

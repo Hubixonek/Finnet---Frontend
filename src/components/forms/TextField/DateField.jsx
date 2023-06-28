@@ -1,11 +1,24 @@
 import styles from "../../styles/FundsForm.module.scss";
 import PropTypes from "prop-types";
-
+import { LocalStorage } from "../../../services/LocalStorage.service";
+import { useEffect, useState } from "react";
 const DateField = ({ formik }) => {
   const handleDateOnBlur = () => {
     formik.handleBlur("date");
   };
+  const [, setDate] = useState("");
 
+  useEffect(() => {
+    const data = LocalStorage.get("date");
+    if (data) {
+      setDate(data);
+      formik.setFieldValue("date", data);
+    }
+  }, []);
+
+  useEffect(() => {
+    LocalStorage.set("date", formik.values.date);
+  }, [formik.values.date]);
   return (
     <div className="input-group">
       <label className="input-group-text w-50" htmlFor="date">
