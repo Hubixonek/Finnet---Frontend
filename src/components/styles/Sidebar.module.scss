@@ -1,0 +1,33 @@
+.sidebar {
+  position: absolute;
+  width: 240px;
+  height: 110vh;
+  border-style: ridge;
+  transition: all 2s;
+  left: -100%;
+}
+ul {
+  padding: 0;
+  margin-left: -10px;
+
+  li {
+    list-style-type: none;
+    margin: 2px 0;
+
+    a {
+      display: block;
+      color: black;
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
+
+      &:hover,
+      &:active {
+        box-shadow: inset 400px 0 0 0 #868f9241;
+        color: rgb(7, 7, 7);
+        left: 0;
+      }
+    }
+  }
+}

@@ -1,43 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/Navbar.module.scss";
-import { Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NavLink } from "react-router-dom";
-import { useUserContext } from "../../api/userinfo.api";
+import { FaBars } from "react-icons/fa";
+import Sidebar from "../forms/SideBar/Sidebar";
 
 const NavigationBar = () => {
-  const { user, logoutUser } = useUserContext();
-  console.log("Wartość user:", user);
-
-  const handleLogout = () => {
-    logoutUser();
-  };
+  const [showNav, setShowNav] = useState(false);
+  console.log(showNav);
 
   return (
-    <Navbar className={styles["navbar"]} expand="lg">
-      <Navbar.Brand className={styles["brand"]} href="#">
-        Finnet
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="navbarNavDropdown" />
-      <Navbar.Collapse id="navbarNavDropdown">
-        <Nav className={styles["Links"]}>
-          {user ? (
-            <NavLink onClick={handleLogout} className={styles["navLink"]}>
-              Wyloguj się
-            </NavLink>
-          ) : (
-            <NavLink className={styles["navLink"]} to="/loginform">
-              Zaloguj
-            </NavLink>
-          )}
-          <NavLink to="/registerform">
-            <button className={styles["registerNav"]}>
-              Korzystaj z Finnet za darmo
-            </button>
-          </NavLink>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <div>
+      <nav className={styles["navbar"]}>
+        <label>
+          <FaBars
+            className={styles["hamburger"]}
+            onClick={() => setShowNav(!showNav)}
+          />
+        </label>
+        <div className={styles["logo"]}>
+          <span>Finnet</span>
+        </div>
+      </nav>
+      <Sidebar show={showNav} />
+    </div>
   );
 };
 

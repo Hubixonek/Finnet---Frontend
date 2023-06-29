@@ -1,91 +1,16 @@
 .navbar {
   display: flex;
-}
-.firstNavLink {
-  color: black;
-  text-decoration: none;
-}
-.navLink {
-  display: flex;
-  margin-left: 80rem;
-  color: black;
-  text-decoration: none;
-}
-.Links {
-  display: flex;
-  margin-top: -1rem;
+  padding: 5px;
   align-items: center;
-  font-size: 18px;
-  text-decoration: none;
-}
-.brand {
-  margin-top: -1rem;
-  margin-left: 1rem;
-}
-.OtherNavs {
-  margin-left: 1rem;
-  color: black;
-  margin-left: 2.2rem;
-  text-decoration: none;
-}
-.registerNav {
-  cursor: pointer;
-  margin-left: 15px;
-  text-decoration: none;
-  color: white;
-  padding: 1rem;
-  background-color: rgb(0, 101, 255);
-  border-radius: none;
-  border: none;
-  align-items: center;
-
-  &:hover {
-    color: white;
-    background-color: rgb(2, 81, 199);
+  border-style: ridge;
+  .hamburger {
+    font-size: 25px;
+    cursor: pointer;
+  }
+  .logo {
+    margin-left: 15px;
+    font-size: 25px;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .navbar {
-    background-color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 999;
-    overflow-y: auto;
-    transition: transform 0.3s ease-in-out;
-  }
 
-  .navbar.open {
-    transform: translateX(0);
-  }
-
-  .navbar .Links {
-    flex-direction: column;
-    margin-top: 2rem;
-  }
-
-  .navbar .Links a {
-    margin: 0.6rem 0;
-    padding: 0.1rem 2rem;
-    font-size: 1.2rem;
-    color: black;
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-  }
-
-  .navbar .Links a:hover {
-    color: rgb(0, 101, 255);
-  }
-
-  .navbar .registerNav {
-    margin-top: 0.3rem;
-  }
-
-  .navbar .registerNav button {
-    padding: 0.5rem 2rem;
-    font-size: 1.2rem;
-  }
-}
