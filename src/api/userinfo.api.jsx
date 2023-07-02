@@ -17,10 +17,10 @@ const UserProvider = ({ children }) => {
   const loginUser = async (values) => {
     try {
       const response = await axios.post(
-        "http://localhost:20152/auth/login",
+        "http://95.217.122.131:20152/auth/login",
         values,
         {
-          withCredentials: true
+          withCredentials: true,
         }
       );
       setUser(response.data);
