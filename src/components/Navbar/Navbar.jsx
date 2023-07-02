@@ -4,8 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FaWallet, FaHammer } from "react-icons/fa";
 import { RiAccountCircleFill } from "react-icons/ri";
 import Nav from "../Nav/Nav";
-import { useUserContext } from "../../api/userinfo.api";
 import { Link } from "react-router-dom";
+import LoginLink from "../forms/LoginLink/LoginLink";
+import RegisterLink from "../forms/RegisterLink/RegisterLink";
 const NavigationBar = () => {
   const [showNav, setShowNav] = useState(false);
   const [showListWallet, setShowListWallet] = useState(false);
@@ -35,9 +36,7 @@ const NavigationBar = () => {
   return (
     <>
       <Nav showNav={showNav} setShowNav={setShowNav} />
-      <div
-        className={`${styles["sidebar"]} ${showNav ? styles["show"] : ""}`}
-        onMouseLeave={hideAllLists}>
+      <div className={`${styles["sidebar"]} ${showNav ? styles["show"] : ""}`}>
         <div className={styles["dropdownContainer"]}>
           <ul
             className={
@@ -103,6 +102,8 @@ const NavigationBar = () => {
                 </ul>
               ) : null}
             </li>
+            <LoginLink  />
+            <RegisterLink />
           </ul>
         </div>
       </div>
