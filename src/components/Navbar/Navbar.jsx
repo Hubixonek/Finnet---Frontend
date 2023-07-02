@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import styles from "../styles/Navbar.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaWallet, FaHammer } from "react-icons/fa";
