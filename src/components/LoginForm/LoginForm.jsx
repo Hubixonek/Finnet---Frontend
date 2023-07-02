@@ -3,7 +3,7 @@ import styles from "../styles/LoginForm.module.scss";
 import { useUserContext } from "../../api/userinfo.api";
 
 const LoginForm = () => {
-  const { formik, loginUser } = useUserContext();
+  const { formik, loginUser, logoutUser } = useUserContext();
 
   return (
     <form className={styles["container"]} onSubmit={formik.handleSubmit}>

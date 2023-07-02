@@ -46,6 +46,7 @@ const UserProvider = ({ children }) => {
   });
 
   const logoutUser = async () => {
+    console.log("test");
     try {
       await axios.post("http://95.217.122.131:20152/auth/logout", null, {
         headers: {
@@ -59,20 +60,20 @@ const UserProvider = ({ children }) => {
       console.error(error);
     }
   };
-  const test = async () => {
-    try {
-      const response = await axios.get("http://95.217.122.131:20152/tables", {
-        headers: {
-          Cookie:
-            "Authentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2IiwiaWF0IjoxNjg3ODc5MDEzLCJleHAiOjE2ODc4ODI2MTN9.PDFIaEhF3Gk0jyrA0CWLD9DwYwBg94JH39h1fJmrkNA",
-        },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  test();
+  // const test = async () => {
+  //   try {
+  //     const response = await axios.get("http://95.217.122.131:20152/tables", {
+  //       headers: {
+  //         Cookie:
+  //           "Authentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2IiwiaWF0IjoxNjg3ODc5MDEzLCJleHAiOjE2ODc4ODI2MTN9.PDFIaEhF3Gk0jyrA0CWLD9DwYwBg94JH39h1fJmrkNA",
+  //       },
+  //     });
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // test();
 
   const userContextValue = {
     user,
