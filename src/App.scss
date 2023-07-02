@@ -3,4 +3,10 @@
 * {
   font-family: "Kanit", sans-serif;
 }
-
+body {
+  &.sidebar-show {
+    .content {
+      background-color: black;
+    }
+  }
+}
