@@ -2,68 +2,62 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../styles/Navbar.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FaBars } from "react-icons/fa";
 import { FaWallet, FaHammer } from "react-icons/fa";
-import { BiSolidRightArrow } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { RiAccountCircleFill } from "react-icons/ri";
+import Nav from "../Nav/Nav";
 import { useUserContext } from "../../api/userinfo.api";
+import { Link } from "react-router-dom";
 const NavigationBar = () => {
   const [showNav, setShowNav] = useState(false);
-  const [showListOne, setShowListOne] = useState(false);
-  const [showListTwo, setShowListTwo] = useState(false);
-  const [showListOther, setShowListOther] = useState(false);
+  const [showListWallet, setShowListWallet] = useState(false);
+  const [showListTools, setShowListTools] = useState(false);
+  const [showListWalletOther, setShowWalletOther] = useState(false);
+  const [showListAccount, setListAccount] = useState(false);
 
-  const showListOneHandler = () => {
-    setShowListOne(!showListOne);
+  const showListWalletHandler = () => {
+    setShowListWallet(!showListWallet);
   };
 
-  const showListTwoHandler = () => {
-    setShowListTwo(!showListTwo);
+  const showListToolsHandler = () => {
+    setShowListTools(!showListTools);
   };
-  const showListOtherHandler = () => {
-    setShowListOther(!showListOther);
+  const showListWalletOtherHandler = () => {
+    setShowWalletOther(!showListWalletOther);
+  };
+  const showListAccountHandler = () => {
+    setListAccount(!showListAccount);
+  };
+  const hideAllLists = () => {
+    setListAccount(false);
+    setShowListTools(false);
+    setShowListWallet(false);
+    setShowWalletOther(false);
   };
   return (
-    <div>
-      <nav className={styles["navbar"]}>
-        <label>
-          <FaBars
-            className={styles["hamburger"]}
-            onClick={() => setShowNav(!showNav)}
-          />
-        </label>
-        <div className={styles["logo"]}>
-          <span>Finnet</span>
-        </div>
-        <div className={styles["buttonGroup"]}>
-          <div className={styles["signInButton"]}>
-            <Link to="/loginform">Zaloguj</Link>
-          </div>
-          <div className={styles["registerNav"]}>
-            <Link to="/registerform">Korzystaj z Finnet za darmo</Link>
-          </div>
-        </div>
-      </nav>
-      <div className={`${styles["sidebar"]} ${showNav ? styles["show"] : ""}`}>
+    <>
+      <Nav showNav={showNav} setShowNav={setShowNav} />
+      <div
+        className={`${styles["sidebar"]} ${showNav ? styles["show"] : ""}`}
+        onMouseLeave={hideAllLists}>
         <div className={styles["dropdownContainer"]}>
           <ul
             className={
-              showListTwo ? `${styles["menu"]} active` : styles["menu"]
+              showListTools ? `${styles["menu"]} active` : styles["menu"]
             }>
             <li>
-              <a onClick={showListOneHandler}>
+              <a onClick={showListWalletHandler}>
                 {" "}
                 <FaWallet className={styles["icons"]} />
                 Portfel
               </a>
-              {showListOne ? (
+              {showListWallet ? (
                 <ul className={styles["menu"]}>
                   <li className={styles["menuItem"]}>
-                    <a>Przelicz kursy walut</a>
+                    <Link to="/fundsform">Przelicz kursy walut</Link>
                   </li>
                   <li className={styles["menuItem"]}>
-                    <a onClick={showListOtherHandler}>Lokaty </a>
-                    {showListOther ? (
+                    <a onClick={showListWalletOtherHandler}>Lokaty </a>
+                    {showListWalletOther ? (
                       <ul>
                         <li>
                           <a>
@@ -79,11 +73,11 @@ const NavigationBar = () => {
               ) : null}
             </li>
             <li>
-              <a onClick={showListTwoHandler}>
+              <a onClick={showListToolsHandler}>
                 <FaHammer className={styles["icons"]} />
                 Narzędzia
               </a>
-              {showListTwo ? (
+              {showListTools ? (
                 <ul className={styles["menu"]}>
                   <li className={styles["menuItem"]}>
                     <a>Oblicz podatek</a>
@@ -94,11 +88,26 @@ const NavigationBar = () => {
                 </ul>
               ) : null}
             </li>
+            <li>
+              <a onClick={showListAccountHandler}>
+                <RiAccountCircleFill className={styles["icons"]} />
+                Konto
+              </a>
+              {showListAccount ? (
+                <ul className={styles["menu"]}>
+                  <li className={styles["menuItem"]}>
+                    <a>Usuń konto</a>
+                  </li>
+                  <li className={styles["menuItem"]}>
+                    <a>Zmień hasło</a>
+                  </li>
+                </ul>
+              ) : null}
+            </li>
           </ul>
         </div>
-        <ul></ul>
       </div>
-    </div>
+    </>
   );
 };
 
