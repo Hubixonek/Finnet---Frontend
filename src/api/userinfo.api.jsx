@@ -17,12 +17,10 @@ const UserProvider = ({ children }) => {
   const loginUser = async (values) => {
     try {
       const response = await axios.post(
-        "http://95.217.122.131:20152/auth/login",
+        "http://localhost:20152/auth/login",
         values,
         {
-          headers: {
-            withCredentials: true,
-          },
+          withCredentials: true
         }
       );
       setUser(response.data);
@@ -46,12 +44,9 @@ const UserProvider = ({ children }) => {
   });
 
   const logoutUser = async () => {
-    console.log("test");
     try {
       await axios.post("http://95.217.122.131:20152/auth/logout", null, {
-        headers: {
-          withCredentials: true,
-        },
+        withCredentials: true,
       });
       setUser(null);
       localStorage.removeItem("user");
