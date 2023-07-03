@@ -10,12 +10,15 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.3.3",
+    "@types/react-dom": "^18.2.6",
     "@vitejs/plugin-react": "^4.0.0",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.0",
     "corss": "^2.8.5",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react": "^7.25.3",
     "firebase": "^9.22.1",
     "formik": "^2.2.9",
     "js-cookie": "^3.0.5",
@@ -31,8 +34,7 @@
     "redux": "^4.2.1",
     "sass": "^1.62.1",
     "swagger-client": "^3.19.8",
-    "vite": "^4.3.9",
-    "vite-plugin-svgr": "^3.2.0",
+    "vite-plugin-svgr": "^3.0.0",
     "vite-tsconfig-paths": "^4.2.0",
     "web-vitals": "^2.1.4"
   },
@@ -65,6 +67,9 @@
     ]
   },
   "devDependencies": {
-    "swagger-jsdoc": "^6.2.8"
+    "@types/react": "^18.2.14",
+    "swagger-jsdoc": "^6.2.8",
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9"
   }
 }

@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import styles from "../styles/FundsForm.module.scss";
 import DateField from "../forms/TextField/DateField";
@@ -14,18 +15,16 @@ import useFormikHook from "../../hooks/useFormik.hooks";
 import FromAndToCurrencyChangeHandler from "../../utils/helpers/fromandtocurrencychangehandler.helpers";
 import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/nbp.api";
-import SwitchGoogle from "../forms/Switches/SwitchGoogle";
 import SwitchNBP from "../forms/Switches/SwitchNBP";
 
 const FundsForm = () => {
-  const [fromCurrency, setFromCurrency] = useState("");
-  const [toCurrency, setToCurrency] = useState("");
-  const [funds, setFunds] = useState([]);
-  const [currencies, setCurrencies] = useState([]);
-  const [selectedToRate, setSelectedToRate] = useState("");
-  const [selectedFromRate, setSelectedFromRate] = useState("");
-  const [rate, setRate] = useState("");
-
+  const [fromCurrency, setFromCurrency] = useState<string>("");
+  const [toCurrency, setToCurrency] = useState<string>("");
+  const [funds, setFunds] = useState<any[]>([]);
+  const [currencies, setCurrencies] = useState<string[]>([]);
+  const [selectedToRate, setSelectedToRate] = useState<number>();
+  const [selectedFromRate, setSelectedFromRate] = useState<number>();
+  const [rate, setRate] = useState<number>(0);
   useEffect(() => {
     fetchData(fromCurrency, toCurrency, setCurrencies);
   }, [fromCurrency, toCurrency]);
@@ -40,7 +39,6 @@ const FundsForm = () => {
   useEffect(() => {
     LocalStorage.set("fundsData", funds);
   }, [funds]);
- 
 
   const formik = useFormikHook({
     toCurrency,
@@ -69,17 +67,18 @@ const FundsForm = () => {
       formik,
       currencies,
     });
-
   useEffect(() => {
-    if (fromCurrency !== "PLN" && toCurrency !== "PLN") {
-      const rate = (selectedFromRate / selectedToRate).toFixed(2);
-      setRate(rate);
-    } else if (fromCurrency === "PLN") {
-      const rate = (1 / selectedToRate).toFixed(2);
-      setRate(rate);
-    } else if (toCurrency === "PLN") {
-      const rate = (selectedFromRate / 1).toFixed(2);
-      setRate(rate);
+    if (selectedFromRate !== undefined && selectedToRate !== undefined) {
+      if (fromCurrency !== "PLN" && toCurrency !== "PLN") {
+        const rate = parseFloat((selectedFromRate / selectedToRate).toFixed(2));
+        setRate(rate);
+      } else if (fromCurrency === "PLN") {
+        const rate = parseFloat((1 / selectedToRate).toFixed(2));
+        setRate(rate);
+      } else if (toCurrency === "PLN") {
+        const rate = parseFloat((selectedFromRate / 1).toFixed(2));
+        setRate(rate);
+      }
     }
   }, [selectedFromRate, selectedToRate, fromCurrency, toCurrency]);
 
@@ -103,7 +102,6 @@ const FundsForm = () => {
           />
           <SelectToCurrency
             formik={formik}
-            fromCurrency={fromCurrency}
             currencies={currencies}
             toCurrency={toCurrency}
             toCurrencyChangeHandler={toCurrencyChangeHandler}

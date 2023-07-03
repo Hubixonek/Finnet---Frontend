@@ -1,25 +1,26 @@
 import styles from "../../styles/FundsForm.module.scss";
 import PropTypes from "prop-types";
+import React from "react";
 
-const SelectToCurrency = ({
-  toCurrency,
+const SelectFromCurrency = ({
   formik,
-  toCurrencyChangeHandler,
+  fromCurrency,
   currencies,
+  fromCurrencyChangeHandler,
 }) => {
   return (
     <div className={`input-group ${styles.inputStyle}`}>
-      <label htmlFor="toCurrency"></label>
+      <label htmlFor="fromCurrency"></label>
       <select
         className={`form-control ${
-          formik.touched.toCurrency && formik.errors.toCurrency
+          formik.touched.fromCurrency && formik.errors.fromCurrency
             ? styles.errorInput
             : ""
         }`}
-        value={toCurrency}
-        onChange={toCurrencyChangeHandler}
+        value={fromCurrency}
+        onChange={fromCurrencyChangeHandler}
         onBlur={formik.handleBlur}
-        name="toCurrency">
+        name="fromCurrency">
         <option value="" disabled>
           Wybierz walutę
         </option>
@@ -33,7 +34,7 @@ const SelectToCurrency = ({
     </div>
   );
 };
-SelectToCurrency.propTypes = {
+SelectFromCurrency.propTypes = {
   formik: PropTypes.object.isRequired,
 };
-export default SelectToCurrency;
+export default SelectFromCurrency;

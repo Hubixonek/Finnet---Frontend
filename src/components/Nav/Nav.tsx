@@ -1,3 +1,4 @@
+import React from "react";
 import { FaBars } from "react-icons/fa";
 import styles from "../styles/Navbar.module.scss";
 import { Link } from "react-router-dom";

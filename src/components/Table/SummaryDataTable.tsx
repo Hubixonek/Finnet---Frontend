@@ -1,4 +1,6 @@
 import styles from "../styles/Table.module.scss";
+import React from "react";
+
 const SummaryDataTable = ({ totalProfitOrLoss }) => {
   return (
     <div className={styles["summarydatas_table--tr"]}>

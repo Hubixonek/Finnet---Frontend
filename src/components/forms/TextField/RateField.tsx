@@ -2,6 +2,7 @@ import styles from "../../styles/FundsForm.module.scss";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { LocalStorage } from "../../../services/LocalStorage.service";
+import React from "react";
 
 const RateField = ({ formik, fromCurrency, toCurrency }) => {
   const handleRateOnBlur = () => {

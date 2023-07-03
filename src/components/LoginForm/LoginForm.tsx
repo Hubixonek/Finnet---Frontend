@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/LoginForm.module.scss";
 import { useUserContext } from "../../api/userinfo.api";
+import React from "react";
 
 const LoginForm = () => {
-  const { formik, loginUser, logoutUser } = useUserContext();
+  const { formik} = useUserContext();
 
   return (
     <form className={styles["container"]} onSubmit={formik.handleSubmit}>

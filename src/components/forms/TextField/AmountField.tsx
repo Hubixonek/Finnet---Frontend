@@ -1,12 +1,13 @@
 import { LocalStorage } from "../../../services/LocalStorage.service";
 import styles from "../../styles/FundsForm.module.scss";
 import PropTypes from "prop-types";
+import React from "react";
 import { useEffect, useState } from "react";
 const AmountField = ({ formik }) => {
   const handleAmountOnBlur = () => {
     formik.handleBlur("amount");
   };
-
+  
   const [, setAmount] = useState("");
 
   useEffect(() => {

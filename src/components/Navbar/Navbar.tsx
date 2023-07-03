@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import styles from "../styles/Navbar.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaWallet, FaHammer } from "react-icons/fa";
@@ -9,11 +8,11 @@ import { Link } from "react-router-dom";
 import LoginLink from "../forms/LoginLink/LoginLink";
 import RegisterLink from "../forms/RegisterLink/RegisterLink";
 const NavigationBar = () => {
-  const [showNav, setShowNav] = useState(false);
-  const [showListWallet, setShowListWallet] = useState(false);
-  const [showListTools, setShowListTools] = useState(false);
-  const [showListWalletOther, setShowWalletOther] = useState(false);
-  const [showListAccount, setListAccount] = useState(false);
+  const [showNav, setShowNav] = useState<boolean>(false);
+  const [showListWallet, setShowListWallet] = useState<boolean>(false);
+  const [showListTools, setShowListTools] = useState<boolean>(false);
+  const [showListWalletOther, setShowWalletOther] = useState<boolean>(false);
+  const [showListAccount, setListAccount] = useState<boolean>(false);
 
   const showListWalletHandler = () => {
     setShowListWallet(!showListWallet);
@@ -103,7 +102,7 @@ const NavigationBar = () => {
                 </ul>
               ) : null}
             </li>
-            <LoginLink  />
+            <LoginLink />
             <RegisterLink />
           </ul>
         </div>

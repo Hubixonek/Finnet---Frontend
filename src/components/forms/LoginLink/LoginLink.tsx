@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/Navbar.module.scss";
 import { FiLogIn } from "react-icons/Fi";

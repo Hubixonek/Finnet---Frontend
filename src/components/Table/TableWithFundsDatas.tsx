@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import styles from "../styles/Table.module.scss";
 import SummaryDataTable from "./SummaryDataTable";

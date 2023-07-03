@@ -1,5 +1,6 @@
 import styles from "../../styles/FundsForm.module.scss";
 import PropTypes from "prop-types";
+
 const ResultField = ({ formik }) => {
   return (
     <div className={`input-group ${styles.inputStyle}`}>
