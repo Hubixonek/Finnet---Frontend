@@ -1,5 +1,6 @@
 import styles from "../../styles/FundsForm.module.scss";
 import PropTypes from "prop-types";
+import React from "react";
 
 const ResultField = ({ formik }) => {
   return (
