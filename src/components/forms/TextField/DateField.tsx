@@ -1,17 +1,18 @@
 import styles from "../../styles/FundsForm.module.scss";
 import PropTypes from "prop-types";
 import { LocalStorage } from "../../../services/LocalStorage.service";
-import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-const DateField = ({ formik, toCurrency, fromCurrency }) => {
+const DateField = ({ formik, toCurrency, fromCurrency, currencies }) => {
   const handleDateOnBlur = () => {
     formik.handleBlur("date");
   };
   const [, setDate] = useState("");
   const [rateForSelectedDate, setRateForSelectedDate] = useState("");
-  console.log(rateForSelectedDate);
+  const [rate, setRate] = useState();
 
+  console.log(rateForSelectedDate);
+  console.log(fromCurrency, toCurrency);
   useEffect(() => {
     const data = LocalStorage.get("date");
     if (data) {
@@ -31,13 +32,25 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
           fromCurrency && toCurrency
         }/${formik.values.date}/`
       );
-      const rateForSelectedDate = response.data.rates[0].mid;
+
+      const selectedFromCurrency = currencies.find(
+        (currency) => currency.code === fromCurrency
+      )?.rate;
+      const selectedToCurrency = currencies.find(
+        (currency) => currency.code === toCurrency
+      )?.rate;
+
+      console.log(
+        `Kurs dla ${fromCurrency} z dnia ${formik.values.date} ${selectedFromCurrency}`
+      );
+      console.log(
+        `Kurs dla ${toCurrency} z dnia ${formik.values.date} ${selectedToCurrency}`
+      );
       setRateForSelectedDate(rateForSelectedDate);
     } catch (error) {
       console.log("Nie ma dostępnego kursu z tego dnia");
     }
   };
-
   return (
     <div className="input-group">
       <label className="input-group-text w-50" htmlFor="date">

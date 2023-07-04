@@ -91,6 +91,7 @@ const FundsForm = () => {
             formik={formik}
             toCurrency={toCurrency}
             fromCurrency={fromCurrency}
+            currencies={currencies}
           />
           <AmountField formik={formik} />
           <SelectFromCurrency
@@ -111,7 +112,7 @@ const FundsForm = () => {
             toCurrencyChangeHandler={toCurrencyChangeHandler}
           />
           <ResultField formik={formik} />
-          <RateOfApiField toCurrency={toCurrency} rate={rate} />{" "}
+          <RateOfApiField toCurrency={toCurrency} rate={rate} />
           <RateForSelectedDay />
           <SwitchNBP />
           <Button />

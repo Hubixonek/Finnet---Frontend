@@ -12,6 +12,7 @@ const FromAndToCurrencyChangeHandler = ({
   setRate,
   formik,
   currencies,
+  
 }) => {
   const fromCurrencyChangeHandler = (event) => {
     const selectedCurrency = event.target.value;
