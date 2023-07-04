@@ -17,7 +17,7 @@ import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/nbp.api";
 import SwitchNBP from "../forms/Switches/SwitchNBP";
 import RateForSelectedDay from "../forms/TextField/RateForSelectedDay";
-const FundsForm = () => {
+const FundsForm = ({ rateForSelectedDate }) => {
   const [fromCurrency, setFromCurrency] = useState<string>("");
   const [toCurrency, setToCurrency] = useState<string>("");
   const [funds, setFunds] = useState<any[]>([]);
@@ -49,6 +49,7 @@ const FundsForm = () => {
     setFunds,
     funds,
   });
+  console.log(rateForSelectedDate);
 
   const handleRemoveFundsData = (id) => {
     setFunds(funds.filter((funds) => funds.id !== id));
@@ -91,7 +92,6 @@ const FundsForm = () => {
             formik={formik}
             toCurrency={toCurrency}
             fromCurrency={fromCurrency}
-            currencies={currencies}
           />
           <AmountField formik={formik} />
           <SelectFromCurrency
@@ -113,7 +113,6 @@ const FundsForm = () => {
           />
           <ResultField formik={formik} />
           <RateOfApiField toCurrency={toCurrency} rate={rate} />
-          <RateForSelectedDay />
           <SwitchNBP />
           <Button />
           <FormikErrorValidation formik={formik} />

@@ -1,15 +1,11 @@
 import React from "react";
 import styles from "../../styles/FundsForm.module.scss";
-const RateForSelectedDay = () => {
+const RateForSelectedDay = ({ date, rateForSelectedDate, toCurrency }) => {
+  console.log(rateForSelectedDate);
   return (
     <div className={`input-group ${styles.inputStyle}`}>
-      <input
-        className={`form-control`}
-        name="rate"
-        type="number"
-        placeholder="Kurs z wybranego dnia"
-        readOnly
-/>
+      <label className="input-group-text w-100">{`Kurs z ${date} dla ${toCurrency}`}</label>
+      <input className="form-control" value={rateForSelectedDate} />
     </div>
   );
 };
