@@ -1,5 +1,4 @@
 import styles from "../../styles/FundsForm.module.scss";
-import React from "react";
 
 const RateOfApiField = ({ toCurrency, rate }) => {
   return (
