@@ -17,7 +17,7 @@ import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/nbp.api";
 import SwitchNBP from "../forms/Switches/SwitchNBP";
 import RateForSelectedDay from "../forms/TextField/RateForSelectedDay";
-const FundsForm = ({ rateForSelectedDate }) => {
+const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("");
   const [toCurrency, setToCurrency] = useState<string>("");
   const [funds, setFunds] = useState<any[]>([]);
@@ -49,7 +49,6 @@ const FundsForm = ({ rateForSelectedDate }) => {
     setFunds,
     funds,
   });
-  console.log(rateForSelectedDate);
 
   const handleRemoveFundsData = (id) => {
     setFunds(funds.filter((funds) => funds.id !== id));
@@ -71,13 +70,13 @@ const FundsForm = ({ rateForSelectedDate }) => {
   useEffect(() => {
     if (selectedFromRate !== undefined && selectedToRate !== undefined) {
       if (fromCurrency !== "PLN" && toCurrency !== "PLN") {
-        const rate = parseFloat((selectedFromRate / selectedToRate).toFixed(2));
+        const rate = parseFloat((selectedFromRate / selectedToRate).toFixed(3));
         setRate(rate);
       } else if (fromCurrency === "PLN") {
-        const rate = parseFloat((1 / selectedToRate).toFixed(2));
+        const rate = parseFloat((1 / selectedToRate).toFixed(3));
         setRate(rate);
       } else if (toCurrency === "PLN") {
-        const rate = parseFloat((selectedFromRate / 1).toFixed(2));
+        const rate = parseFloat((selectedFromRate / 1).toFixed(3));
         setRate(rate);
       }
     }

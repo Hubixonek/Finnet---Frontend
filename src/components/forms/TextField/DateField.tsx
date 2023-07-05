@@ -10,9 +10,10 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
     formik.handleBlur("date");
   };
   const [, setDate] = useState("");
-  const [selectedFromCurrencyRate, setSelectedFromCurrencyRate] = useState();
-  const [selectedToCurrencyRate, setSelectedTocurrencyRate] = useState();
+  const [, setSelectedFromCurrencyRate] = useState();
+  const [, setSelectedTocurrencyRate] = useState();
   const [rateForSelectedDate, setRateForSelectedDate] = useState();
+
   console.log(
     `Przeliczony kurs  ${toCurrency} z dnia dla ${formik.values.date} : ${rateForSelectedDate}`
   );
@@ -23,10 +24,6 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
       formik.setFieldValue("date", data);
     }
   }, []);
-
-  useEffect(() => {
-    fetchRateFromDateHandler();
-  }, [fromCurrency, toCurrency, rateForSelectedDate]);
 
   useEffect(() => {
     LocalStorage.set("date", formik.values.date);
@@ -84,13 +81,21 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
         );
       }
     } catch (error) {
-      console.log("Nie ma dostępnego kursu z tego dnia");
+      console.error();
     }
   };
   const handleDateChange = (event) => {
     formik.handleChange(event);
     fetchRateFromDateHandler();
   };
+  useEffect(() => {
+    fetchRateFromDateHandler();
+  }, [
+    fromCurrency,
+    toCurrency,
+    rateForSelectedDate,
+    formik.values.date,
+  ]);
 
   return (
     <div className="input-group">

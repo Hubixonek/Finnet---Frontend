@@ -30,7 +30,7 @@ const FromAndToCurrencyChangeHandler = ({
       formik.setFieldValue("fromCurrency", selectedCurrency);
       setRate(selectedFromRate / selectedToRate);
     } else if (fromCurrency !== "PLN") {
-      setRate((selectedRate / selectedToRate).toFixed(2));
+      setRate((selectedRate / selectedToRate).toFixed(3));
     }
 
     if (selectedCurrency === toCurrency) {
@@ -56,7 +56,7 @@ const FromAndToCurrencyChangeHandler = ({
       formik.setFieldValue("toCurrency", selectedCurrency);
       setRate(selectedFromRate / selectedToRate);
     } else if (toCurrency !== "PLN") {
-      setRate((selectedFromRate / selectedRate).toFixed(2));
+      setRate((selectedFromRate / selectedRate).toFixed(3));
     }
 
     if (selectedCurrency === fromCurrency) {
