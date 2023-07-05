@@ -4,7 +4,7 @@ const RateOfApiField = ({ toCurrency, rate }) => {
   return (
     <div className={`input-group ${styles.inputStyle}`}>
       <label className="input-group-text w-70" htmlFor="currently">
-        Kurs Z DZIŚ {`${toCurrency}`}
+        Kurs z dziś {`${toCurrency}`}
       </label>
       <input
         type="number"

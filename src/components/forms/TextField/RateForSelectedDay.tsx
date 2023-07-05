@@ -1,15 +1,18 @@
-import React from "react";
 import styles from "../../styles/FundsForm.module.scss";
-
+import moment from "moment";
 const RateForSelectedDay = ({
   date,
   rateForSelectedDate,
   toCurrency,
   error,
 }) => {
+  const formattedDate = moment(date).format("DD.MM.YYYY");
+
   return (
     <div className={`input-group ${styles.inputStyle}`}>
-      <label className="input-group-text w-100">{`Kurs z ${date} dla ${toCurrency}`}</label>
+      <label
+        style={{ fontWeight: "bold" }}
+        className="input-group-text w-100">{`Kurs z ${formattedDate} dla ${toCurrency}`}</label>
       {error ? (
         <input
           className="form-control error"
@@ -20,7 +23,7 @@ const RateForSelectedDay = ({
       ) : (
         <input
           className="form-control"
-          style={{ color: "rgb(6, 179, 6)" }}
+          style={{ color: "royalblue", fontWeight: "bold" }}
           value={rateForSelectedDate}
           readOnly
         />
