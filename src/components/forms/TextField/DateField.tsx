@@ -13,6 +13,7 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
   const [, setSelectedFromCurrencyRate] = useState();
   const [, setSelectedTocurrencyRate] = useState();
   const [rateForSelectedDate, setRateForSelectedDate] = useState();
+  const [error, setError] = useState(false);
 
   console.log(
     `Przeliczony kurs  ${toCurrency} z dnia dla ${formik.values.date} : ${rateForSelectedDate}`
@@ -80,8 +81,12 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
           (selectedFromCurrency / selectedToCurrency).toFixed(3)
         );
       }
+      setError(false); 
+
     } catch (error) {
       console.error();
+      setError(true); 
+
     }
   };
   const handleDateChange = (event) => {
@@ -95,6 +100,7 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
     toCurrency,
     rateForSelectedDate,
     formik.values.date,
+    error
   ]);
 
   return (
@@ -120,6 +126,7 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
         rateForSelectedDate={rateForSelectedDate}
         date={formik.values.date}
         toCurrency={toCurrency}
+        error={error}
       />
     </div>
   );
