@@ -4,20 +4,18 @@ import { LocalStorage } from "../../../services/LocalStorage.service";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import RateForSelectedDay from "./RateForSelectedDay";
+import { fetchRateFromDate } from '../../../api/fetchratefromdate.api'
 
 const DateField = ({ formik, toCurrency, fromCurrency }) => {
   const handleDateOnBlur = () => {
     formik.handleBlur("date");
   };
   const [, setDate] = useState("");
-  const [, setSelectedFromCurrencyRate] = useState();
-  const [, setSelectedTocurrencyRate] = useState();
-  const [rateForSelectedDate, setRateForSelectedDate] = useState();
+  const [, setSelectedFromCurrencyRate] = useState<string>();
+  const [, setSelectedTocurrencyRate] = useState<string>();
+  const [rateForSelectedDate, setRateForSelectedDate] = useState<string>();
   const [error, setError] = useState(false);
 
-  console.log(
-    `Przeliczony kurs  ${toCurrency} z dnia dla ${formik.values.date} : ${rateForSelectedDate}`
-  );
   useEffect(() => {
     const data = LocalStorage.get("date");
     if (data) {
@@ -32,34 +30,10 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
 
   const fetchRateFromDateHandler = async () => {
     try {
-      let ratesFrom;
-      if (fromCurrency === "PLN") {
-        ratesFrom = { mid: 1 };
-      } else {
-        const responseFromCurrency = await axios.get(
-          `https://api.nbp.pl/api/exchangerates/rates/A/${fromCurrency}/${formik.values.date}/`
-        );
-        ratesFrom = responseFromCurrency.data.rates[0];
-      }
-
-      let ratesTo;
-      if (toCurrency === "PLN") {
-        ratesTo = { mid: 1 };
-      } else {
-        const responseToCurrency = await axios.get(
-          `https://api.nbp.pl/api/exchangerates/rates/A/${toCurrency}/${formik.values.date}/`
-        );
-        ratesTo = responseToCurrency.data.rates[0];
-      }
-
-      const selectedFromCurrency = ratesFrom.mid;
-      const selectedToCurrency = ratesTo.mid;
-
-      console.log(
-        `Kurs ${fromCurrency} z dnia ${formik.values.date}: ${selectedFromCurrency}`
-      );
-      console.log(
-        `Kurs ${toCurrency} z dnia ${formik.values.date}: ${selectedToCurrency}`
+      const { selectedFromCurrency, selectedToCurrency } = await fetchRateFromDate(
+        fromCurrency,
+        toCurrency,
+        formik.values.date
       );
 
       if (fromCurrency === "PLN") {
@@ -81,12 +55,9 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
           (selectedFromCurrency / selectedToCurrency).toFixed(3)
         );
       }
-      setError(false); 
-
+      setError(false);
     } catch (error) {
-      console.error();
-      setError(true); 
-
+      setError(true);
     }
   };
   const handleDateChange = (event) => {
@@ -100,7 +71,7 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
     toCurrency,
     rateForSelectedDate,
     formik.values.date,
-    error
+    error,
   ]);
 
   return (
