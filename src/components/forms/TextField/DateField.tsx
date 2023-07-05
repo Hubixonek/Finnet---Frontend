@@ -126,6 +126,7 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
         rateForSelectedDate={rateForSelectedDate}
         date={formik.values.date}
         toCurrency={toCurrency}
+        fromCurrency={fromCurrency}
         error={error}
       />
     </div>

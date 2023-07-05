@@ -4,6 +4,7 @@ const RateForSelectedDay = ({
   date,
   rateForSelectedDate,
   toCurrency,
+  fromCurrency,
   error,
 }) => {
   const formattedDate = moment(date).format("DD.MM.YYYY");
@@ -12,7 +13,7 @@ const RateForSelectedDay = ({
     <div className={`input-group ${styles.inputStyle}`}>
       <label
         style={{ fontWeight: "bold" }}
-        className="input-group-text w-100">{`Kurs z ${formattedDate} dla ${toCurrency}`}</label>
+        className="input-group-text w-100">{`Kurs z ${formattedDate}`}</label>
       {error ? (
         <input
           className="form-control error"
@@ -24,7 +25,7 @@ const RateForSelectedDay = ({
         <input
           className="form-control"
           style={{ color: "royalblue", fontWeight: "bold" }}
-          value={rateForSelectedDate}
+          value={`${rateForSelectedDate} ${fromCurrency}/${toCurrency}`}
           readOnly
         />
       )}
