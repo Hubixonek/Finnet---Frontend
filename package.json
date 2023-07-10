@@ -7,32 +7,37 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.3.3",
+    "@types/react-dom": "^18.2.6",
     "@vitejs/plugin-react": "^4.0.0",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.0",
     "corss": "^2.8.5",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react": "^7.25.3",
     "firebase": "^9.22.1",
     "formik": "^2.2.9",
     "js-cookie": "^3.0.5",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-burger-menu": "^3.0.9",
     "react-date-picker": "^9.2.0",
     "react-dom": "^18.2.0",
+    "react-flags-select": "^2.2.3",
     "react-icons": "^4.10.1",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-redux": "^8.1.0",
     "react-router-dom": "^6.11.1",
+    "react-select": "^5.7.3",
     "redux": "^4.2.1",
     "sass": "^1.62.1",
     "swagger-client": "^3.19.8",
-    "vite": "^4.3.9",
-    "vite-plugin-svgr": "^3.2.0",
+    "vite-plugin-svgr": "^3.0.0",
     "vite-tsconfig-paths": "^4.2.0",
     "web-vitals": "^2.1.4"
   },
@@ -44,6 +49,13 @@
     "start-next": "next start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "lines": 80
+      }
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -65,6 +77,10 @@
     ]
   },
   "devDependencies": {
-    "swagger-jsdoc": "^6.2.8"
+    "@testing-library/user-event": "^14.4.3",
+    "@types/react": "^18.2.14",
+    "swagger-jsdoc": "^6.2.8",
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9"
   }
 }
