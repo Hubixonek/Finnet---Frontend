@@ -13,7 +13,7 @@ export const AuthContextProvider = ({ children }) => {
   });
   const loginApiCall = async (payload) => {
     const apiResponse = await axios.post(
-      "http://95.217.122.131:20152/auth/login",
+      "https://finnet.bieda.it/auth/login",
       payload,
       {
         withCredentials: true,
@@ -24,7 +24,7 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(apiResponse.data));
   };
   const logoutApiCall = async () => {
-    await axios.post("http://95.217.122.131:20152/auth/logout", {
+    await axios.post("https://finnet.bieda.it/auth/logout", {
       withCredentials: true,
     });
     localStorage.removeItem("user");
