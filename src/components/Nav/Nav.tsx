@@ -30,7 +30,7 @@ const Nav = ({ setShowNav, showNav }) => {
                 onClick={() => {
                   logoutApiCall();
                 }}>
-                Wyloguj się
+                Wyloguj się!
               </Link>
             )}
           </div>
