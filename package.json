@@ -43,7 +43,7 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build --watch",
+    "build": "vite build",
     "serve": "vite preview",
     "dev": "npm dev",
     "start-next": "next start",
