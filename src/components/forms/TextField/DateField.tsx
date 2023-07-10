@@ -1,12 +1,16 @@
 import styles from "../../styles/FundsForm.module.scss";
-import PropTypes from "prop-types";
 import { LocalStorage } from "../../../services/LocalStorage.service";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import RateForSelectedDay from "./RateForSelectedDay";
-import { fetchRateFromDate } from '../../../api/fetchratefromdate.api'
+import { fetchRateFromDate } from "../../../api/fetchratefromdate.api";
 
-const DateField = ({ formik, toCurrency, fromCurrency }) => {
+type dateFieldProps = {
+  toCurrency: string;
+  fromCurrency: string;
+  formik: object;
+};
+
+const DateField = ({ formik, toCurrency, fromCurrency }: dateFieldProps) => {
   const handleDateOnBlur = () => {
     formik.handleBlur("date");
   };
@@ -30,11 +34,8 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
 
   const fetchRateFromDateHandler = async () => {
     try {
-      const { selectedFromCurrency, selectedToCurrency } = await fetchRateFromDate(
-        fromCurrency,
-        toCurrency,
-        formik.values.date
-      );
+      const { selectedFromCurrency, selectedToCurrency } =
+        await fetchRateFromDate(fromCurrency, toCurrency, formik.values.date);
 
       if (fromCurrency === "PLN") {
         setSelectedFromCurrencyRate(1);
@@ -102,9 +103,6 @@ const DateField = ({ formik, toCurrency, fromCurrency }) => {
       />
     </div>
   );
-};
-DateField.propTypes = {
-  formik: PropTypes.object.isRequired,
 };
 
 export default DateField;

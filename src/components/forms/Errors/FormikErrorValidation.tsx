@@ -1,7 +1,11 @@
 import styles from "../../styles/FundsForm.module.scss";
 import React from "react";
 
-const FormikErrorValidation = ({ formik }) => {
+type formikErrorValidationProps = {
+  formik: any;
+};
+
+const FormikErrorValidation = ({ formik }: formikErrorValidationProps) => {
   return (
     <>
       {formik.touched.amount && formik.errors.amount ? (

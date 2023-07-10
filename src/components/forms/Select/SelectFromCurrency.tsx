@@ -1,13 +1,18 @@
 import styles from "../../styles/FundsForm.module.scss";
-import PropTypes from "prop-types";
-import React from "react";
+
+type selectFromCurrencyProps = {
+  formik: object;
+  fromCurrency: string;
+  currencies: Array<string>;
+  fromCurrencyChangeHandler: Function;
+};
 
 const SelectFromCurrency = ({
   formik,
   fromCurrency,
   currencies,
   fromCurrencyChangeHandler,
-}) => {
+} : selectFromCurrencyProps) => {
   return (
     <div className={`input-group ${styles.inputStyle}`}>
       <label htmlFor="fromCurrency"></label>
@@ -34,7 +39,5 @@ const SelectFromCurrency = ({
     </div>
   );
 };
-SelectFromCurrency.propTypes = {
-  formik: PropTypes.object.isRequired,
-};
+
 export default SelectFromCurrency;

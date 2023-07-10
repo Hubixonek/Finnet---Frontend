@@ -1,14 +1,22 @@
 import { useEffect } from "react";
 import styles from "../../styles/FundsForm.module.scss";
 import moment from "moment";
+
+type rateForSelectedDayProps = {
+  date: string;
+  rateForSelectedDate: number;
+  toCurrency: string;
+  fromCurrency: string;
+  error: boolean;
+};
+
 const RateForSelectedDay = ({
   date,
   rateForSelectedDate,
   toCurrency,
   fromCurrency,
   error,
-}) => {
- 
+}: rateForSelectedDayProps) => {
   const formattedDate = moment(date).format("DD.MM.YYYY");
 
   return (

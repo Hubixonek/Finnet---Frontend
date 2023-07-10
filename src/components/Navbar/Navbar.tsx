@@ -7,6 +7,8 @@ import Nav from "../Nav/Nav";
 import { Link } from "react-router-dom";
 import LoginLink from "../forms/LoginLink/LoginLink";
 import RegisterLink from "../forms/RegisterLink/RegisterLink";
+import SwitchGoogle from "../forms/Switches/SwitchGoogle";
+import SwitchThemeMode from "../forms/Switches/SwitchThemeMode";
 const NavigationBar = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
   const [showListWallet, setShowListWallet] = useState<boolean>(false);
@@ -104,6 +106,7 @@ const NavigationBar = () => {
             </li>
             <LoginLink />
             <RegisterLink />
+            <SwitchThemeMode />
           </ul>
         </div>
       </div>

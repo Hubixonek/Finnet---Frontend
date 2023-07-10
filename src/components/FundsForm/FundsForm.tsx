@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import styles from "../styles/FundsForm.module.scss";
 import DateField from "../forms/TextField/DateField";
@@ -16,7 +15,11 @@ import FromAndToCurrencyChangeHandler from "../../utils/helpers/fromandtocurrenc
 import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/nbp.api";
 import SwitchNBP from "../forms/Switches/SwitchNBP";
-import RateForSelectedDay from "../forms/TextField/RateForSelectedDay";
+
+
+
+
+
 const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("");
   const [toCurrency, setToCurrency] = useState<string>("");
@@ -49,8 +52,8 @@ const FundsForm = () => {
     setFunds,
     funds,
   });
-
-  const handleRemoveFundsData = (id) => {
+ 
+  const handleRemoveFundsData = (id:string) => {
     setFunds(funds.filter((funds) => funds.id !== id));
   };
   const { fromCurrencyChangeHandler, toCurrencyChangeHandler } =

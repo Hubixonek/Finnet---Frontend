@@ -1,10 +1,25 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/LoginForm.module.scss";
-import { useUserContext } from "../../api/userinfo.api";
-import React from "react";
-
+import { useContext } from "react";
+import { useFormik } from "formik";
+import AuthContext from "../../contexts/AuthContext";
 const LoginForm = () => {
-  const { formik} = useUserContext();
+  const { loginApiCall } = useContext(AuthContext);
+
+  const loginHandler = async () => {
+    let payload = {
+      email: formik.values.email,
+      password: formik.values.password,
+    };
+    await loginApiCall(payload);
+  };
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: loginHandler,
+  });
 
   return (
     <form className={styles["container"]} onSubmit={formik.handleSubmit}>

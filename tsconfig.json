@@ -14,7 +14,7 @@
   },
   "include": [
     "src/**/*"
-  ],
+, "setupTests.tsx"  ],
   "exclude": [
     "node_modules"
   ]

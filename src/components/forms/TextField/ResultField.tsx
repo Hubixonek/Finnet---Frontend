@@ -1,8 +1,11 @@
 import styles from "../../styles/FundsForm.module.scss";
 import PropTypes from "prop-types";
-import React from "react";
 
-const ResultField = ({ formik }) => {
+type resultFieldProps = {
+  formik: any;
+};
+
+const ResultField = ({ formik }: resultFieldProps) => {
   return (
     <div className={`input-group ${styles.inputStyle}`}>
       <label className="input-group-text" htmlFor="result">

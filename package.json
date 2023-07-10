@@ -10,7 +10,6 @@
     "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.3",
     "@types/react-dom": "^18.2.6",
@@ -29,10 +28,12 @@
     "react-burger-menu": "^3.0.9",
     "react-date-picker": "^9.2.0",
     "react-dom": "^18.2.0",
+    "react-flags-select": "^2.2.3",
     "react-icons": "^4.10.1",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-redux": "^8.1.0",
     "react-router-dom": "^6.11.1",
+    "react-select": "^5.7.3",
     "redux": "^4.2.1",
     "sass": "^1.62.1",
     "swagger-client": "^3.19.8",
@@ -48,6 +49,13 @@
     "start-next": "next start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "lines": 80
+      }
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -69,6 +77,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/user-event": "^14.4.3",
     "@types/react": "^18.2.14",
     "swagger-jsdoc": "^6.2.8",
     "typescript": "^5.1.6",

@@ -1,10 +1,10 @@
 import useRegister from "../../api/register.api";
 import styles from "../styles/RegisterForm.module.scss";
 import { Link } from "react-router-dom";
-import React from "react";
 
 const RegisterForm = () => {
   const { formik } = useRegister();
+  
 
   return (
     <>

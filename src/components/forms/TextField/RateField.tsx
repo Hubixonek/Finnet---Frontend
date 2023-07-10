@@ -1,10 +1,14 @@
 import styles from "../../styles/FundsForm.module.scss";
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { LocalStorage } from "../../../services/LocalStorage.service";
-import React from "react";
 
-const RateField = ({ formik, fromCurrency, toCurrency }) => {
+type rateFieldProps = {
+  formik: object;
+  fromCurrency: string;
+  toCurrency: string;
+};
+
+const RateField = ({ formik, fromCurrency, toCurrency }: rateFieldProps) => {
   const handleRateOnBlur = () => {
     formik.handleBlur("rate");
   };
@@ -44,7 +48,5 @@ const RateField = ({ formik, fromCurrency, toCurrency }) => {
     </div>
   );
 };
-RateField.propTypes = {
-  formik: PropTypes.object.isRequired,
-};
+
 export default RateField;

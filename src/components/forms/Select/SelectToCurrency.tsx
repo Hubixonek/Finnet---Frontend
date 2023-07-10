@@ -1,13 +1,19 @@
 import styles from "../../styles/FundsForm.module.scss";
 import PropTypes from "prop-types";
-import React from "react";
+
+type selectToCurrencyProps = {
+  formik: any;
+  toCurrency: string;
+  currencies: Array<string>;
+  toCurrencyChangeHandler: Function;
+};
 
 const SelectToCurrency = ({
   toCurrency,
   formik,
   toCurrencyChangeHandler,
   currencies,
-}) => {
+}: selectToCurrencyProps) => {
   return (
     <div className={`input-group ${styles.inputStyle}`}>
       <label htmlFor="toCurrency"></label>

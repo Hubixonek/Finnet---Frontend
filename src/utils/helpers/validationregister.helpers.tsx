@@ -1,4 +1,6 @@
-const validate = ({ values }) => {
+
+
+const validate = ( values ) => {
   const errors = {};
   console.log(errors);
 
