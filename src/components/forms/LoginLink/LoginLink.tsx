@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/Navbar.module.scss";
 import { RiLoginBoxLine } from "react-icons/ri";
+import AuthContext from "../../../contexts/AuthContext";
 const LoginLink = () => {
+  const { user, logoutApiCall } = useContext(AuthContext);
+
   return (
-    <ul>
-      <Link to="/loginform" className={styles["loginBtnSideBar"]}>
-        {" "}
-        <RiLoginBoxLine className={styles["icons"]} />
-        Zaloguj się
-      </Link>
-    </ul>
+    <div>
+      <ul>
+        {!user && (
+          <Link to="/loginform" className={styles["loginBtnSideBar"]}>
+            <RiLoginBoxLine className={styles["icons"]} />
+            Zaloguj się
+          </Link>
+        )}
+        {user && (
+          <Link className={styles["loginBtnSideBar"]} onClick={logoutApiCall}>
+            {" "}
+            <RiLoginBoxLine className={styles["icons"]} />
+            Wyloguj się
+          </Link>
+        )}
+      </ul>
+    </div>
   );
 };
 export default LoginLink;

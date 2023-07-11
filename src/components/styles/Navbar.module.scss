@@ -15,7 +15,7 @@
 
 .sidebar {
   position: fixed;
-  width: 230px;
+  width: 231.5px;
   height: 150vh;
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
@@ -23,6 +23,7 @@
 }
 
 .show {
+  display: flex;
   transform: translateX(0%);
   transition: transform 0.3s ease-in-out;
 }
@@ -37,6 +38,7 @@ ul {
     margin: 2px 0;
 
     a {
+      width: 236px;
       display: block;
       color: black;
       padding: 12px 20px;
@@ -98,7 +100,6 @@ ul {
     font-size: 15px;
   }
   .show {
-    position: absolute;
     z-index: 1;
     display: flex;
     background-color: white;

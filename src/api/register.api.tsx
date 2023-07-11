@@ -15,7 +15,7 @@ const useRegister = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          "https://finnet.bieda.it/auth/users",
+          "https://finnet.bieda.it/api/auth/users",
           {
             email: values.email,
             password: values.password,
@@ -23,7 +23,7 @@ const useRegister = () => {
         );
         console.log(response.data);
         console.log("Zarejestrowano pomyślnie");
-        navigate("/fundsform");
+        navigate("/loginform");
       } catch (error) {
         if (
           error.response &&

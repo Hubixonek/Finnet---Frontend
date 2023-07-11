@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../styles/Navbar.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaWallet, FaHammer } from "react-icons/fa";
@@ -7,14 +7,16 @@ import Nav from "../Nav/Nav";
 import { Link } from "react-router-dom";
 import LoginLink from "../forms/LoginLink/LoginLink";
 import RegisterLink from "../forms/RegisterLink/RegisterLink";
-import SwitchGoogle from "../forms/Switches/SwitchGoogle";
 import SwitchThemeMode from "../forms/Switches/SwitchThemeMode";
+import AuthContext from "../../contexts/AuthContext";
 const NavigationBar = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
   const [showListWallet, setShowListWallet] = useState<boolean>(false);
   const [showListTools, setShowListTools] = useState<boolean>(false);
   const [showListWalletOther, setShowWalletOther] = useState<boolean>(false);
   const [showListAccount, setListAccount] = useState<boolean>(false);
+
+  const { user, logoutApiCall } = useContext(AuthContext);
 
   const showListWalletHandler = () => {
     setShowListWallet(!showListWallet);
@@ -89,10 +91,12 @@ const NavigationBar = () => {
               ) : null}
             </li>
             <li>
-              <a onClick={showListAccountHandler}>
-                <RiAccountCircleFill className={styles["icons"]} />
-                Konto
-              </a>
+              {!user ? null : 
+                <a onClick={showListAccountHandler}>
+                  <RiAccountCircleFill className={styles["icons"]} />
+                  Konto {user.email}
+                </a>
+              }
               {showListAccount ? (
                 <ul className={styles["menu"]}>
                   <li className={styles["menuItem"]}>
@@ -105,8 +109,7 @@ const NavigationBar = () => {
               ) : null}
             </li>
             <LoginLink />
-            <RegisterLink />
-            <SwitchThemeMode />
+            {user ? null : <RegisterLink />}
           </ul>
         </div>
       </div>
