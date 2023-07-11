@@ -1,5 +1,4 @@
 import ReactDOM from "react-dom/client";
-import React from "react";
 import "./index.scss";
 import Root from "./App";
 import "bootstrap/dist/css/bootstrap.css";

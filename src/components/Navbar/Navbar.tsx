@@ -9,6 +9,7 @@ import LoginLink from "../forms/LoginLink/LoginLink";
 import RegisterLink from "../forms/RegisterLink/RegisterLink";
 import SwitchThemeMode from "../forms/Switches/SwitchThemeMode";
 import AuthContext from "../../contexts/AuthContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 const NavigationBar = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
   const [showListWallet, setShowListWallet] = useState<boolean>(false);
@@ -16,8 +17,9 @@ const NavigationBar = () => {
   const [showListWalletOther, setShowWalletOther] = useState<boolean>(false);
   const [showListAccount, setListAccount] = useState<boolean>(false);
 
-  const { user, logoutApiCall } = useContext(AuthContext);
+  const { theme } = useContext(ThemeContext);
 
+  const user = useContext(AuthContext);
   const showListWalletHandler = () => {
     setShowListWallet(!showListWallet);
   };
@@ -40,8 +42,11 @@ const NavigationBar = () => {
   return (
     <>
       <Nav showNav={showNav} setShowNav={setShowNav} />
-      <div className={`${styles["sidebar"]} ${showNav ? styles["show"] : ""}`}>
-        <div className={styles["dropdownContainer"]}>
+      <div
+        className={`${styles["sidebar"]} ${showNav ? styles["show"] : ""} ${
+          theme ? styles["dark"] : styles["light"]
+        }`}>
+        <div>
           <ul
             className={
               showListTools ? `${styles["menu"]} active` : styles["menu"]
@@ -53,11 +58,15 @@ const NavigationBar = () => {
                 Portfel
               </a>
               {showListWallet ? (
-                <ul className={styles["menu"]}>
-                  <li className={styles["menuItem"]}>
-                    <Link to="/fundsform">Przelicz kursy walut</Link>
+                <ul>
+                  <li>
+                    <Link
+                      to="/fundsform"
+                      className={theme ? styles["dark"] : styles["light"]}>
+                      Przelicz kursy walut
+                    </Link>
                   </li>
-                  <li className={styles["menuItem"]}>
+                  <li>
                     <a onClick={showListWalletOtherHandler}>Lokaty </a>
                     {showListWalletOther ? (
                       <ul>
@@ -91,13 +100,13 @@ const NavigationBar = () => {
               ) : null}
             </li>
             <li>
-              {!user ? null : 
+              {!user ? null : (
                 <a onClick={showListAccountHandler}>
                   <RiAccountCircleFill className={styles["icons"]} />
                   Konto {user.email}
                 </a>
-              }
-              {showListAccount ? (
+              )}
+              {showListAccount && user ? (
                 <ul className={styles["menu"]}>
                   <li className={styles["menuItem"]}>
                     <a>Usuń konto</a>
@@ -109,7 +118,9 @@ const NavigationBar = () => {
               ) : null}
             </li>
             <LoginLink />
-            {user ? null : <RegisterLink />}
+            <RegisterLink />
+
+            <SwitchThemeMode />
           </ul>
         </div>
       </div>

@@ -1,10 +1,13 @@
 .navbar {
   display: flex;
-  padding: 5px;
-  margin-left: 15px;
+  padding: 6px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
   align-items: center;
   .hamburger {
     font-size: 25px;
+    margin-left: 15px;
     cursor: pointer;
   }
   .logo {
@@ -27,6 +30,14 @@
   transform: translateX(0%);
   transition: transform 0.3s ease-in-out;
 }
+.dark {
+  background-color: #22272e;
+  color: rgb(253, 253, 253) !important;
+}
+.light {
+  background-color: white;
+  color: black;
+}
 
 ul {
   margin-left: -25px;
@@ -38,7 +49,6 @@ ul {
     margin: 2px 0;
 
     a {
-      width: 236px;
       display: block;
       color: black;
       padding: 12px 20px;
@@ -51,6 +61,7 @@ ul {
     }
   }
 }
+
 .icons {
   margin-right: 0.6rem;
   vertical-align: middle;
@@ -122,8 +133,17 @@ ul {
     display: flex;
     text-decoration: none;
     color: white;
+    
     padding: 15px;
     width: 100%;
     background-color: rgb(0, 101, 255);
+  }
+  .dark {
+    background-color: #22272e;
+    color: rgb(253, 253, 253) !important;
+  }
+  .light {
+    background-color: white;
+    color: black;
   }
 }

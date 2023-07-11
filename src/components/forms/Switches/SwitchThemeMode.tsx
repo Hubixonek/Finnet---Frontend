@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "../../styles/SwitchTheme.module.scss";
+import { ThemeContext } from "../../../contexts/ThemeContext";
 
 const SwitchThemeMode = () => {
-  const [theme, setTheme] = useState(false);
-
-  const toggleThemeHandler = () => {
-    setTheme(!theme);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const handleClick = () => {
+    toggleTheme();
   };
-  console.log(theme);
 
   return (
     <>
@@ -15,11 +14,11 @@ const SwitchThemeMode = () => {
         <input
           className={`form-check-input `}
           type="checkbox"
-          onChange={toggleThemeHandler}
+          onChange={handleClick}
           id="flexSwitchCheckDefaultNBP"
         />
         <label className="form-check-label" htmlFor="flexSwitchCheckDefaultNBP">
-          Tryb dzień
+          Tryb {`${theme ? 'nocny' : 'dzienny'}`}
         </label>
       </div>
     </>

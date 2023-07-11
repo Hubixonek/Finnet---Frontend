@@ -1,9 +1,11 @@
+import { useContext } from "react";
 import styles from "../styles/Table.module.scss";
-import React from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const SummaryDataTable = ({ totalProfitOrLoss }) => {
+  const {theme} = useContext(ThemeContext);
   return (
-    <div className={styles["summarydatas_table--tr"]}>
+    <div className={`${styles["summarydatas_table--tr"]} ${theme ? styles['dark'] : styles['light']}`}>
       <h3>Podsumowanie operacji</h3>
       <p
         className={styles["profitOrLoss"]}
@@ -11,9 +13,8 @@ const SummaryDataTable = ({ totalProfitOrLoss }) => {
           color: parseFloat(totalProfitOrLoss) < 0 ? "red" : "green",
         }}>
         {`${
-          parseFloat(totalProfitOrLoss) > 0 ? "Zysk : " : "Strata:" 
+          parseFloat(totalProfitOrLoss) > 0 ? "Zysk : " : "Strata:"
         } ${totalProfitOrLoss} PLN`}
-        
       </p>
     </div>
   );

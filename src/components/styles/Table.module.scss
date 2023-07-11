@@ -42,6 +42,14 @@
   font-size: 20px;
   font-weight: bold;
 }
+.dark {
+  background-color: #22272ee5;
+  color: rgb(253, 253, 253) !important;
+}
+.light {
+  background-color: white;
+  color: black;
+}
 @media only screen and (max-width: 760px),
   (min-device-width: 768px) and (max-device-width: 1024px) {
   .main_table--container {

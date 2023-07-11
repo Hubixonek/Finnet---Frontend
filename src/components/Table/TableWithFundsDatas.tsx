@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import styles from "../styles/Table.module.scss";
 import SummaryDataTable from "./SummaryDataTable";
 import PropTypes from "prop-types";
+import { ThemeContext } from "../../contexts/ThemeContext"
 
 
 
@@ -10,6 +11,7 @@ import PropTypes from "prop-types";
 const TableWithFundsDatas = ({ funds, removeFundsData }) => {
   const [profitOrLossInPln, setProfitOrLossInPln] = useState([]);
   const [totalProfitOrLoss, setTotalProfitOrLoss] = useState([]);
+  const {theme} = useContext(ThemeContext)
 
   const profitAndLoss = () => {
     const updatedProfitOrLossInPln = funds.map((fund) => {
@@ -29,10 +31,10 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
 
   return (
     <div>
-      <div className={styles["main_table--container"]}>
+      <div className={`${styles["main_table--container"]} ${theme ? styles["dark"] : styles["light"]}`}>
         <h1 className={styles["h1_table"]}>Zapisane dane</h1>
         <div className="table-responsive">
-          <table className={`table table-striped table-light ${styles.table}`}>
+          <table className={`table table-striped table-light ${styles.table} ${theme ? "table-dark" : "table-light"}`}>
             <thead>
               <tr>
                 <th scope="col">Data</th>

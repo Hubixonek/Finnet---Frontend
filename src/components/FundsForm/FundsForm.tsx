@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styles from "../styles/FundsForm.module.scss";
 import DateField from "../forms/TextField/DateField";
 import AmountField from "../forms/TextField/AmountField";
@@ -15,10 +15,7 @@ import FromAndToCurrencyChangeHandler from "../../utils/helpers/fromandtocurrenc
 import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/nbp.api";
 import SwitchNBP from "../forms/Switches/SwitchNBP";
-
-
-
-
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("");
@@ -28,7 +25,7 @@ const FundsForm = () => {
   const [selectedToRate, setSelectedToRate] = useState<number>();
   const [selectedFromRate, setSelectedFromRate] = useState<number>();
   const [rate, setRate] = useState<number>(0);
-
+  const {theme} = useContext(ThemeContext);
   useEffect(() => {
     fetchData(fromCurrency, toCurrency, setCurrencies);
   }, [fromCurrency, toCurrency]);
@@ -52,8 +49,8 @@ const FundsForm = () => {
     setFunds,
     funds,
   });
- 
-  const handleRemoveFundsData = (id:string) => {
+
+  const handleRemoveFundsData = (id: string) => {
     setFunds(funds.filter((funds) => funds.id !== id));
   };
   const { fromCurrencyChangeHandler, toCurrencyChangeHandler } =
@@ -87,7 +84,11 @@ const FundsForm = () => {
 
   return (
     <div>
-      <form className={styles["formHeader"]} onSubmit={formik.handleSubmit}>
+      <form
+        className={`${styles["formHeader"]} ${
+          theme ? styles["dark"] : styles["light"]
+        }`}
+        onSubmit={formik.handleSubmit}>
         <div className={styles["form_input--container"]}>
           <h1 className={styles["h1-style"]}>Przelicz kursy</h1>
           <DateField
