@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useFormik } from "formik";
 import AuthContext from "../../contexts/AuthContext";
 import { ThemeContext } from "../../contexts/ThemeContext"
+import validate from "../../utils/helpers/validationlogin.helpers"
 const LoginForm = () => {
   const { loginApiCall } = useContext(AuthContext);
   const {theme} = useContext(ThemeContext);
@@ -19,6 +20,7 @@ const LoginForm = () => {
       email: "",
       password: "",
     },
+    validate,
     onSubmit: loginHandler,
   });
 

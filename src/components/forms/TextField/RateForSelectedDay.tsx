@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../styles/FundsForm.module.scss";
 import moment from "moment";
 
@@ -17,12 +17,16 @@ const RateForSelectedDay = ({
   fromCurrency,
   error,
 }: rateForSelectedDayProps) => {
-  const formattedDate = moment(date).format("DD.MM.YYYY");
+  const formattedDate = moment(date || new Date().toISOString().substr(0, 10)).format("DD.MM.YYYY");
+
+
+
+
 
   return (
     <div className={`input-group ${styles["inputStyle"]}`}>
       <br></br>
-      <label className="input-group">{`Kurs z ${formattedDate}`}</label>
+      <label className="input-group">{formattedDate}</label>
       {error ? (
         <input
           className="form-control error"
