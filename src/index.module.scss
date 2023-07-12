@@ -5,3 +5,10 @@
 a:contains("Powered by MIKR.US") {
   display: none;
 }
+html{
+  height: 100%;
+}
+body{
+  min-height: 100vh;
+  padding: 0;
+}
