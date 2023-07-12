@@ -22,7 +22,7 @@ const RateForSelectedDay = ({
   return (
     <div className={`input-group ${styles["inputStyle"]}`}>
       <br></br>
-      <label className="input-group-text w-50 h-100">{`Kurs z ${formattedDate}`}</label>
+      <label className="input-group">{`Kurs z ${formattedDate}`}</label>
       {error ? (
         <input
           className="form-control error"
@@ -32,7 +32,7 @@ const RateForSelectedDay = ({
         />
       ) : (
         <input
-          className={`form-control h-50 ${styles["inputRateDate"]}`}
+          className={`form-control`}
           style={{ color: "royalblue", fontWeight: "bold" }}
           value={`${rateForSelectedDate} ${fromCurrency}/${toCurrency}`}
           readOnly
