@@ -4,6 +4,7 @@
   width: 30%;
   padding: 35px;
   text-align: center;
+  border-radius: 10px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -28,7 +29,9 @@
   }
 }
 
-
+.inputStyle {
+  margin-top: 10px;
+}
 .inputRateDate {
   margin-top: 1px;
 }
