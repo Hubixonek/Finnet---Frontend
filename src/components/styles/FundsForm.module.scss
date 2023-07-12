@@ -56,10 +56,12 @@ input.input-class::-webkit-inner-spin-button {
 }
 @media only screen and (max-width: 760px),
   (min-device-width: 768px) and (max-device-width: 1024px) {
+  .formHeader {
+    margin-top: 10px;
+  }
   .form_input--container {
     margin: 0 auto;
-    max-width: 380px;
-    padding: 15px;
+    padding: 25px;
   }
   .inputStyle {
     margin-top: 15px;
@@ -70,13 +72,15 @@ input.input-class::-webkit-inner-spin-button {
   }
 }
 @media only screen and (max-width: 568px) {
+  .formHeader {
+    margin-top: 20px;
+  }
   .form_input--container {
     margin: 0 auto;
-    max-width: 280px;
     padding: 15px;
   }
   .inputStyle {
-    margin-top: 15px;
+    margin-top: 10px;
   }
   .formButton {
     height: 50px;

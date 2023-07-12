@@ -3,9 +3,10 @@ import styles from "../styles/LoginForm.module.scss";
 import { useContext } from "react";
 import { useFormik } from "formik";
 import AuthContext from "../../contexts/AuthContext";
+import { ThemeContext } from "../../contexts/ThemeContext"
 const LoginForm = () => {
   const { loginApiCall } = useContext(AuthContext);
-
+  const {theme} = useContext(ThemeContext);
   const loginHandler = async () => {
     let payload = {
       email: formik.values.email,
@@ -22,7 +23,7 @@ const LoginForm = () => {
   });
 
   return (
-    <form className={styles["container"]} onSubmit={formik.handleSubmit}>
+    <form className={`${styles["container"]} ${theme ? styles["dark"] : styles["light"]}`} onSubmit={formik.handleSubmit}>
       <div>
         <h1>Cześć, dobrze Cię widzieć</h1>
         <div className={styles.id}>

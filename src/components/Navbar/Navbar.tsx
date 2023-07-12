@@ -120,7 +120,6 @@ const NavigationBar = () => {
             <LoginLink />
             <RegisterLink />
 
-            <SwitchThemeMode />
           </ul>
         </div>
       </div>

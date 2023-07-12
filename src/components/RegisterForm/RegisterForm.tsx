@@ -1,14 +1,16 @@
+import { useContext } from "react";
 import useRegister from "../../api/register.api";
 import styles from "../styles/RegisterForm.module.scss";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../contexts/ThemeContext"
 
 const RegisterForm = () => {
   const { formik } = useRegister();
-  
+  const {theme} = useContext(ThemeContext);
 
   return (
     <>
-      <form className={styles["container"]} onSubmit={formik.handleSubmit}>
+      <form className={`${styles["container"]} ${theme ? styles["dark"] : ""}`} onSubmit={formik.handleSubmit}>
           <h1>Dołącz do nas</h1>
           <div className={styles["email"]}>
             <span>E-mail</span>
@@ -17,7 +19,7 @@ const RegisterForm = () => {
                 formik.touched.email && formik.errors.email
                   ? styles.errorInput
                   : ""
-              }`}
+              } ${theme ? styles['themeEmail'] : ""}`}
               name="email"
               id="email"
               type="text"
@@ -54,9 +56,9 @@ const RegisterForm = () => {
               </div>
             ) : null}
           </div>
-        <div className={`form-check' ${styles.checkForm}`}>
+        <div className={`form-check' ${styles["checkForm"]} ${theme ? styles["themeCheckForm"] : ""}` }>
           <input
-            className={`form-check-input' ${styles.checkInput}`}
+            className={`form-check-input' ${styles["checkInput"]} ${theme ? styles["themeCheckInput"] : "" }`}
             id="flexCheckOne"
             type="checkbox"
             name="checkboxPrivacyPolicy"
@@ -65,7 +67,7 @@ const RegisterForm = () => {
             onBlur={formik.handleBlur}
             htmlFor="flexCheckOne"></input>
           <label
-            className={`form-check-label' ${styles.checkLabel}`}
+            className={`form-check-label' ${styles["checkLabel"]} ${theme ? styles["themeCheckLabel"] : "" }`}
             htmlFor="flexCheckOne">
             Oświadczam, że zapoznałem(-am) się z Regulaminem oraz Polityką
             Prywatności i chcę korzystać z Usługi Finnet.
@@ -77,14 +79,13 @@ const RegisterForm = () => {
             ) : null}
           </label>
         </div>
-        <div className={`form-check' ${styles.checkForm}`}>
+        <div className={`form-check' ${styles["checkForm"]} ${theme ? styles["themeCheckForm"] : ""}` }>
           <input
-            className={`form-check-input' ${styles.checkInput}`}
-            type="checkbox"
+       className={`form-check-input' ${styles["checkInput"]} ${theme ? styles["themeCheckInput"] : "" }`}            type="checkbox"
             id="flexCheckTwo"
             value=""></input>
           <label
-            className={`form-check-label' ${styles.checkLabel}`}
+             className={`form-check-label' ${styles["checkLabel"]} ${theme ? styles["themeCheckLabel"] : "" }`}
             htmlFor="flexCheckTwo">
             Wyrażam zgodę na otrzymywanie na podany adres poczty elektronicznej
             informacji handlowych od FINNET.COM SPÓŁKA Z OGRANICZONĄ
@@ -93,14 +94,14 @@ const RegisterForm = () => {
             informacji tutaj
           </label>
         </div>
-        <div className={`form-check' ${styles.checkForm}`}>
+        <div className={`form-check' ${styles["checkForm"]} ${theme ? styles["themeCheckForm"] : ""}` }>
           <input
-            className={`form-check-input' ${styles.checkInput}`}
+            className={`form-check-input' ${styles["checkInput"]} ${theme ? styles["themeCheckInput"] : "" }`}
             id="flexCheckThree"
             type="checkbox"
             value=""></input>
           <label
-            className={`form-check-label' ${styles.checkLabel}`}
+            className={`form-check-label' ${styles["checkLabel"]} ${theme ? styles["themeCheckLabel"] : "" }`}
             htmlFor="flexCheckThree">
             Wyrażam zgodę na przetwarzanie moich danych osobowych przez
             FINNET.COM SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ z siedzibą w

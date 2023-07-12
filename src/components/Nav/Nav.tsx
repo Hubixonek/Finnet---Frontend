@@ -4,6 +4,7 @@ import styles from "../styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import SwitchThemeMode from "../forms/Switches/SwitchThemeMode";
 const Nav = ({ setShowNav, showNav }) => {
   const { user, logoutApiCall } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
@@ -23,7 +24,7 @@ const Nav = ({ setShowNav, showNav }) => {
       </div>
       <div className={styles["buttonGroup"]}>
         <div className={styles["signInButton"]}>
-          {user && <Link>{user.email}</Link>}
+          {user && <Link className={`${theme ? styles['dark'] : styles['light']}`}>{user.email}</Link>}
           {!user && (
             <Link
               to="/loginform"
@@ -46,6 +47,7 @@ const Nav = ({ setShowNav, showNav }) => {
           </div>
         </div>
       </div>
+      <SwitchThemeMode />
     </nav>
   );
 };

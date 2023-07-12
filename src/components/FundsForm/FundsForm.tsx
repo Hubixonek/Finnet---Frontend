@@ -83,11 +83,11 @@ const FundsForm = () => {
   }, [selectedFromRate, selectedToRate, fromCurrency, toCurrency]);
 
   return (
-    <div>
+    <div    className={`${styles["formHeader"]} ${
+      theme ? styles["dark"] : styles["light"]
+    }`}>
       <form
-        className={`${styles["formHeader"]} ${
-          theme ? styles["dark"] : styles["light"]
-        }`}
+     
         onSubmit={formik.handleSubmit}>
         <div className={styles["form_input--container"]}>
           <h1 className={styles["h1-style"]}>Przelicz kursy</h1>

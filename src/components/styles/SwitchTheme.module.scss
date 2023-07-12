@@ -1,12 +1,20 @@
 .switch {
-  margin-left: 1rem;
+  font-size: 26px;
+  margin-left: 1%;
+  cursor: pointer;
 }
-.light-theme {
-  background-color: #ffffff;
-  color: #000000;
-}
+.switchPosition{
+  transition: all 0.5s ease-in-out;
+  transform: rotateY(0deg);
 
-.dark-theme {
-  background-color: #000000;
-  color: #ffffff;
+}
+.switchPositionAgain{
+  transition: all 0.5s ease-in-out;
+  transform: rotateY(180deg);
+
+}
+@media (max-width: 768px) {
+  .switch{
+    margin-left: 59%;
+  }
 }
