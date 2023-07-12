@@ -85,4 +85,29 @@
     max-width: 362px;
   }
 }
-//
+@media screen and (max-width: 1024px){
+  .main_table--container {
+   max-width:60%;
+  }
+ }
+ @media screen and (max-width: 928px){
+  .main_table--container {
+   max-width:66%;
+  }
+ }
+
+ @media screen and (max-width: 568px){
+  .main_table--container {
+   max-width:85%;
+  }
+ }
+ @media screen and (max-width: 524px){
+  .main_table--container {
+   max-width:90%;
+  }
+ }
+ @media screen and (max-width: 500px){
+  .main_table--container {
+   max-width:100%;
+  }
+ }

@@ -23,7 +23,6 @@ const LoginForm = () => {
     validate,
     onSubmit: loginHandler,
   });
-
   return (
     <form className={`${styles["container"]} ${theme ? styles["dark"] : styles["light"]}`} onSubmit={formik.handleSubmit}>
       <div>
