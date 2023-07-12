@@ -83,10 +83,10 @@ const FundsForm = () => {
   }, [selectedFromRate, selectedToRate, fromCurrency, toCurrency]);
 
   return (
-    <div    className={`${styles["formHeader"]} ${
+    <div   >
+      <form className={`${styles["formHeader"]} ${
       theme ? styles["dark"] : styles["light"]
-    }`}>
-      <form
+    }`}
      
         onSubmit={formik.handleSubmit}>
         <div className={styles["form_input--container"]}>
