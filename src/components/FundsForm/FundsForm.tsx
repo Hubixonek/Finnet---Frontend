@@ -25,7 +25,7 @@ const FundsForm = () => {
   const [selectedToRate, setSelectedToRate] = useState<number>();
   const [selectedFromRate, setSelectedFromRate] = useState<number>();
   const [rate, setRate] = useState<number>(0);
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   useEffect(() => {
     fetchData(fromCurrency, toCurrency, setCurrencies);
   }, [fromCurrency, toCurrency]);
@@ -83,11 +83,11 @@ const FundsForm = () => {
   }, [selectedFromRate, selectedToRate, fromCurrency, toCurrency]);
 
   return (
-    <div   >
-      <form className={`${styles["formHeader"]} ${
-      theme ? styles["dark"] : styles["light"]
-    }`}
-     
+    <div>
+      <form
+        className={`${styles["formHeader"]} ${
+          theme ? styles["dark"] : styles["light"]
+        }`}
         onSubmit={formik.handleSubmit}>
         <div className={styles["form_input--container"]}>
           <h1 className={styles["h1-style"]}>Przelicz kursy</h1>

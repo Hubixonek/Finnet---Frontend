@@ -11,7 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import {
   ThemeContext,
   ThemeContextProvider,
-} from "../src/contexts/ThemeContext"
+} from "../src/contexts/ThemeContext";
 
 function App() {
   return (
@@ -24,9 +24,9 @@ function AppContent() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <AuthContextProvider>
-      <BrowserRouter>
-        <div className={`${styles["body"]} ${theme ? styles["dark"] : styles["light"]}`}>
+    <body className={theme ? styles["dark"] : styles["light"]}>
+      <AuthContextProvider>
+        <BrowserRouter>
           <NavigationBar />
           <Routes>
             <Route path="/" element={<FundsForm />} />
@@ -48,9 +48,9 @@ function AppContent() {
               }
             />
           </Routes>
-        </div>
-      </BrowserRouter>
-    </AuthContextProvider>
+        </BrowserRouter>
+      </AuthContextProvider>
+    </body>
   );
 }
 

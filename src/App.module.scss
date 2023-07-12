@@ -3,13 +3,19 @@
 * {
   font-family: "Kanit", sans-serif;
 }
-.body {
+
+html{
   height: 100%;
-  
 }
+body{
+  min-height: 100vh;
+  padding: 0;
+}
+
+
 .light {
   background-color: white;
 }
 .dark {
-  background-color: rgba(5, 5, 5, 0.849)
+  background-color: rgba(5, 5, 5, 0.856);
 }
