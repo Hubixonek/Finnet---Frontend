@@ -3,7 +3,7 @@
   align-items: center;
   background-color: #ffffff;
   margin: 20px auto;
-  max-width: 25%;
+  max-width: 450px;
   padding: 35px;
   text-align: center;
   border-radius: 10px;
@@ -58,72 +58,3 @@ input.input-class::-webkit-inner-spin-button {
   background-color: white;
 }
 
-@media only screen and (max-width: 568px) {
-  .formHeader {
-    width: 100%;
-    margin-top: 20px;
-  }
-  .form_input--container {
-    width: 100%;
-    margin: 0 auto;
-    padding: 15px;
-  }
-  .inputStyle {
-    margin-top: 10px;
-  }
-  .formButton {
-    height: 50px;
-    margin-top: 10px;
-  }
-}
-@media screen and (min-width: 1432px){
-  .formHeader{
-   max-width: 30%;
-  }
- }
-
- @media screen and (max-width: 1434px){
-  .formHeader{
-   max-width: 40%;
-  }
- }
- @media screen and (max-width: 1366px){
-  .formHeader{
-   max-width: 40%;
-  }
- }
- @media screen and (max-width: 1188px){
-  .formHeader{
-   max-width: 45%;
-  }
- }
- @media screen and (max-width: 942px){
-  .formHeader{
-   max-width: 45%;
-  }
- }
- @media screen and (max-width: 832px){
-  .formHeader{
-   max-width: 65%;
-  }
- }
- @media screen and (max-width: 778px){
-  .formHeader{
-   max-width: 65%;
-  }
- }
- @media screen and (max-width: 668px){
-  .formHeader{
-   max-width: 70%;
-  }
- }
- @media screen and (max-width: 522px){
-  .formHeader{
-   max-width: 90%;
-  }
- }
- @media screen and (max-width: 400px){
-  .formHeader{
-   max-width: 100%;
-  }
- }

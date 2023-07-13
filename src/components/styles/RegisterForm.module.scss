@@ -4,27 +4,35 @@
   margin: 0 auto;
   padding: 25px;
   margin-top: 1%;
+  max-width: 550px;
   align-items: center;
   h1 {
-    margin-right: 22%;
+    margin-right: 45.5%;
     font-size: 25px;
   }
   .email {
-    width: 30%;
+    width: 450px;
   }
   .password {
-    width: 30%;
+    width: 450px;
   }
   span {
     font-size: 12px;
   }
 }
 
-
+.dark {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border-radius: 2%;
+  align-items: center;
+  background-color: #22272e;
+}
 .checkForm {
   display: flex;
   margin: 0 auto;
-  width: 25%;
+  width: 88.4%;
   margin-top: 1rem;
 
   .checkInput {
@@ -44,57 +52,6 @@
     text-indent: -15px;
   }
 }
-.dark{
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  padding: 25px;
-  color: white;
-  border-radius: 2%;
-  margin-top: 1%;
-  align-items: center;
-  background-color: #22272e;
-  width: 55%;
-
-  h1 {
-    margin-right: 41%;
-    font-size: 25px;
-  }
-  .email {
-    width: 56%;
-  }
-  .password {
-    width: 56%;
-  }
-  span {
-    font-size: 12px;
-  }
-}
-
-
-  .themeCheckForm{
-    display: flex;
-    margin: 0 auto;
-    width: 46.4%;
-    margin-top: 1rem;
-  }
-  .themeCheckInput{
-    width: 15px;
-    height: 15px;
-    padding: 0;
-    margin: 0;
-    vertical-align: bottom;
-    position: relative;
-    top: -1px;
-  }
-  .themeCheckLabel{
-    font-size: 12px;
-    display: block;
-    padding-left: 18px;
-    text-indent: -15px;
-  }
-
-
 
 .registerButton {
   display: flex;
@@ -124,18 +81,40 @@
   font-size: 12px;
   margin: 0 auto;
 }
-@media screen and (max-width: 480px) {
+
+@media screen and (max-width: 600px) {
   .container {
-    align-items: center;
+    max-width: 450px;
     h1 {
-      margin: 0 auto;
+      margin-right: 48.5%;
       font-size: 25px;
     }
     .email {
-      width: 100%;
+      width: 350px;
     }
     .password {
-      width: 100%;
+      width: 350px;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
+  .registerButton {
+    width: 25rem;
+  }
+}
+@media screen and (max-width: 526px) {
+  .container {
+    max-width: 410px;
+    h1 {
+      margin-right: 48.5%;
+      font-size: 25px;
+    }
+    .email {
+      width: 310px;
+    }
+    .password {
+      width: 310px;
     }
     span {
       font-size: 12px;
@@ -144,18 +123,82 @@
   .registerButton {
     width: 23rem;
   }
+}
+
+@media screen and (max-width: 422px) {
+  .container {
+    max-width: 370px;
+    h1 {
+      margin-right: 42.5%;
+      font-size: 25px;
+    }
+    .email {
+      width: 290px;
+    }
+    .password {
+      width: 290px;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
+  .registerButton {
+    width: 21rem;
+  }
+}
+@media screen and (max-width: 370px) {
+  .container {
+    max-width: 350px;
+    h1 {
+      margin-right: 37.5%;
+      font-size: 25px;
+    }
+    .email {
+      width: 270px;
+    }
+    .password {
+      width: 270px;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
+  .registerButton {
+    width: 19.5rem;
+  }
+}
+@media screen and (max-width: 280px) {
+  .container {
+    max-width: 250px;
+    h1 {
+      margin-right: 0;
+      font-size: 25px;
+    }
+    .email {
+      width: 240px;
+    }
+    .password {
+      width: 240px;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
   .checkForm {
-    display: flex;
-    margin: 0 auto;
-    width: 90%;
-    margin-top: 1rem;
-  }
-  .signIn {
-    margin-top: -2rem;
-    padding: 15px;
-  }
-  .dark{
+
     width: 100%;
-    margin-top: 10px;
+  
+    .checkInput {
+      width: 13px;
+    }
+  
+    .checkLabel {
+      font-size: 12px;
+      display: block;
+      padding-left: 18px;
+    }
+  }
+  .registerButton {
+    width: 16.5rem;
   }
 }

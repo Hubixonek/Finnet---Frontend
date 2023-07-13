@@ -117,10 +117,9 @@ const NavigationBar = () => {
                 </ul>
               ) : null}
             </li>
-            <LoginLink />
-            <RegisterLink />
-
           </ul>
+          <LoginLink />
+          <RegisterLink />
         </div>
       </div>
     </>

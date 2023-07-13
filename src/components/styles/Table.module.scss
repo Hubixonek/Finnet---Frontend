@@ -2,13 +2,12 @@
   background-color: #ffffff;
   margin: 0 auto;
   padding: 10px;
-  max-width: 600px;
+  max-width: 500px;
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .table {
-  max-width: 95%;
   border-collapse: collapse;
   margin: 0 auto;
   font-weight: bold;
@@ -50,64 +49,3 @@
   background-color: white;
   color: black;
 }
-@media only screen and (max-width: 760px),
-  (min-device-width: 768px) and (max-device-width: 1024px) {
-  .main_table--container {
-    background-color: #ffffff;
-    margin: 10px auto;
-    padding: 5px;
-    max-width: 362px;
-  }
-  .fundsdata_table--th--td {
-    display: none;
-  }
-  .table-responsive {
-    max-width: 350px;
-    margin: 0 auto;
-  }
-}
-@media only screen and (max-width: 760px),
-  (min-device-width: 768px) and (max-device-width: 1024px) {
-  .App-header {
-    margin: 10px auto;
-    max-width: 379px;
-  }
-}
-@media only screen and (max-width: 375),
-  (min-device-width: 383) and (max-device-width: 667) {
-  .App-header {
-    margin: 5px auto;
-    max-width: 250px;
-  }
-}
-@media only screen and (max-width: 568px) {
-  .App-header {
-    max-width: 362px;
-  }
-}
-@media screen and (max-width: 1024px){
-  .main_table--container {
-   max-width:60%;
-  }
- }
- @media screen and (max-width: 928px){
-  .main_table--container {
-   max-width:66%;
-  }
- }
-
- @media screen and (max-width: 568px){
-  .main_table--container {
-   max-width:85%;
-  }
- }
- @media screen and (max-width: 524px){
-  .main_table--container {
-   max-width:90%;
-  }
- }
- @media screen and (max-width: 500px){
-  .main_table--container {
-   max-width:100%;
-  }
- }

@@ -5,6 +5,7 @@
   top: 0;
   z-index: 9999;
   align-items: center;
+
   .hamburger {
     font-size: 25px;
     margin-left: 15px;
@@ -18,11 +19,32 @@
 
 .sidebar {
   position: fixed;
-  width: 231.5px;
-  height: 150vh;
+  height: 100%;
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
   z-index: 1;
+
+  ul {
+    font-size: 16px;
+    cursor: pointer;
+
+    li {
+      list-style-type: none;
+
+      a {
+        display: block;
+        color: black;
+        padding: 12px 20px;
+        margin-right: 0;
+        text-decoration: none;
+        box-shadow: inset 0 0 0 0 #74899123;
+
+        &:hover {
+          box-shadow: inset 500px 0 0 0 #74899118;
+        }
+      }
+    }
+  }
 }
 
 .show {
@@ -39,29 +61,6 @@
   color: black;
 }
 
-ul {
-  margin-left: -25px;
-  font-size: 16px;
-  cursor: pointer;
-
-  li {
-    list-style-type: none;
-    margin: 2px 0;
-
-    a {
-      display: block;
-      color: black;
-      padding: 12px 20px;
-      text-decoration: none;
-      box-shadow: inset 0 0 0 0 #74899123;
-
-      &:hover {
-        box-shadow: inset 500px 0 0 0 #74899118;
-      }
-    }
-  }
-}
-
 .icons {
   margin-right: 0.6rem;
   vertical-align: middle;
@@ -69,8 +68,9 @@ ul {
 .buttonGroup {
   display: flex;
   text-align: center;
-  margin-left: 80rem;
   align-items: center;
+  margin-left: auto;
+  gap: 15px;
 }
 .registerNav {
   cursor: pointer;
@@ -78,6 +78,7 @@ ul {
     text-decoration: none;
     color: white;
     padding: 0.8rem;
+    margin-right: 100px;
     background-color: rgb(0, 101, 255);
 
     &:hover {
@@ -86,18 +87,15 @@ ul {
     }
   }
 }
-.loginBtnSideBar {
-  display: none;
-}
+.loginBtnSideBar,
 .registerBtnSideBar {
   display: none;
 }
+
 .signInButton {
   display: flex;
-  margin-right: -7rem;
 
   a {
-    margin-right: 8rem;
     font-size: 18.5px;
     color: rgb(23, 43, 77);
     text-decoration: none;
@@ -126,9 +124,10 @@ ul {
   }
   .loginBtnSideBar {
     color: black;
-    padding: 12px;
     display: block;
+    margin-left: 17.5px;
     text-decoration: none;
+
   }
   .registerBtnSideBar {
     display: flex;
@@ -136,7 +135,6 @@ ul {
     color: white;
 
     padding: 15px;
-    width: 100%;
     background-color: rgb(0, 101, 255);
   }
   .dark {
@@ -146,122 +144,5 @@ ul {
   .light {
     background-color: white;
     color: black;
-  }
-}
-@media screen and (max-width: 1370px) {
-  .navbar {
-    width: 40%;
-  }
-}
-@media screen and (max-width: 1368px) {
-  .navbar {
-    width: 100%;
-    margin: 0 auto;
-    padding: 15px;
-  }
-}
-@media only screen and (min-width: 1442px) {
-  .buttonGroup {
-    margin-left: 77rem;
-  }
-}
-@media screen and (max-width: 1764) {
-  .buttonGroup {
-    margin-left: 90rem;
-  }
-}
-
-@media only screen and (max-width: 1716px) {
-  .buttonGroup {
-    margin-left: 72rem;
-  }
-}
-@media only screen and (max-width: 1682px) {
-  .buttonGroup {
-    margin-left: 69rem;
-  }
-}
-
-@media only screen and (max-width: 1586px) {
-  .buttonGroup {
-    margin-left: 67rem;
-  }
-}
-@media only screen and (max-width: 1554px) {
-  .buttonGroup {
-    margin-left: 58rem;
-  }
-}
-@media only screen and (max-width: 1442px) {
-  .buttonGroup {
-    margin-left: 50rem;
-  }
-}
-@media only screen and (max-width: 1370px) {
-  .navbar {
-    width: 100%;
-  }
-  .buttonGroup {
-    margin-left: 50rem;
-  }
-}
-@media only screen and (max-width: 1298px) {
-  .buttonGroup {
-    margin-left: 45rem;
-  }
-}
-@media only screen and (max-width: 1214px) {
-  .buttonGroup {
-    margin-left: 42rem;
-  }
-}
-@media only screen and (max-width: 1166px) {
-  .buttonGroup {
-    margin-left: 36rem;
-  }
-}
-@media only screen and (max-width: 1070px) {
-  .buttonGroup {
-    margin-left: 33rem;
-  }
-}
-@media only screen and (max-width: 1120px) {
-  .buttonGroup {
-    margin-left: 32rem;
-  }
-}
-@media only screen and (max-width: 1004px) {
-  .buttonGroup {
-    margin-left: 30rem;
-  }
-}
-@media only screen and (max-width: 972px) {
-  .buttonGroup {
-    margin-left: 27rem;
-  }
-}
-@media only screen and (max-width: 924px) {
-  .buttonGroup {
-    margin-left: 24rem;
-  }
-}
-@media only screen and (max-width: 876px) {
-  .buttonGroup {
-    margin-left: 20rem;
-  }
-}
-@media only screen and (max-width: 810px) {
-  .buttonGroup {
-    margin-left: 19rem;
-  }
-}
-@media only screen and (max-width: 794px) {
-  .buttonGroup {
-    margin-left: 16rem;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .navbar {
-    width: 100%;
   }
 }

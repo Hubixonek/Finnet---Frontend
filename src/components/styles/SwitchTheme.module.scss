@@ -1,6 +1,6 @@
 .switch {
   font-size: 26px;
-  margin-left: 1%;
+  margin-right: 10px;
   cursor: pointer;
 }
 .switchPosition{
@@ -14,13 +14,13 @@
 }
 @media screen and (max-width: 768px) {
   .switch{
-    margin-left: 67%;
+    margin-left: auto
   }
 }
-@media screen and (max-width: 556px) {
-  .switch{
-    margin-left: 60%;
-  }
-}
+// @media screen and (max-width: 556px) {
+//   .switch{
+//     margin-left: 60%;
+//   }
+// }
 
 
