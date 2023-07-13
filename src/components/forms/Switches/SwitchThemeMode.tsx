@@ -9,6 +9,8 @@ const SwitchThemeMode = () => {
     toggleTheme();
   };
 
+  document.body.className = `${theme ? styles["dark"] : ''}`
+
   return (
     <div
       className={`${styles["switch"]} ${

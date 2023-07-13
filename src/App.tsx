@@ -21,10 +21,8 @@ function App() {
   );
 }
 function AppContent() {
-  const { theme } = useContext(ThemeContext);
-
+  
   return (
-    <body className={theme ? styles["dark"] : styles["light"]}>
       <AuthContextProvider>
         <BrowserRouter>
           <NavigationBar />
@@ -50,7 +48,6 @@ function AppContent() {
           </Routes>
         </BrowserRouter>
       </AuthContextProvider>
-    </body>
   );
 }
 

@@ -1,8 +1,13 @@
 import axios from "axios";
 
 export const fetchRateFromDate = async (fromCurrency, toCurrency, date) => {
+  if (!fromCurrency || !toCurrency) {
+    return;
+  }
+
   try {
-    let ratesFrom;
+    let ratesFrom, ratesTo;
+
     if (fromCurrency === "PLN") {
       ratesFrom = { mid: 1 };
     } else {
@@ -12,7 +17,6 @@ export const fetchRateFromDate = async (fromCurrency, toCurrency, date) => {
       ratesFrom = responseFromCurrency.data.rates[0];
     }
 
-    let ratesTo;
     if (toCurrency === "PLN") {
       ratesTo = { mid: 1 };
     } else {

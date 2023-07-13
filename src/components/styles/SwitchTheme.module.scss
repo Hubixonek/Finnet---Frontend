@@ -12,15 +12,14 @@
   transition: all 0.5s ease-in-out;
   transform: rotateY(180deg);
 }
+.dark{
+  background-color: #22272ee5;
+}
 @media screen and (max-width: 768px) {
   .switch{
     margin-left: auto
   }
 }
-// @media screen and (max-width: 556px) {
-//   .switch{
-//     margin-left: 60%;
-//   }
-// }
+
 
 
