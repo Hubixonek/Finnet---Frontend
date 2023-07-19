@@ -144,8 +144,7 @@ li {
     display: flex;
     text-decoration: none;
     color: white;
-    width: 250px;
-    padding: 15px;
+    padding: 10px;
     background-color: rgb(0, 101, 255);
   }
   .dark {
@@ -167,10 +166,9 @@ li {
     }
   }
   .secondSubmenu {
-    display: flex;
     list-style: none;
-    margin-left: 75px;
-    margin-top: -28px;
+    margin-left: 0;
+    margin-top: 48px;
     max-width: 500px;
     list-style: none;
 
@@ -184,18 +182,5 @@ li {
       }
     }
   }
-  ul.submenu {
-    width: 203px;
-    justify-content: center;
-    flex-direction: column;
-    list-style: none;
-    margin-left: 75px;
-    max-height: 0px;
-    a {
-      text-align: left;
-      padding: 5px;
-      color: black;
-      cursor: pointer;
-    }
-  }
+  
 }
