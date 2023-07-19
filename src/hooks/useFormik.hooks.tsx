@@ -59,11 +59,11 @@ const useFormikHook = ({
             selectedFromRate,
             selectedToRate,
             resultByRateFromApi:
-              parseFloat(formik.values.result) -
-              parseFloat(formik.values.amount) * rate,
+              parseFloat(formik.values.amount) * rate -
+              parseFloat(formik.values.result),
           }
         );
-        console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         console.log("kakałko się wylało");
       }
@@ -79,8 +79,8 @@ const useFormikHook = ({
         selectedFromRate,
         selectedToRate,
         resultByRateFromApi:
-          parseFloat(formik.values.result) -
-          parseFloat(formik.values.amount) * rate,
+        parseFloat(formik.values.amount) * rate -
+        parseFloat(formik.values.result),
       };
       setFunds([...funds, fundsObject]);
       console.log(JSON.stringify(values, null));

@@ -51,10 +51,10 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
       setRefreshRateApi(refreshRate);
 
       const refreshedResultByRateFromApi = result.map((res, index) =>
-        parseFloat((res - amount[index] * refreshRate[index]).toFixed(2))
+        parseFloat(((amount[index] * refreshRate[index]) - res).toFixed(2))
       );
       const refreshedProfitLoss = refreshedResultByRateFromApi.map(
-        (res, index) => parseFloat((res * toRates[index]).toFixed(2))
+        (res, index) => parseFloat(res * toRates[index]).toFixed(2)
       );
       setRefreshedProfitLoss(refreshedProfitLoss);
 
