@@ -88,7 +88,7 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
       fetchDatasFromLocalStorage();
     }, 10000);
     return () => clearInterval(interval);
-  }, []);
+  }, [refreshedProfitLoss]);
 
   return (
     <div
