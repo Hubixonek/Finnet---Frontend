@@ -87,22 +87,23 @@ const NavigationBar = () => {
               </a>
               {showListWallet && (
                 <ul className={styles["submenu"]}>
-                  <li>
+                  <li className={theme ? styles["dark"] : styles["light"]}>
                     <Link
                       to="/cycki"
                       className={theme ? styles["dark"] : styles["light"]}>
                       Załóż portfel
                     </Link>
                   </li>
-                  <li>
+                  <li className={theme ? styles["dark"] : styles["light"]}>
                     <Link
                       to="/fundsform"
                       className={theme ? styles["dark"] : styles["light"]}>
                       Przelicz kursy walut
                     </Link>
                   </li>
-                  
+
                   <li
+                    className={theme ? styles["dark"] : styles["light"]}
                     onMouseEnter={handleWalletOtherHover}
                     onMouseLeave={handleWalletOtherLeave}>
                     <a onClick={showListWalletOtherHandler}>Lokaty</a>
@@ -136,10 +137,10 @@ const NavigationBar = () => {
               </a>
               {showListTools && (
                 <ul className={styles["submenu"]}>
-                  <li>
+                  <li className={theme ? styles["dark"] : styles["light"]}>
                     <a>Oblicz podatek</a>
                   </li>
-                  <li>
+                  <li className={theme ? styles["dark"] : styles["light"]}>
                     <a>Notatki użytkownika</a>
                   </li>
                 </ul>
@@ -156,10 +157,10 @@ const NavigationBar = () => {
               )}
               {showListAccount && user && (
                 <ul className={styles["submenu"]}>
-                  <li>
+                  <li className={theme ? styles["dark"] : styles["light"]}>
                     <a>Usuń konto</a>
                   </li>
-                  <li>
+                  <li className={theme ? styles["dark"] : styles["light"]}>
                     <a>Zmień hasło</a>
                   </li>
                 </ul>
