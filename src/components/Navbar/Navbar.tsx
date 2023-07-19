@@ -3,6 +3,7 @@ import styles from "../styles/Navbar.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaWallet, FaHammer } from "react-icons/fa";
 import { RiAccountCircleFill } from "react-icons/ri";
+import { BiSolidRightArrow } from "react-icons/bi";
 import Nav from "../Nav/Nav";
 import { Link } from "react-router-dom";
 import LoginLink from "../forms/LoginLink/LoginLink";
@@ -27,18 +28,47 @@ const NavigationBar = () => {
   const showListToolsHandler = () => {
     setShowListTools(!showListTools);
   };
+
   const showListWalletOtherHandler = () => {
     setShowWalletOther(!showListWalletOther);
   };
+
   const showListAccountHandler = () => {
     setListAccount(!showListAccount);
   };
-  const hideAllLists = () => {
-    setListAccount(false);
-    setShowListTools(false);
+
+  const handleWalletHover = () => {
+    setShowListWallet(true);
+  };
+
+  const handleWalletLeave = () => {
     setShowListWallet(false);
+  };
+
+  const handleToolsHover = () => {
+    setShowListTools(true);
+  };
+
+  const handleToolsLeave = () => {
+    setShowListTools(false);
+  };
+
+  const handleWalletOtherHover = () => {
+    setShowWalletOther(true);
+  };
+
+  const handleWalletOtherLeave = () => {
     setShowWalletOther(false);
   };
+
+  const handleAccountHover = () => {
+    setListAccount(true);
+  };
+
+  const handleAccountLeave = () => {
+    setListAccount(false);
+  };
+
   return (
     <>
       <Nav showNav={showNav} setShowNav={setShowNav} />
@@ -47,18 +77,23 @@ const NavigationBar = () => {
           theme ? styles["dark"] : styles["light"]
         }`}>
         <div>
-          <ul
-            className={
-              showListTools ? `${styles["menu"]} active` : styles["menu"]
-            }>
-            <li>
+          <ul>
+            <li
+              onMouseEnter={handleWalletHover}
+              onMouseLeave={handleWalletLeave}>
               <a onClick={showListWalletHandler}>
-                {" "}
                 <FaWallet className={styles["icons"]} />
                 Portfel
               </a>
-              {showListWallet ? (
-                <ul>
+              {showListWallet && (
+                <ul className={styles["submenu"]}>
+                  <li>
+                    <Link
+                      to="/cycki"
+                      className={theme ? styles["dark"] : styles["light"]}>
+                      Załóż portfel
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       to="/fundsform"
@@ -66,56 +101,69 @@ const NavigationBar = () => {
                       Przelicz kursy walut
                     </Link>
                   </li>
-                  <li>
-                    <a onClick={showListWalletOtherHandler}>Lokaty </a>
-                    {showListWalletOther ? (
-                      <ul>
-                        <li>
-                          <a>
-                            {" "}
-                            <FaWallet className={styles["icons"]} />
-                            Załóż lokatę
-                          </a>
-                        </li>
-                      </ul>
-                    ) : null}
+                  
+                  <li
+                    onMouseEnter={handleWalletOtherHover}
+                    onMouseLeave={handleWalletOtherLeave}>
+                    <a onClick={showListWalletOtherHandler}>Lokaty</a>
+                    {showListWalletOther && (
+                      <li
+                        className={`${styles["secondSubmenu"]} ${
+                          theme ? styles["dark"] : styles["light"]
+                        }`}>
+                        <a
+                          className={theme ? styles["dark"] : styles["light]"]}>
+                          Załóż lokatę
+                        </a>
+                        <a
+                          className={theme ? styles["dark"] : styles["light]"]}>
+                          Dodaj odsetki z lokaty
+                        </a>
+                        <a
+                          className={theme ? styles["dark"] : styles["light]"]}>
+                          Zamknij lokatę
+                        </a>
+                      </li>
+                    )}
                   </li>
                 </ul>
-              ) : null}
+              )}
             </li>
-            <li>
+            <li onMouseEnter={handleToolsHover} onMouseLeave={handleToolsLeave}>
               <a onClick={showListToolsHandler}>
                 <FaHammer className={styles["icons"]} />
                 Narzędzia
               </a>
-              {showListTools ? (
-                <ul className={styles["menu"]}>
-                  <li className={styles["menuItem"]}>
+              {showListTools && (
+                <ul className={styles["submenu"]}>
+                  <li>
                     <a>Oblicz podatek</a>
                   </li>
-                  <li className={styles["menuItem"]}>
+                  <li>
                     <a>Notatki użytkownika</a>
                   </li>
                 </ul>
-              ) : null}
+              )}
             </li>
-            <li>
+            <li
+              onMouseEnter={handleAccountHover}
+              onMouseLeave={handleAccountLeave}>
               {!user ? null : (
                 <a onClick={showListAccountHandler}>
                   <RiAccountCircleFill className={styles["icons"]} />
                   Konto {user.email}
                 </a>
               )}
-              {showListAccount && user ? (
-                <ul className={styles["menu"]}>
-                  <li className={styles["menuItem"]}>
+              {showListAccount && user && (
+                <ul className={styles["submenu"]}>
+                  <li>
                     <a>Usuń konto</a>
                   </li>
-                  <li className={styles["menuItem"]}>
+                  <li>
                     <a>Zmień hasło</a>
                   </li>
                 </ul>
-              ) : null}
+              )}
             </li>
           </ul>
           <LoginLink />

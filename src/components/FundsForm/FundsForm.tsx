@@ -14,18 +14,19 @@ import useFormikHook from "../../hooks/useFormik.hooks";
 import FromAndToCurrencyChangeHandler from "../../utils/helpers/fromandtocurrencychangehandler.helpers";
 import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/nbp.api";
-import SwitchNBP from "../forms/Switches/SwitchNBP";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
 const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("");
   const [toCurrency, setToCurrency] = useState<string>("");
-  const [funds, setFunds] = useState<any[]>([]);
+  const [funds, setFunds] = useState<any[]>(LocalStorage.get("fundsData"));
   const [currencies, setCurrencies] = useState<string[]>([]);
   const [selectedToRate, setSelectedToRate] = useState<number>();
   const [selectedFromRate, setSelectedFromRate] = useState<number>();
   const [rate, setRate] = useState<number>(0);
   const { theme } = useContext(ThemeContext);
+
+
   useEffect(() => {
     fetchData(fromCurrency, toCurrency, setCurrencies);
   }, [fromCurrency, toCurrency]);
@@ -36,6 +37,7 @@ const FundsForm = () => {
       setFunds(data);
     }
   }, []);
+  
   useEffect(() => {
     LocalStorage.set("fundsData", funds);
   }, [funds]);
@@ -68,7 +70,6 @@ const FundsForm = () => {
       currencies,
     });
   useEffect(() => {
-    if (selectedFromRate !== undefined && selectedToRate !== undefined) {
       if (fromCurrency !== "PLN" && toCurrency !== "PLN") {
         const rate = parseFloat((selectedFromRate / selectedToRate).toFixed(3));
         setRate(rate);
@@ -79,11 +80,10 @@ const FundsForm = () => {
         const rate = parseFloat((selectedFromRate / 1).toFixed(3));
         setRate(rate);
       }
-    }
   }, [selectedFromRate, selectedToRate, fromCurrency, toCurrency]);
 
   return (
-    <div>
+    <>
       <form
         className={`${styles["formHeader"]} ${
           theme ? styles["dark"] : styles["light"]
@@ -116,19 +116,17 @@ const FundsForm = () => {
           />
           <ResultField formik={formik} />
           <RateOfApiField toCurrency={toCurrency} rate={rate} />
-          <SwitchNBP />
           <Button />
           <FormikErrorValidation formik={formik} />
         </div>
       </form>
-
-      {funds.length > 0 && (
         <TableWithFundsDatas
+          
+          currencies={currencies}
           funds={funds}
           removeFundsData={handleRemoveFundsData}
         />
-      )}
-    </div>
+    </>
   );
 };
 

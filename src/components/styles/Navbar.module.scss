@@ -18,46 +18,58 @@
 }
 
 .sidebar {
-  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   height: 100%;
+  position: fixed;
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
+  cursor: pointer;
   z-index: 1;
 
-  ul {
-    font-size: 16px;
-    cursor: pointer;
+}
 
-    li {
-      list-style-type: none;
 
-      a {
-        display: block;
-        color: black;
-        padding: 12px 20px;
-        margin-right: 0;
-        text-decoration: none;
-        box-shadow: inset 0 0 0 0 #74899123;
+.submenu {
+  max-height: 0;
+  width: 280px;
 
-        &:hover {
-          box-shadow: inset 500px 0 0 0 #74899118;
-        }
-      }
-    }
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-32px);
+  margin-left: 75px;
+  a {
+    padding: 20px;
+    text-align: left;
   }
 }
 
-.show {
+.secondSubmenu {
   display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin-left: 175px;
+  width: 190px;
+  list-style: none;
+  transform: translateY(-50px);
+  cursor: pointer;
+  }
+li {
+  padding: 10px;
+  list-style: none;
+}
+.show {
   transform: translateX(0%);
-  transition: transform 0.3s ease-in-out;
 }
 .dark {
+  text-decoration: none;
   background-color: #22272e;
   color: rgb(253, 253, 253) !important;
 }
 .light {
   background-color: white;
+  text-decoration: none;
   color: black;
 }
 
@@ -65,6 +77,7 @@
   margin-right: 0.6rem;
   vertical-align: middle;
 }
+
 .buttonGroup {
   display: flex;
   text-align: center;
@@ -82,7 +95,6 @@
     background-color: rgb(0, 101, 255);
 
     &:hover {
-      color: white;
       background-color: rgb(2, 81, 199);
     }
   }
@@ -99,6 +111,7 @@
     font-size: 18.5px;
     color: rgb(23, 43, 77);
     text-decoration: none;
+   
   }
 }
 
@@ -107,6 +120,7 @@
     background-color: white;
   }
   a {
+
     font-size: 15px;
   }
   .show {
@@ -119,21 +133,19 @@
     display: none;
   }
 
-  .signInButton {
-    display: none;
-  }
+ 
   .loginBtnSideBar {
-    color: black;
     display: block;
-    margin-left: 17.5px;
+    margin-right: auto;
+    color: black;
+    margin-top: 568px;
     text-decoration: none;
-
   }
   .registerBtnSideBar {
     display: flex;
     text-decoration: none;
     color: white;
-
+    width: 250px;
     padding: 15px;
     background-color: rgb(0, 101, 255);
   }
@@ -144,5 +156,50 @@
   .light {
     background-color: white;
     color: black;
+  }
+  .ulList {
+    transform: translateX(8px);
+    list-style: none;
+    cursor: pointer;
+    a {
+
+      color: black;
+      text-decoration: none;
+      box-shadow: inset 0 0 0 0 #74899123;
+  }
+  }
+  .secondSubmenu {
+
+    display: flex;
+    list-style: none;
+    margin-left: 75px;
+    margin-top: -28px;
+    max-width: 500px;
+    list-style: none;
+  
+    a {
+      text-align: left;
+      color: black;
+      cursor: pointer;
+  
+      &:hover {
+        box-shadow: inset 500px 0 0 0 #74899118;
+      }
+    }
+  }
+  ul.submenu {
+    
+    width: 203px;
+    justify-content: center;
+    flex-direction: column;
+    list-style: none;
+    margin-left: 75px;
+    max-height: 0px;
+    a {
+      text-align: left;
+      padding: 5px;
+      color: black;
+      cursor: pointer;
+    }
   }
 }

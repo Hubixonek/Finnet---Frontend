@@ -1,8 +1,9 @@
 .formHeader {
   display: flex;
+  float: left;
   align-items: center;
-  background-color: #ffffff;
-  margin: 20px auto;
+  margin-top: 20px;
+  margin-left: 490px;
   max-width: 450px;
   padding: 35px;
   text-align: center;
@@ -11,11 +12,8 @@
 }
 
 .form_input--container {
-  justify-content: center;
-  align-items: center;
-
-  width: 85%;
   margin: 0 auto;
+  width: 85%;
 }
 
 .formButton {
@@ -32,15 +30,14 @@
 }
 
 .inputStyle {
+  padding: 3px;
+
   margin-top: 10px;
 }
 .inputRateDate {
   margin-top: 1px;
 }
-input.input-class::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+
 .errorInput {
   border: 0.5px solid rgb(255, 0, 0) !important;
 }
@@ -58,3 +55,9 @@ input.input-class::-webkit-inner-spin-button {
   background-color: white;
 }
 
+@media screen and (max-width: 1457px){
+  .formHeader{
+    float: none;
+    margin: 20px auto;
+  }
+}

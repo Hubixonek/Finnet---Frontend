@@ -28,6 +28,7 @@
     "react-burger-menu": "^3.0.9",
     "react-date-picker": "^9.2.0",
     "react-dom": "^18.2.0",
+    "react-dropdown": "^1.11.0",
     "react-flags-select": "^2.2.3",
     "react-icons": "^4.10.1",
     "react-pro-sidebar": "^1.1.0-alpha.1",

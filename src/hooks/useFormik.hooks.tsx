@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import validate from "../utils/helpers/validationfunds.helpers";
+import axios from "axios";
 
 interface FormikHookProps {
   fromCurrency: string;
@@ -42,7 +43,30 @@ const useFormikHook = ({
       toCurrency: "",
     },
     validate,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      try {
+        const response = await axios.post(
+          "https://finnet.bieda.it/api/tables",
+          {
+            id: Math.random(),
+            date: formik.values.date,
+            amount: parseFloat(formik.values.amount),
+            rate: parseFloat(formik.values.rate),
+            fromCurrency,
+            result: parseFloat(formik.values.result),
+            toCurrency,
+            apiRate: rate,
+            selectedFromRate,
+            selectedToRate,
+            resultByRateFromApi:
+              parseFloat(formik.values.result) -
+              parseFloat(formik.values.amount) * rate,
+          }
+        );
+        console.log(response.data)
+      } catch (error) {
+        console.log("kakałko się wylało");
+      }
       const fundsObject: FundsObject = {
         id: Math.random(),
         date: formik.values.date,

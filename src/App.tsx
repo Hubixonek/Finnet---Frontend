@@ -6,10 +6,8 @@ import LoginForm from "./components/LoginForm/LoginForm";
 import NavigationBar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.css";
 import { AuthContextProvider } from "../src/contexts/AuthContext";
-import { useContext } from "react";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import {
-  ThemeContext,
   ThemeContextProvider,
 } from "../src/contexts/ThemeContext";
 
