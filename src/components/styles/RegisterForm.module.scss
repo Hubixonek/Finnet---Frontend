@@ -3,11 +3,11 @@
   flex-direction: column;
   margin: 0 auto;
   padding: 25px;
-  margin-top: 1%;
+  margin-top: 20px;
   max-width: 550px;
   align-items: center;
   h1 {
-    margin-right: 45.5%;
+    margin-right: 59.5%;
     font-size: 25px;
   }
   .email {
@@ -28,6 +28,12 @@
   border-radius: 2%;
   align-items: center;
   background-color: #22272e;
+}
+.light {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
 }
 .checkForm {
   display: flex;
@@ -185,13 +191,12 @@
     }
   }
   .checkForm {
-
     width: 100%;
-  
+
     .checkInput {
       width: 13px;
     }
-  
+
     .checkLabel {
       font-size: 12px;
       display: block;

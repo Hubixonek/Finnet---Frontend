@@ -89,9 +89,16 @@ const NavigationBar = () => {
                 <ul className={styles["submenu"]}>
                   <li className={theme ? styles["dark"] : styles["light"]}>
                     <Link
-                      to="/cycki"
+                      to="/newwallet"
                       className={theme ? styles["dark"] : styles["light"]}>
                       Załóż portfel
+                    </Link>
+                  </li>
+                  <li className={theme ? styles["dark"] : styles["light"]}>
+                    <Link
+                      to="/compositionstructure"
+                      className={theme ? styles["dark"] : styles["light"]}>
+                      Skład i struktura
                     </Link>
                   </li>
                   <li className={theme ? styles["dark"] : styles["light"]}>

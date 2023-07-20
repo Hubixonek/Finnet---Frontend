@@ -2,63 +2,70 @@ import { useContext } from "react";
 import useRegister from "../../api/register.api";
 import styles from "../styles/RegisterForm.module.scss";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../../contexts/ThemeContext"
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const RegisterForm = () => {
   const { formik } = useRegister();
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <>
-      <form className={`${styles["container"]} ${theme ? styles["dark"] : ""}`} onSubmit={formik.handleSubmit}>
-          <h1>Dołącz do nas</h1>
-          <div className={styles["email"]}>
-            <span>E-mail</span>
-            <input
-              className={`form-control ${
-                formik.touched.email && formik.errors.email
-                  ? styles.errorInput
-                  : ""
-              } ${theme ? styles['themeEmail'] : ""}`}
-              name="email"
-              id="email"
-              type="text"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder="Wprowadź adres e-mail"
-            />
-            {formik.touched.email && formik.errors.email ? (
-              <div className={styles["errorMessage"]}>
-                {formik.errors.email}
-              </div>
-            ) : null}
-          </div>
-          <div className={styles["password"]}>
-            <span>Hasło</span>
-            <input
-              className={`form-control ${
-                formik.touched.password && formik.errors.password
-                  ? styles.errorInput
-                  : ""
-              }`}
-              name="password"
-              id="password"
-              type="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder="Wprowadź hasło"
-            />
-            {formik.touched.password && formik.errors.password ? (
-              <div className={styles["errorMessage"]}>
-                {formik.errors.password}
-              </div>
-            ) : null}
-          </div>
-        <div className={`form-check' ${styles["checkForm"]} ${theme ? styles["themeCheckForm"] : ""}` }>
+      <form
+        className={`${styles["container"]} ${
+          theme ? styles["dark"] : styles["light"]
+        }`}
+        onSubmit={formik.handleSubmit}>
+        <h1>Dołącz do nas</h1>
+        <div className={styles["email"]}>
+          <span>E-mail</span>
           <input
-            className={`form-check-input' ${styles["checkInput"]} ${theme ? styles["themeCheckInput"] : "" }`}
+            className={`form-control ${
+              formik.touched.email && formik.errors.email
+                ? styles.errorInput
+                : ""
+            } ${theme ? styles["themeEmail"] : ""}`}
+            name="email"
+            id="email"
+            type="text"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Wprowadź adres e-mail"
+          />
+          {formik.touched.email && formik.errors.email ? (
+            <div className={styles["errorMessage"]}>{formik.errors.email}</div>
+          ) : null}
+        </div>
+        <div className={styles["password"]}>
+          <span>Hasło</span>
+          <input
+            className={`form-control ${
+              formik.touched.password && formik.errors.password
+                ? styles.errorInput
+                : ""
+            }`}
+            name="password"
+            id="password"
+            type="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Wprowadź hasło"
+          />
+          {formik.touched.password && formik.errors.password ? (
+            <div className={styles["errorMessage"]}>
+              {formik.errors.password}
+            </div>
+          ) : null}
+        </div>
+        <div
+          className={`form-check' ${styles["checkForm"]} ${
+            theme ? styles["themeCheckForm"] : ""
+          }`}>
+          <input
+            className={`form-check-input' ${styles["checkInput"]} ${
+              theme ? styles["themeCheckInput"] : ""
+            }`}
             id="flexCheckOne"
             type="checkbox"
             name="checkboxPrivacyPolicy"
@@ -67,7 +74,9 @@ const RegisterForm = () => {
             onBlur={formik.handleBlur}
             htmlFor="flexCheckOne"></input>
           <label
-            className={`form-check-label' ${styles["checkLabel"]} ${theme ? styles["themeCheckLabel"] : "" }`}
+            className={`form-check-label' ${styles["checkLabel"]} ${
+              theme ? styles["themeCheckLabel"] : ""
+            }`}
             htmlFor="flexCheckOne">
             Oświadczam, że zapoznałem(-am) się z Regulaminem oraz Polityką
             Prywatności i chcę korzystać z Usługi Finnet.
@@ -79,13 +88,21 @@ const RegisterForm = () => {
             ) : null}
           </label>
         </div>
-        <div className={`form-check' ${styles["checkForm"]} ${theme ? styles["themeCheckForm"] : ""}` }>
+        <div
+          className={`form-check' ${styles["checkForm"]} ${
+            theme ? styles["themeCheckForm"] : ""
+          }`}>
           <input
-       className={`form-check-input' ${styles["checkInput"]} ${theme ? styles["themeCheckInput"] : "" }`}            type="checkbox"
+            className={`form-check-input' ${styles["checkInput"]} ${
+              theme ? styles["themeCheckInput"] : ""
+            }`}
+            type="checkbox"
             id="flexCheckTwo"
             value=""></input>
           <label
-             className={`form-check-label' ${styles["checkLabel"]} ${theme ? styles["themeCheckLabel"] : "" }`}
+            className={`form-check-label' ${styles["checkLabel"]} ${
+              theme ? styles["themeCheckLabel"] : ""
+            }`}
             htmlFor="flexCheckTwo">
             Wyrażam zgodę na otrzymywanie na podany adres poczty elektronicznej
             informacji handlowych od FINNET.COM SPÓŁKA Z OGRANICZONĄ
@@ -94,14 +111,21 @@ const RegisterForm = () => {
             informacji tutaj
           </label>
         </div>
-        <div className={`form-check' ${styles["checkForm"]} ${theme ? styles["themeCheckForm"] : ""}` }>
+        <div
+          className={`form-check' ${styles["checkForm"]} ${
+            theme ? styles["themeCheckForm"] : ""
+          }`}>
           <input
-            className={`form-check-input' ${styles["checkInput"]} ${theme ? styles["themeCheckInput"] : "" }`}
+            className={`form-check-input' ${styles["checkInput"]} ${
+              theme ? styles["themeCheckInput"] : ""
+            }`}
             id="flexCheckThree"
             type="checkbox"
             value=""></input>
           <label
-            className={`form-check-label' ${styles["checkLabel"]} ${theme ? styles["themeCheckLabel"] : "" }`}
+            className={`form-check-label' ${styles["checkLabel"]} ${
+              theme ? styles["themeCheckLabel"] : ""
+            }`}
             htmlFor="flexCheckThree">
             Wyrażam zgodę na przetwarzanie moich danych osobowych przez
             FINNET.COM SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ z siedzibą w
@@ -127,7 +151,6 @@ const RegisterForm = () => {
           </Link>
         </div>
       </form>
-  
     </>
   );
 };

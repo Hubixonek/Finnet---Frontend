@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  flex-direction: column;
+  max-width: 1200px;
+  height: 800px;
+  padding: 60px;
+  border-style: groove;
+  border-radius: 5px;
+
+  h2 {
+    font-size: 28px;
+    margin-top: 20px;
+    margin-right: auto;
+  }
+  span {
+    margin-right: auto;
+  }
+  .selectGroup {
+    display: flex;
+    justify-content: center;
+    width: 250px;
+    margin-left: 500px;
+    gap: 10px;
+
+    select {
+      height: 28px;
+      text-align: left;
+      font-size: 12px;
+    }
+    span {
+      display: flex;
+    }
+  }
+  .btnGroup {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+
+    button {
+      text-align: center;
+      width: 150px;
+    }
+  }
+  .wallets {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    width: 160px;
+  }
+}
+.light {
+  background-color: white;
+}
+.dark {
+  background-color: #22272ee5;
+  color: white;
+}

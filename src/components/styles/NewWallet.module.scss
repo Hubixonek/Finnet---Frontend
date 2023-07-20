@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  flex-direction: column;
+  max-width: 500px;
+  padding: 60px;
+  border-radius: 5px;
+
+  h3 {
+    margin-right: 190px;
+  }
+  p {
+    margin: 0 auto;
+    display: flex;
+    text-align: left;
+  }
+  .pSelect {
+    margin-top: 5px;
+  }
+  .input {
+    width: 350px;
+  }
+  .select {
+    width: 350px;
+  }
+  .btn {
+    width: 350px;
+    margin-top: 15px;
+  }
+}
+
+.light {
+  background-color: white;
+}
+.dark {
+  background-color: #22272ee5;
+  color: white;
+}

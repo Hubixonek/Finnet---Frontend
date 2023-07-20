@@ -1,4 +1,3 @@
-import styles from "./App.module.scss";
 import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import FundsForm from "./components/FundsForm/FundsForm";
@@ -7,10 +6,10 @@ import NavigationBar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.css";
 import { AuthContextProvider } from "../src/contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import {
-  ThemeContextProvider,
-} from "../src/contexts/ThemeContext";
-
+import { ThemeContextProvider } from "../src/contexts/ThemeContext";
+import NewWallet from "./components/Wallet/NewWallet";
+import { AddWalletProvider } from "./contexts/AddWalletContext";
+import WalletComposition from "./components/Wallet/WalletComposition";
 function App() {
   return (
     <ThemeContextProvider>
@@ -19,13 +18,18 @@ function App() {
   );
 }
 function AppContent() {
-  
   return (
-      <AuthContextProvider>
+    <AuthContextProvider>
+      <AddWalletProvider>
         <BrowserRouter>
           <NavigationBar />
           <Routes>
             <Route path="/" element={<FundsForm />} />
+            <Route
+              path="/compositionstructure"
+              element={<WalletComposition />}
+            />
+            <Route path="/newwallet" element={<NewWallet />} />
             <Route path="/fundsform" element={<FundsForm />} />
             <Route
               path="/loginform"
@@ -45,7 +49,8 @@ function AppContent() {
             />
           </Routes>
         </BrowserRouter>
-      </AuthContextProvider>
+      </AddWalletProvider>
+    </AuthContextProvider>
   );
 }
 

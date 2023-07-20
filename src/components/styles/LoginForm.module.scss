@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  margin-top: 1%;
+  margin-top: 20px;
   align-items: center;
   padding: 35px;
 
@@ -20,14 +20,19 @@
     font-size: 12px;
   }
 }
-.dark{
+.dark {
   background-color: #22272e;
   color: white;
   max-width: 725px;
   padding: 35px;
   border-radius: 10px;
 }
-
+.light {
+  background-color: white;
+  padding: 35px;
+  max-width: 725px;
+  border-radius: 10px;
+}
 .loginButton {
   display: flex;
   background-color: #005bea !important;
