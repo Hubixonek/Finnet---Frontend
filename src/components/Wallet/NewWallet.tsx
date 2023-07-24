@@ -30,8 +30,6 @@ const NewWallet = () => {
       };
       setNameAndCurrencyWallet((prevWallets) => [...prevWallets, data]);
       navigate("/compositionstructure");
-    } else {
-      return;
     }
   };
   const { theme } = useContext(ThemeContext);

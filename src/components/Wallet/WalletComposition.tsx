@@ -14,8 +14,9 @@ const WalletComposition = () => {
   useEffect(() => {
     LocalStorage.set("wallet", nameAndCurrencyWallet);
   }, [nameAndCurrencyWallet]);
+
   if (nameAndCurrencyWallet == null) {
-    return;
+    return null;
   }
   return (
     <div
