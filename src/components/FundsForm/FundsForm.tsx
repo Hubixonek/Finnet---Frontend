@@ -25,8 +25,6 @@ const FundsForm = () => {
   const [selectedFromRate, setSelectedFromRate] = useState<number>();
   const [rate, setRate] = useState<number>(0);
   const { theme } = useContext(ThemeContext);
-  
-
 
   useEffect(() => {
     fetchData(fromCurrency, toCurrency, setCurrencies);
@@ -38,7 +36,7 @@ const FundsForm = () => {
       setFunds(data);
     }
   }, []);
-  
+
   useEffect(() => {
     LocalStorage.set("fundsData", funds);
   }, [funds]);
@@ -71,16 +69,16 @@ const FundsForm = () => {
       currencies,
     });
   useEffect(() => {
-      if (fromCurrency !== "PLN" && toCurrency !== "PLN") {
-        const rate = parseFloat((selectedFromRate / selectedToRate).toFixed(3));
-        setRate(rate);
-      } else if (fromCurrency === "PLN") {
-        const rate = parseFloat((1 / selectedToRate).toFixed(3));
-        setRate(rate);
-      } else if (toCurrency === "PLN") {
-        const rate = parseFloat((selectedFromRate / 1).toFixed(3));
-        setRate(rate);
-      }
+    if (fromCurrency !== "PLN" && toCurrency !== "PLN") {
+      const rate = parseFloat((selectedFromRate / selectedToRate).toFixed(3));
+      setRate(rate);
+    } else if (fromCurrency === "PLN") {
+      const rate = parseFloat((1 / selectedToRate).toFixed(3));
+      setRate(rate);
+    } else if (toCurrency === "PLN") {
+      const rate = parseFloat((selectedFromRate / 1).toFixed(3));
+      setRate(rate);
+    }
   }, [selectedFromRate, selectedToRate, fromCurrency, toCurrency]);
 
   return (
@@ -121,12 +119,11 @@ const FundsForm = () => {
           <FormikErrorValidation formik={formik} />
         </div>
       </form>
-        <TableWithFundsDatas
-          
-          currencies={currencies}
-          funds={funds}
-          removeFundsData={handleRemoveFundsData}
-        />
+      <TableWithFundsDatas
+        currencies={currencies}
+        funds={funds}
+        removeFundsData={handleRemoveFundsData}
+      />
     </>
   );
 };

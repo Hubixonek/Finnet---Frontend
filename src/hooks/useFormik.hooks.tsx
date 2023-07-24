@@ -43,30 +43,7 @@ const useFormikHook = ({
       toCurrency: "",
     },
     validate,
-    onSubmit: async (values) => {
-      try {
-        const response = await axios.post(
-          "https://finnet.bieda.it/api/tables",
-          {
-            id: Math.random(),
-            date: formik.values.date,
-            amount: parseFloat(formik.values.amount),
-            rate: parseFloat(formik.values.rate),
-            fromCurrency,
-            result: parseFloat(formik.values.result),
-            toCurrency,
-            apiRate: rate,
-            selectedFromRate,
-            selectedToRate,
-            resultByRateFromApi:
-              parseFloat(formik.values.amount) * rate -
-              parseFloat(formik.values.result),
-          }
-        );
-        console.log(response.data);
-      } catch (error) {
-        console.log("kakałko się wylało");
-      }
+    onSubmit: (values) => {
       const fundsObject: FundsObject = {
         id: Math.random(),
         date: formik.values.date,
