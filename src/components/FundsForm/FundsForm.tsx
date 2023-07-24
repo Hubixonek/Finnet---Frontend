@@ -19,7 +19,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("");
   const [toCurrency, setToCurrency] = useState<string>("");
-  const [funds, setFunds] = useState<any[]>(LocalStorage.get("fundsData"));
+  const [funds, setFunds] = useState<any[]>([]);
   const [currencies, setCurrencies] = useState<string[]>([]);
   const [selectedToRate, setSelectedToRate] = useState<number>();
   const [selectedFromRate, setSelectedFromRate] = useState<number>();
@@ -27,8 +27,8 @@ const FundsForm = () => {
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    fetchData(fromCurrency, toCurrency, setCurrencies);
-  }, [fromCurrency, toCurrency]);
+    LocalStorage.set("fundsData", funds);
+  }, [funds]);
 
   useEffect(() => {
     const data = LocalStorage.get("fundsData");
@@ -37,9 +37,10 @@ const FundsForm = () => {
     }
   }, []);
 
+
   useEffect(() => {
-    LocalStorage.set("fundsData", funds);
-  }, [funds]);
+    fetchData(fromCurrency, toCurrency, setCurrencies);
+  }, [fromCurrency, toCurrency]);
 
   const formik = useFormikHook({
     toCurrency,
