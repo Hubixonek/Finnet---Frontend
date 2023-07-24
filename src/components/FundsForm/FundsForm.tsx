@@ -27,16 +27,16 @@ const FundsForm = () => {
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    LocalStorage.set("fundsData", funds);
-  }, [funds]);
-
-  useEffect(() => {
     const data = LocalStorage.get("fundsData");
-    if (data) {
+    if (data && data.length > 0) {
       setFunds(data);
     }
   }, []);
-
+  useEffect(() => {
+    if (funds && funds.length > 0) {
+      LocalStorage.set("fundsData", funds);
+    }
+  }, [funds]);
 
   useEffect(() => {
     fetchData(fromCurrency, toCurrency, setCurrencies);
