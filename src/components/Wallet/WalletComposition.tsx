@@ -11,8 +11,6 @@ const WalletComposition = () => {
   const { theme } = useContext(ThemeContext);
   const [nameWallet, setNameWallet] = useState();
 
-  
-
   useEffect(() => {
     LocalStorage.set("wallet", nameAndCurrencyWallet);
   }, [nameAndCurrencyWallet]);
@@ -23,9 +21,10 @@ const WalletComposition = () => {
         theme ? styles["dark"] : styles["light"]
       }`}>
       <Form.Select className={styles["wallets"]}>
-        {nameAndCurrencyWallet?.map((wallet) => (
-          <option key={wallet.name}>{wallet.name}</option>
-        ))}
+        {nameAndCurrencyWallet &&
+          nameAndCurrencyWallet.map((wallet) => (
+            <option key={wallet.name}>{wallet.name}</option>
+          ))}
       </Form.Select>
 
       <h1>Portfel - skład i struktura</h1>
