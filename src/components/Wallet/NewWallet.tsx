@@ -37,7 +37,7 @@ const NewWallet = () => {
   const { theme } = useContext(ThemeContext);
   const FetchCurrenciesFromNbp = async () => {
     const response = await axios.get(
-      "http://api.nbp.pl/api/exchangerates/tables/A/"
+      "https://api.nbp.pl/api/exchangerates/tables/A/"
     );
     const allCurrencies = response.data[0].rates.map((rate) => ({
       code: rate.code,
