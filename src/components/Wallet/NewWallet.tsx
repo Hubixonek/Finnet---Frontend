@@ -26,9 +26,8 @@ const NewWallet = () => {
       const data = {
         name: nameWallet,
         currency: currencyForNewWallet,
-      };  
-      console.log(data);
-      setNameAndCurrencyWallet(data);
+      };
+      setNameAndCurrencyWallet((prevWallets) => [...prevWallets, data]);
       navigate("/compositionstructure");
     }
   };

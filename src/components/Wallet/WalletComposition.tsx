@@ -1,13 +1,20 @@
 import { AddWalletContext } from "../../contexts/AddWalletContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import styles from "../styles/WalletComposition.module.scss";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import Form from "react-bootstrap/Form";
+import { LocalStorage } from "../../services/LocalStorage.service";
 
 const WalletComposition = () => {
   const { nameAndCurrencyWallet } = useContext(AddWalletContext);
   const { theme } = useContext(ThemeContext);
+  const [nameWallet, setNameWallet] = useState();
+
+  
+  useEffect(() => {
+    LocalStorage.set("wallet", nameAndCurrencyWallet);
+  }, [nameAndCurrencyWallet]);
 
   return (
     <div
@@ -15,10 +22,11 @@ const WalletComposition = () => {
         theme ? styles["dark"] : styles["light"]
       }`}>
       <Form.Select className={styles["wallets"]}>
-        <option>Twoje portfele</option>
-        <option>Test</option>
-        <option>Test2</option>
+        {nameAndCurrencyWallet ? null : nameAndCurrencyWallet.map((wallet) => (
+          <option key={wallet.name}>{wallet.name}</option>
+        ))}
       </Form.Select>
+
       <h1>Portfel - skład i struktura</h1>
 
       <div className={styles["btnGroup"]}>
