@@ -11,7 +11,10 @@ const WalletComposition = () => {
   const { theme } = useContext(ThemeContext);
   const [nameWallet, setNameWallet] = useState();
 
-  
+  if (!nameAndCurrencyWallet) {
+    return;
+  }
+
   useEffect(() => {
     LocalStorage.set("wallet", nameAndCurrencyWallet);
   }, [nameAndCurrencyWallet]);
@@ -22,7 +25,7 @@ const WalletComposition = () => {
         theme ? styles["dark"] : styles["light"]
       }`}>
       <Form.Select className={styles["wallets"]}>
-        {nameAndCurrencyWallet ? null : nameAndCurrencyWallet.map((wallet) => (
+        {nameAndCurrencyWallet.map((wallet) => (
           <option key={wallet.name}>{wallet.name}</option>
         ))}
       </Form.Select>
