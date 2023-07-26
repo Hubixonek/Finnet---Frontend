@@ -1,6 +1,5 @@
 import { useFormik } from "formik";
 import validate from "../utils/helpers/validationfunds.helpers";
-import axios from "axios";
 
 interface FormikHookProps {
   fromCurrency: string;

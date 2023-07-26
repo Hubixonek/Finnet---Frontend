@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 
-const WalletTable = () => {
+const SecondWalletTable = () => {
   return (
     <div>
       <Table responsive="md">
@@ -29,4 +29,4 @@ const WalletTable = () => {
   );
 };
 
-export default WalletTable;
+export default SecondWalletTable;

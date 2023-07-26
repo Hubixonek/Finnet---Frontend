@@ -18,8 +18,8 @@
 }
 
 .sidebar {
-  min-height: 100%;
-  width: 200px;
+  height: 100%;
+  width: 240px;
   flex-direction: column;
   position: fixed;
   transition: transform 0.3s ease-in-out;
@@ -27,21 +27,20 @@
   cursor: pointer;
   z-index: 1;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-
 }
 
-.submenu {
+li:hover .submenu {
   display: flex;
-  min-width: 250px;
+  max-height: 200px;
+  min-width: 300px;
   max-height: 0;
   flex-direction: column;
   margin-left: 86px;
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(40px);
+  transform: translateX(80px);
   li {
     transform: translateY(-34px);
-    min-height: 50px;  box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-
+    min-height: 50px;
+    box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
   a {
     padding: 10px;
@@ -49,18 +48,28 @@
   }
 }
 
-.secondSubmenu {
+li:hover > .secondSubmenu {
   display: flex;
   flex-direction: column;
   list-style: none;
-  margin-left: 155px;
+  margin-left: 260px;
   width: 190px;
   list-style: none;
   transform: translateY(-50px);
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-
   cursor: pointer;
+
+  a{
+    text-decoration: none;
+    color:black;
+  }
 }
+
+.submenu,
+.secondSubmenu {
+  display: none;
+}
+
 li {
   padding: 10px;
   list-style: none;
@@ -180,7 +189,6 @@ li {
       text-align: left;
       color: black;
       cursor: pointer;
-      
 
       &:hover {
         box-shadow: inset 500px 0 0 0 #74899118;

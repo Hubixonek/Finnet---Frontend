@@ -86,7 +86,7 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchDatasFromLocalStorage();
-    }, 10000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [refreshedProfitLoss]);
 

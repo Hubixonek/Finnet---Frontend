@@ -55,7 +55,9 @@ const NewWallet = () => {
       <h3>Dodaj portfel</h3>
       <form>
         <div className={styles["text"]}>
-          <p className={styles["pInput"]}>Podaj nazwę dla Twojego portfela</p>
+          <label className={styles["pInput"]}>
+            Podaj nazwę dla Twojego portfela
+          </label>
           <input
             className={`form-control ${styles["input"]}`}
             type="text"
@@ -63,7 +65,9 @@ const NewWallet = () => {
           />
         </div>
         <div>
-          <p className={styles["pSelect"]}>Wybierz podstawową walutę: </p>
+          <label className={styles["pSelect"]}>
+            Wybierz podstawową walutę:{" "}
+          </label>
           <select
             className={`form-control ${styles["select"]}`}
             onChange={typeCurrencyWalletHandler}>

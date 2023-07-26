@@ -10,6 +10,9 @@ import { ThemeContextProvider } from "../src/contexts/ThemeContext";
 import NewWallet from "./components/Wallet/NewWallet";
 import { AddWalletProvider } from "./contexts/AddWalletContext";
 import WalletComposition from "./components/Wallet/WalletComposition";
+import Deposit from "./components/Operations/Deposit";
+import { DepositContextProvider } from "./contexts/DepositContext";
+
 function App() {
   return (
     <ThemeContextProvider>
@@ -21,34 +24,37 @@ function AppContent() {
   return (
     <AuthContextProvider>
       <AddWalletProvider>
-        <BrowserRouter>
-          <NavigationBar />
-          <Routes>
-            <Route path="/" element={<FundsForm />} />
-            <Route
-              path="/compositionstructure"
-              element={<WalletComposition />}
-            />
-            <Route path="/newwallet" element={<NewWallet />} />
-            <Route path="/fundsform" element={<FundsForm />} />
-            <Route
-              path="/loginform"
-              element={
-                <ProtectedRoute accessBy="non-authenticated">
-                  <LoginForm />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/registerform"
-              element={
-                <ProtectedRoute accessBy="non-authenticated">
-                  <RegisterForm />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
+        <DepositContextProvider>
+          <BrowserRouter>
+            <NavigationBar />
+            <Routes>
+              <Route path="/" element={<FundsForm />} />
+              <Route
+                path="/compositionstructure"
+                element={<WalletComposition />}
+              />
+              <Route path="/deposit" element={<Deposit />} />
+              <Route path="/newwallet" element={<NewWallet />} />
+              <Route path="/fundsform" element={<FundsForm />} />
+              <Route
+                path="/loginform"
+                element={
+                  <ProtectedRoute accessBy="non-authenticated">
+                    <LoginForm />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/registerform"
+                element={
+                  <ProtectedRoute accessBy="non-authenticated">
+                    <RegisterForm />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </BrowserRouter>
+        </DepositContextProvider>
       </AddWalletProvider>
     </AuthContextProvider>
   );

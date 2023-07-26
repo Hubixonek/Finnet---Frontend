@@ -5,12 +5,23 @@ import styles from "../styles/WalletComposition.module.scss";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import Form from "react-bootstrap/Form";
 import { LocalStorage } from "../../services/LocalStorage.service";
+import { Link } from "react-router-dom";
+import WalletTable from "./WalletTable";
+import SecondWalletTable from "./SecondWalletTable";
 
 const WalletComposition = () => {
-  const { nameAndCurrencyWallet } = useContext(AddWalletContext);
+  const { nameAndCurrencyWallet, setNameAndCurrencyWallet } =
+    useContext(AddWalletContext);
   const { theme } = useContext(ThemeContext);
   const [nameWallet, setNameWallet] = useState();
 
+  useEffect(() => {
+    const data = LocalStorage.get("wallet");
+    if (data && data.length > 0) {
+      setNameAndCurrencyWallet(data);
+    }
+  }, []);
+  console.log(nameWallet);
   useEffect(() => {
     LocalStorage.set("wallet", nameAndCurrencyWallet);
   }, [nameAndCurrencyWallet]);
@@ -31,7 +42,9 @@ const WalletComposition = () => {
       <h1>Portfel - skład i struktura</h1>
 
       <div className={styles["btnGroup"]}>
-        <Button variant="primary">Nowy portfel</Button>{" "}
+        <Link to={"/newwallet"}>
+          <Button variant="primary">Nowy portfel</Button>{" "}
+        </Link>
         <Button variant="primary">Dodaj wpłatę</Button>{" "}
         <Button variant="primary">Kup</Button>{" "}
         <Button variant="primary">Sprzedaj</Button>{" "}
@@ -40,7 +53,14 @@ const WalletComposition = () => {
       </div>
       <h2>Inwestycje</h2>
       <span>Data założenia portfela</span>
-      <div className={styles["tableContainer"]}></div>
+      <div className={styles["tableContainer"]}>
+        <WalletTable />
+        <span>
+          Konta gotówkowe, suma, zysk, zysk dzienny, zwrot, zmianna dzienna,
+          udział
+        </span>
+        <SecondWalletTable />
+      </div>
     </div>
   );
 };
