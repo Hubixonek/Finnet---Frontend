@@ -1,12 +1,15 @@
 import Table from "react-bootstrap/Table";
 import { useContext } from "react";
 import { DepositContext } from "../../contexts/DepositContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import styles from "../styles/SecondWalletTable.module.scss";
 const WalletTable = () => {
   const { sumDeposit } = useContext(DepositContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <div>
-      <Table responsive="md">
+    <div className={styles["container"]}>
+      <Table responsive="sm">
         <thead>
           <tr>
             <th>Walor</th>

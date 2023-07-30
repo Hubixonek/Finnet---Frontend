@@ -2,10 +2,21 @@
   display: flex;
   margin: 0 auto;
   margin-top: 15px;
-overflow-x: scroll;
+  max-width: 1000px;
 }
 .dropdownBtn {
-  margin-top: 10.5px;
   cursor: pointer;
   font-size: 20px;
+}
+.dark {
+  background-color: #22272ee5;
+  color: white;
+}
+.light {
+  background-color: white;
+}
+@media screen and (max-width: 457px) {
+  .container {
+    max-width: 350px;
+  }
 }

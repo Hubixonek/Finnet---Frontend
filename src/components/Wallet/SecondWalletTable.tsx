@@ -3,6 +3,8 @@ import { RiAddBoxFill } from "react-icons/ri";
 import styles from "../styles/SecondWalletTable.module.scss";
 import { useContext, useState } from "react";
 import { DepositContext } from "../../contexts/DepositContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
+
 const SecondWalletTable = () => {
   const [dropDown, setDropDown] = useState(false);
 
@@ -11,6 +13,7 @@ const SecondWalletTable = () => {
     console.log(dropDown);
   };
   const { sumDeposit } = useContext(DepositContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div className={styles["container"]}>
@@ -18,7 +21,7 @@ const SecondWalletTable = () => {
         className={styles["dropdownBtn"]}
         onClick={dropDownHandler}
       />
-      <Table responsive="md">
+      <Table responsive="sm">
         <thead>
           <tr>
             <th>Konta gotówkowe </th>

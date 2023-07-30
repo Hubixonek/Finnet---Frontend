@@ -105,10 +105,10 @@
     max-width: 450px;
 
     h2 {
-      margin-right: 300px;
+      margin-right: 250px;
     }
     span {
-      margin-right: 340px;
+      margin-right: 270px;
     }
     .btnGroup {
       flex-direction: column;
@@ -118,4 +118,9 @@
       }
     }
   }
+  .visible {
+    display: flex;
+    transform: translateY(-765px);
+  }
 }
+
