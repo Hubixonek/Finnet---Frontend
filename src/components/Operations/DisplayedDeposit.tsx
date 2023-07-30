@@ -1,28 +1,35 @@
 import styles from "../styles/Deposit.module.scss";
 import Form from "react-bootstrap/Form";
-import { useContext, ChangeEvent } from "react";
+import { useContext } from "react";
+import { ImCross } from "react-icons/im";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { DepositContext } from "../../contexts/DepositContext";
 import Button from "react-bootstrap/esm/Button";
 import "react-toastify/dist/ReactToastify.css";
+import { DisplayContext } from "../../contexts/DisplayDepositContext";
 
-const Deposit = () => {
+const DisplayedDeposit = () => {
   const { theme } = useContext(ThemeContext);
   const {
     operation,
-    setOperation,
     date,
-    setDate,
     time,
-    setTime,
     note,
-    setNote,
     brutto,
+    setOperation,
+    setDate,
+    setTime,
+    setNote,
     setBrutto,
     sumDeposit,
     handleSubmit,
     showToastMessage,
   } = useContext(DepositContext);
+  const { displayDeposit, setDisplayDeposit } = useContext(DisplayContext);
+
+  const hideDepositFormHandler = () => {
+    setDisplayDeposit(!displayDeposit);
+  };
 
   const operationHandler = (event: ChangeEvent) => {
     const operation = event.target.value;
@@ -50,6 +57,7 @@ const Deposit = () => {
       className={`${styles["container"]} ${
         theme ? styles["dark"] : styles["light"]
       }`}>
+      <ImCross className={styles["cancel"]} onClick={hideDepositFormHandler} />
       <h1>Wpłata / wypłata i inne</h1>
       <div className={styles["selectGroup"]}>
         <label>Operacja:</label>
@@ -93,4 +101,4 @@ const Deposit = () => {
   );
 };
 
-export default Deposit;
+export default DisplayedDeposit;

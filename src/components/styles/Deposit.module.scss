@@ -2,8 +2,8 @@
   padding: 20px;
   margin: 0 auto;
   margin-top: 20px;
-  height: 700px;
-  width: 500px;
+  height: 750px;
+  width: 380px;
   background-color: white;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   h1 {
@@ -45,21 +45,20 @@
       width: 250px;
       text-align: left;
     }
-    .inputGroup {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: stretch;
-      border: 1px solid #ced4da;
-      border-radius: 4px;
+  }
+  .inputGroup {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
 
-      &:focus {
-        outline: 0;
-        border-color: #80bdff;
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-      }
+    &:focus {
+      outline: 0;
+      border-color: #80bdff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     }
   }
-
   .noteInput {
     display: flex;
     align-items: center;
@@ -90,6 +89,12 @@
   background-color: white;
 }
 .dark {
-  background-color: #22272ee5;
+  background-color: #22272e;
   color: white;
+}
+
+.cancel {
+  display: flex;
+  cursor: pointer;
+  margin-left: auto;
 }

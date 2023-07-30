@@ -1,6 +1,9 @@
 import Table from "react-bootstrap/Table";
-
+import { useContext } from "react";
+import { DepositContext } from "../../contexts/DepositContext";
 const WalletTable = () => {
+  const { sumDeposit } = useContext(DepositContext);
+
   return (
     <div>
       <Table responsive="md">
@@ -20,7 +23,7 @@ const WalletTable = () => {
             <td>0.00</td>
             <td></td>
             <td>100</td>
-            <td>250 000.00</td>
+            <td>{sumDeposit}</td>
             <td>Milion</td>
           </tr>
         </tbody>

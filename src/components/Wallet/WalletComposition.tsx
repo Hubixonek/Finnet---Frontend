@@ -8,12 +8,19 @@ import { LocalStorage } from "../../services/LocalStorage.service";
 import { Link } from "react-router-dom";
 import WalletTable from "./WalletTable";
 import SecondWalletTable from "./SecondWalletTable";
+import Deposit from "../Operations/Deposit";
+import { DisplayContext } from "../../contexts/DisplayDepositContext";
+import DisplayedDeposit from "../Operations/DisplayedDeposit";
+import { DepositContext } from "../../contexts/DepositContext";
 
 const WalletComposition = () => {
   const { nameAndCurrencyWallet, setNameAndCurrencyWallet } =
     useContext(AddWalletContext);
   const { theme } = useContext(ThemeContext);
-  const [nameWallet, setNameWallet] = useState();
+  const { displayDepositHandler, displayDeposit, setDisplayDeposit } =
+    useContext(DisplayContext);
+  const { data } = useContext(DepositContext);
+  const [nameWallet, setNameWallet] = useState<string>();
 
   useEffect(() => {
     const data = LocalStorage.get("wallet");
@@ -21,7 +28,7 @@ const WalletComposition = () => {
       setNameAndCurrencyWallet(data);
     }
   }, []);
-  console.log(nameWallet);
+
   useEffect(() => {
     LocalStorage.set("wallet", nameAndCurrencyWallet);
   }, [nameAndCurrencyWallet]);
@@ -42,24 +49,25 @@ const WalletComposition = () => {
       <h1>Portfel - skład i struktura</h1>
 
       <div className={styles["btnGroup"]}>
-        <Link to={"/newwallet"}>
-          <Button variant="primary">Nowy portfel</Button>{" "}
+        <Link to="/newwallet">
+          <Button>Dodaj nowy portfel</Button>
         </Link>
-        <Button variant="primary">Dodaj wpłatę</Button>{" "}
-        <Button variant="primary">Kup</Button>{" "}
-        <Button variant="primary">Sprzedaj</Button>{" "}
-        <Button variant="primary">Historia operacji</Button>{" "}
-        <Button variant="primary">Wykresy</Button>{" "}
+        <Button onClick={displayDepositHandler}>Dodaj wpłatę</Button>
+        <Button>Kup</Button> <Button>Sprzedaj</Button>
+        <Button>Historia operacji</Button> <Button>Wykresy</Button>
       </div>
       <h2>Inwestycje</h2>
-      <span>Data założenia portfela</span>
+      <span>Data założenia portfela </span>
       <div className={styles["tableContainer"]}>
         <WalletTable />
-        <span>
-          Konta gotówkowe, suma, zysk, zysk dzienny, zwrot, zmianna dzienna,
-          udział
-        </span>
+
         <SecondWalletTable />
+      </div>
+      <div
+        className={`${styles["position"]} ${
+          displayDeposit ? styles["visible"] : ""
+        }`}>
+        <DisplayedDeposit />
       </div>
     </div>
   );

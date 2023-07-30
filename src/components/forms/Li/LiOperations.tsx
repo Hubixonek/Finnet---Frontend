@@ -18,7 +18,11 @@ const LiOperations = () => {
             Historia i modyfikacja operacji
           </Link>
         </li>
-
+        <li className={theme ? styles["dark"] : styles["light"]}>
+          <Link to="/" className={theme ? styles["dark"] : styles["light"]}>
+            Kupno walorów
+          </Link>
+        </li>
         <li className={theme ? styles["dark"] : styles["light"]}>
           <a>Operacje gotówkowe</a>
           <li
@@ -37,11 +41,6 @@ const LiOperations = () => {
               Uzgodnij stan konta
             </Link>
           </li>
-        </li>
-        <li className={theme ? styles["dark"] : styles["light"]}>
-          <Link to="/" className={theme ? styles["dark"] : styles["light"]}>
-            Kupno walorów
-          </Link>
         </li>
       </ul>
     </li>

@@ -5,7 +5,7 @@
   margin-top: 20px;
   flex-direction: column;
   max-width: 1200px;
-  height: 800px;
+  max-height: 800px;
   padding: 60px;
   border-radius: 5px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -21,7 +21,7 @@
   .selectGroup {
     display: flex;
     justify-content: center;
-    width: 250px;
+    max-width: 250px;
     margin-left: 500px;
     gap: 10px;
 
@@ -41,14 +41,14 @@
 
     button {
       text-align: center;
-      width: 150px;
+      max-width: 190px;
     }
   }
   .wallets {
     display: flex;
     margin-left: auto;
     align-items: center;
-    width: 160px;
+    max-width: 160px;
   }
 }
 .light {
@@ -57,4 +57,65 @@
 .dark {
   background-color: #22272ee5;
   color: white;
+}
+.position {
+  display: none;
+}
+.visible {
+  display: flex;
+  transform: translateY(-435px);
+}
+.shadow {
+  background-color: rgba(0, 0, 0, 0.247);
+}
+@media screen and (max-width: 830px) {
+  h2 {
+    margin-right: 50px;
+  }
+  .btnGroup {
+    display: flex;
+    button {
+      text-align: center;
+    }
+  }
+}
+@media screen and (max-width: 606px) {
+  .container {
+    max-height: 1110px;
+    max-width: 510px;
+
+    h2 {
+      margin-right: 340px;
+    }
+    span {
+      margin-right: 230px;
+    }
+    .btnGroup {
+      flex-direction: column;
+      button {
+        max-width: 165px;
+        text-align: center;
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .container {
+    max-height: 1110px;
+    max-width: 450px;
+
+    h2 {
+      margin-right: 300px;
+    }
+    span {
+      margin-right: 340px;
+    }
+    .btnGroup {
+      flex-direction: column;
+      button {
+        max-width: 165px;
+        text-align: center;
+      }
+    }
+  }
 }

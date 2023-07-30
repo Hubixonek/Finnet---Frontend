@@ -12,7 +12,7 @@ const LiAccount = () => {
       {!user ? null : (
         <a>
           <RiAccountCircleFill className={styles["icons"]} />
-          Konto {user.email}
+          <span>Konto {user.email}</span>
         </a>
       )}
       <ul className={styles["submenu"]}>

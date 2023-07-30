@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import FundsForm from "./components/FundsForm/FundsForm";
 import LoginForm from "./components/LoginForm/LoginForm";
@@ -12,7 +12,8 @@ import { AddWalletProvider } from "./contexts/AddWalletContext";
 import WalletComposition from "./components/Wallet/WalletComposition";
 import Deposit from "./components/Operations/Deposit";
 import { DepositContextProvider } from "./contexts/DepositContext";
-
+import { DisplayDepositProvider } from "./contexts/DisplayDepositContext";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <ThemeContextProvider>
@@ -25,35 +26,39 @@ function AppContent() {
     <AuthContextProvider>
       <AddWalletProvider>
         <DepositContextProvider>
-          <BrowserRouter>
-            <NavigationBar />
-            <Routes>
-              <Route path="/" element={<FundsForm />} />
-              <Route
-                path="/compositionstructure"
-                element={<WalletComposition />}
-              />
-              <Route path="/deposit" element={<Deposit />} />
-              <Route path="/newwallet" element={<NewWallet />} />
-              <Route path="/fundsform" element={<FundsForm />} />
-              <Route
-                path="/loginform"
-                element={
-                  <ProtectedRoute accessBy="non-authenticated">
-                    <LoginForm />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/registerform"
-                element={
-                  <ProtectedRoute accessBy="non-authenticated">
-                    <RegisterForm />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </BrowserRouter>
+          <DisplayDepositProvider>
+            <BrowserRouter>
+              <NavigationBar />
+              <ToastContainer />
+
+              <Routes>
+                <Route path="/" element={<FundsForm />} />
+                <Route
+                  path="/compositionstructure"
+                  element={<WalletComposition />}
+                />
+                <Route path="/deposit" element={<Deposit />} />
+                <Route path="/newwallet" element={<NewWallet />} />
+                <Route path="/fundsform" element={<FundsForm />} />
+                <Route
+                  path="/loginform"
+                  element={
+                    <ProtectedRoute accessBy="non-authenticated">
+                      <LoginForm />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/registerform"
+                  element={
+                    <ProtectedRoute accessBy="non-authenticated">
+                      <RegisterForm />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </BrowserRouter>
+          </DisplayDepositProvider>
         </DepositContextProvider>
       </AddWalletProvider>
     </AuthContextProvider>

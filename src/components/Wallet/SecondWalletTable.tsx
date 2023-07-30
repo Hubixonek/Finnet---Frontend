@@ -1,29 +1,46 @@
 import Table from "react-bootstrap/Table";
-
+import { RiAddBoxFill } from "react-icons/ri";
+import styles from "../styles/SecondWalletTable.module.scss";
+import { useContext, useState } from "react";
+import { DepositContext } from "../../contexts/DepositContext";
 const SecondWalletTable = () => {
+  const [dropDown, setDropDown] = useState(false);
+
+  const dropDownHandler = () => {
+    setDropDown(!dropDown);
+    console.log(dropDown);
+  };
+  const { sumDeposit } = useContext(DepositContext);
+
   return (
-    <div>
+    <div className={styles["container"]}>
+      <RiAddBoxFill
+        className={styles["dropdownBtn"]}
+        onClick={dropDownHandler}
+      />
       <Table responsive="md">
         <thead>
           <tr>
-            <th>Walor</th>
-            <th>Zmiana dzienna</th>
-            <th>Śr.cena zakupu [PLN]</th>
-            <th>Cena aktualna [PLN]</th>
-            <th>Wartość waloru [PLN]</th>
-            <th>Zysk [PLN]</th>
+            <th>Konta gotówkowe </th>
+            <th>Suma: {sumDeposit}</th>
+            <th>Zysk</th>
+            <th>Zysk dzienny</th>
+            <th>zwrot</th>
+            <th>zmiana dzienna</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Cały portfel</td>
-            <td>0.00</td>
-            <td></td>
-            <td>100</td>
-            <td>250 000.00</td>
-            <td>Milion</td>
-          </tr>
-        </tbody>
+        {dropDown && (
+          <tbody>
+            <tr>
+              <td>Gotówka (konto)</td>
+              <td>0.00</td>
+              <td></td>
+              <td>{sumDeposit}</td>
+              <td>250 </td>
+              <td>Milion</td>
+            </tr>
+          </tbody>
+        )}
       </Table>
     </div>
   );

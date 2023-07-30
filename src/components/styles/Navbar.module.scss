@@ -59,9 +59,9 @@ li:hover > .secondSubmenu {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   cursor: pointer;
 
-  a{
+  a {
     text-decoration: none;
-    color:black;
+    color: black;
   }
 }
 
@@ -132,6 +132,7 @@ li {
 @media (max-width: 768px) {
   .sidebar {
     background-color: white;
+    width: 160px;
   }
   a {
     font-size: 15px;
@@ -180,8 +181,7 @@ li {
   }
   .secondSubmenu {
     list-style: none;
-    margin-left: 0;
-    margin-top: 48px;
+    margin-top: 61px;
     max-width: 500px;
     list-style: none;
 
@@ -193,6 +193,37 @@ li {
       &:hover {
         box-shadow: inset 500px 0 0 0 #74899118;
       }
+    }
+  }
+  li:hover > .secondSubmenu {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-left: 0;
+    width: 160px;
+    list-style: none;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+  li:hover .submenu {
+    display: flex;
+    min-width: 280px;
+    max-height: 0;
+    flex-direction: column;
+    margin-left: 5px;
+    li {
+      transform: translateY(-34px);
+      min-height: 60px;
+      box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    a {
+      padding: 10px;
+      text-align: left;
     }
   }
 }
