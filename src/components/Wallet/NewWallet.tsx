@@ -10,7 +10,6 @@ const NewWallet = () => {
   const [nameWallet, setNameWallet] = useState("");
   const [currencyForNewWallet, setSelectCurrencyForNewWallet] = useState("PLN");
   const navigate = useNavigate();
-
   const { nameAndCurrencyWallet, setNameAndCurrencyWallet } =
     useContext(AddWalletContext);
 

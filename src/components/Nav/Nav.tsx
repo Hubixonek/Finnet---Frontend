@@ -9,46 +9,54 @@ const Nav = ({ setShowNav, showNav }) => {
   const { user, logoutApiCall } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
   return (
-    <nav
-      className={`${styles["navbar"]} ${
-        theme ? styles["dark"] : styles["light"]
-      }`}>
-      <label>
-        <FaBars
-          onClick={() => setShowNav(!showNav)}
-          className={styles["hamburger"]}
-        />
-      </label>
-      <div className={styles["logo"]}>
-        <span>Finnet</span>
-      </div>
-      <div className={styles["buttonGroup"]}>
-        <div className={styles["signInButton"]}>
-          {user && <Link className={`${theme ? styles['dark'] : styles['light']}`}>{user.email}</Link>}
-          {!user && (
-            <Link
-              to="/loginform"
-              className={`${theme ? styles["dark"] : styles["light"]}`}>
-              Zaloguj
-            </Link>
-          )}
+    <div>
+      <nav
+        className={`${styles["navbar"]} ${
+          theme ? styles["dark"] : styles["light"]
+        } `}>
+        <label>
+          <FaBars
+            onClick={() => setShowNav(!showNav)}
+            className={styles["hamburger"]}
+          />
+        </label>
+        <div className={styles["logo"]}>
+          <span>Finnet</span>
         </div>
-        <div className={styles["registerNav"]}>
-          {!user && <Link to="/registerform">Korzystaj z Finnet za darmo</Link>}
-          <div>
+        <div className={styles["buttonGroup"]}>
+          <div className={styles["signInButton"]}>
             {user && (
+              <Link className={`${theme ? styles["dark"] : styles["light"]}`}>
+                {user.email}
+              </Link>
+            )}
+            {!user && (
               <Link
-                onClick={() => {
-                  logoutApiCall();
-                }}>
-                Wyloguj się!
+                to="/loginform"
+                className={`${theme ? styles["dark"] : styles["light"]}`}>
+                Zaloguj
               </Link>
             )}
           </div>
+          <div className={styles["registerNav"]}>
+            {!user && (
+              <Link to="/registerform">Korzystaj z Finnet za darmo</Link>
+            )}
+            <div>
+              {user && (
+                <Link
+                  onClick={() => {
+                    logoutApiCall();
+                  }}>
+                  Wyloguj się!
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-      <SwitchThemeMode />
-    </nav>
+        <SwitchThemeMode />
+      </nav>
+    </div>
   );
 };
 export default Nav;

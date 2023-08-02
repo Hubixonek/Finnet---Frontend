@@ -8,6 +8,7 @@ import Button from "react-bootstrap/esm/Button";
 import "react-toastify/dist/ReactToastify.css";
 import { DisplayContext } from "../../contexts/DisplayDepositContext";
 
+
 const DisplayedDeposit = () => {
   const { theme } = useContext(ThemeContext);
   const {
@@ -25,6 +26,7 @@ const DisplayedDeposit = () => {
     handleSubmit,
     showToastMessage,
   } = useContext(DepositContext);
+
   const { displayDeposit, setDisplayDeposit } = useContext(DisplayContext);
 
   const hideDepositFormHandler = () => {
