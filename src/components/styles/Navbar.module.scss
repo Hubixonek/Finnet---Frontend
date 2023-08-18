@@ -1,7 +1,9 @@
 .navbar {
   display: flex;
   padding: 6px;
-  position: sticky;
+  position: fixed;
+  width: 100%;
+  top: 0;
   z-index: 2;
   align-items: center;
 
@@ -20,9 +22,11 @@
   height: 100%;
   width: 240px;
   flex-direction: column;
+  margin-top: 51px;
   position: fixed;
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
+
   cursor: pointer;
   z-index: 1;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -53,9 +57,7 @@ li:hover > .secondSubmenu {
   list-style: none;
   margin-left: 260px;
   width: 190px;
-  list-style: none;
   transform: translateY(-50px);
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   cursor: pointer;
 
   a {
@@ -130,15 +132,19 @@ li {
 
 @media (max-width: 768px) {
   .sidebar {
+    align-items: center;
+    flex-direction: column;
     background-color: white;
-    width: 160px;
+    width: 100%;
+    transform: translateY(-100%);
   }
+
   a {
     font-size: 15px;
   }
   .show {
     z-index: 1;
-    display: flex;
+    transform: translateY(0);
     background-color: white;
   }
 
@@ -146,17 +152,29 @@ li {
     display: none;
   }
   .loginBtnSideBar {
-    display: block;
-    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
     color: black;
+    height: 60px;
+    margin-top: 10px;
+    width: 90%;
     text-decoration: none;
+    border: 1px solid rgb(0, 101, 255);
   }
+
   .registerBtnSideBar {
     display: flex;
+    margin: 0 auto;
     text-decoration: none;
     color: white;
-    width: 100%;
-    padding: 10px;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
     background-color: rgb(0, 101, 255);
   }
   .dark {
@@ -167,65 +185,31 @@ li {
     background-color: white;
     color: black;
   }
-  .ulList {
-    transform: translateX(8px);
-    list-style: none;
-    cursor: pointer;
-    a {
-      color: black;
-      text-decoration: none;
-      box-shadow: inset 0 0 0 0 #74899123;
-    }
-  }
-  .secondSubmenu {
-    list-style: none;
-    margin-top: 60px;
-    max-width: 500px;
-    list-style: none;
 
+  li:hover .submenu {
+    display: flex;
+    margin-top: 15px;
+    transform: translateX(-130px);
+    max-height: 200px;
+    min-width: 300px;
+    flex-direction: column;
+    margin-left: 86px;
+
+    li {
+      transform: translateY(0px);
+      box-shadow: 0 0;
+    }
     a {
       text-align: left;
-      color: black;
-      cursor: pointer;
-
-      &:hover {
-        box-shadow: inset 500px 0 0 0 #74899118;
-      }
     }
   }
   li:hover > .secondSubmenu {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
+    margin-top: 5px;
     margin-left: 0;
-    width: 160px;
-    list-style: none;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     cursor: pointer;
 
-    li {
-      min-height: 61px;
-    }
     a {
-      text-decoration: none;
-      padding: 0;
       color: black;
-    }
-  }
-  li:hover .submenu {
-    display: flex;
-    min-width: 210px;
-    max-height: 0;
-    flex-direction: column;
-    margin-left: 5px;
-    li {
-      transform: translateY(-34px);
-      min-height: 61px;
-      box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    }
-    a {
-      padding: 7px;
-      text-align: left;
     }
   }
 }

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import SwitchThemeMode from "../forms/Switches/SwitchThemeMode";
+
+
 const Nav = ({ setShowNav, showNav }) => {
   const { user, logoutApiCall } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
@@ -16,7 +18,7 @@ const Nav = ({ setShowNav, showNav }) => {
         } `}>
         <label>
           <FaBars
-            onClick={() => setShowNav(!showNav)}
+            onClick={() =>   setShowNav(!showNav)}
             className={styles["hamburger"]}
           />
         </label>

@@ -3,7 +3,7 @@ import { ThemeContext } from "../../../contexts/ThemeContext";
 import styles from "../../styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-const LiOperations = () => {
+const LiOperations = ({ showNav, setShowNav }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -13,13 +13,18 @@ const LiOperations = () => {
         Operacje
       </a>
       <ul className={styles["submenu"]}>
-        <li className={theme ? styles["dark"] : styles["light"]}>
+        <li
+          className={theme ? styles["dark"] : styles["light"]}
+          onClick={() => setShowNav(!showNav)}>
           <Link to="/" className={theme ? styles["dark"] : styles["light"]}>
             Historia i modyfikacja operacji
           </Link>
         </li>
         <li className={theme ? styles["dark"] : styles["light"]}>
-          <Link to="/" className={theme ? styles["dark"] : styles["light"]}>
+          <Link
+            to="/"
+            className={theme ? styles["dark"] : styles["light"]}
+            onClick={() => setShowNav(!showNav)}>
             Kupno walorów
           </Link>
         </li>
@@ -31,13 +36,20 @@ const LiOperations = () => {
             }`}>
             <Link
               to="/deposit"
-              className={theme ? styles["dark"] : styles["light]"]}>
+              className={theme ? styles["dark"] : styles["light]"]}
+              onClick={() => setShowNav(!showNav)}>
               Wpłata
             </Link>
-            <Link to="/" className={theme ? styles["dark"] : styles["light]"]}>
+            <Link
+              to="/"
+              className={theme ? styles["dark"] : styles["light]"]}
+              onClick={() => setShowNav(!showNav)}>
               Wypłata
             </Link>
-            <Link to="/" className={theme ? styles["dark"] : styles["light]"]}>
+            <Link
+              to="/"
+              className={theme ? styles["dark"] : styles["light]"]}
+              onClick={() => setShowNav(!showNav)}>
               Uzgodnij stan konta
             </Link>
           </li>

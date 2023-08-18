@@ -8,11 +8,9 @@ import Button from "react-bootstrap/esm/Button";
 import "react-toastify/dist/ReactToastify.css";
 import { DisplayContext } from "../../contexts/DisplayDepositContext";
 
-
 const DisplayedDeposit = () => {
   const { theme } = useContext(ThemeContext);
   const {
-    operation,
     date,
     time,
     note,
@@ -25,6 +23,7 @@ const DisplayedDeposit = () => {
     sumDeposit,
     handleSubmit,
     showToastMessage,
+    payout,
   } = useContext(DepositContext);
 
   const { displayDeposit, setDisplayDeposit } = useContext(DisplayContext);
@@ -33,23 +32,23 @@ const DisplayedDeposit = () => {
     setDisplayDeposit(!displayDeposit);
   };
 
-  const operationHandler = (event: ChangeEvent) => {
+  const operationHandler = (event: ChangeEvent<HTMLOptionElement>) => {
     const operation = event.target.value;
     setOperation(operation);
   };
-  const dateHandler = (event: ChangeEvent) => {
+  const dateHandler = (event: ChangeEvent<HTMLDataElement>) => {
     const date = event.target.value;
     setDate(date);
   };
-  const timeHandler = (event: ChangeEvent) => {
+  const timeHandler = (event: ChangeEvent<HTMLTimeElement>) => {
     const time = event.target.value;
     setTime(time);
   };
-  const bruttoHandler = (event: ChangeEvent) => {
+  const bruttoHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const brutto = event.target.value;
     setBrutto(brutto);
   };
-  const noteHandler = (event: ChangeEvent) => {
+  const noteHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const note = event.target.value;
     setNote(note);
   };
@@ -63,7 +62,7 @@ const DisplayedDeposit = () => {
       <h1>Wpłata / wypłata i inne</h1>
       <div className={styles["selectGroup"]}>
         <label>Operacja:</label>
-        <Form.Select onChange={operationHandler} value={operation}>
+        <Form.Select onChange={operationHandler}>
           <option value="Wpłata">Wpłata</option>
           <option value="Wypłata">Wypłata</option>
         </Form.Select>

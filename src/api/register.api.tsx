@@ -3,6 +3,10 @@ import validate from "../utils/helpers/validationregister.helpers";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+type TError = {
+  error?: string;
+};
+
 const useRegister = () => {
   const navigate = useNavigate();
   const formik = useFormik({
@@ -24,7 +28,7 @@ const useRegister = () => {
         console.log(response.data);
         console.log("Zarejestrowano pomyślnie");
         navigate("/loginform");
-      } catch (error) {
+      } catch (error: TError) {
         if (
           error.response &&
           error.response.data &&

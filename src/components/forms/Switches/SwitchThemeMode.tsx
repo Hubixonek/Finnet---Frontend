@@ -3,13 +3,15 @@ import styles from "../../styles/SwitchTheme.module.scss";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import { BsSunFill, BsFillMoonFill } from "react-icons/bs";
 
+
+
 const SwitchThemeMode = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext<boolean>(ThemeContext);
   const handleClick = () => {
     toggleTheme();
   };
 
-  document.body.className = `${theme ? styles["dark"] : styles['light']}`
+  document.body.className = `${theme ? styles["dark"] : styles["light"]}`;
 
   return (
     <div

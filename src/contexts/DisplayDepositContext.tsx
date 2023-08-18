@@ -7,9 +7,8 @@ const DisplayDepositProvider = ({ children }) => {
 
   const displayDepositHandler = () => {
     setDisplayDeposit(!displayDeposit);
-    console.log(displayDeposit);
   };
-  
+
   return (
     <DisplayContext.Provider
       value={{ displayDeposit, setDisplayDeposit, displayDepositHandler }}>

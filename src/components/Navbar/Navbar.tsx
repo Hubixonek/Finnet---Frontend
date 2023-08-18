@@ -12,6 +12,10 @@ import LiAccount from "../forms/Li/LiAccount";
 const NavigationBar = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
 
+  const handleClick = () => {
+    setShowNav(!showNav);
+  };
+
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -21,15 +25,19 @@ const NavigationBar = () => {
         className={`${styles["sidebar"]} ${showNav ? styles["show"] : ""} ${
           theme ? styles["dark"] : styles["light"]
         }`}>
-        <div>
+        <div className={styles["liList"]}>
           <ul>
-            <LiWallet />
-            <LiOperations />
-            <LiTools />
-            <LiAccount />
+            <LiWallet
+              showNav={showNav}
+              setShowNav={setShowNav}
+              handleClick={handleClick}
+            />
+            <LiOperations showNav={showNav} setShowNav={setShowNav} />
+            <LiTools showNav={showNav} setShowNav={setShowNav} />
+            <LiAccount showNav={showNav} setShowNav={setShowNav} />
           </ul>
-          <LoginLink />
-          <RegisterLink />
+          <RegisterLink showNav={showNav} setShowNav={setShowNav} />
+          <LoginLink showNav={showNav} setShowNav={setShowNav} />
         </div>
       </div>
     </>

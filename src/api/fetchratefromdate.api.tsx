@@ -1,6 +1,10 @@
 import axios from "axios";
 
-export const fetchRateFromDate = async (fromCurrency, toCurrency, date) => {
+export const fetchRateFromDate = async (
+  fromCurrency: string,
+  toCurrency: string,
+  date: string
+) => {
   if (!fromCurrency || !toCurrency) {
     return;
   }

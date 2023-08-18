@@ -15,8 +15,7 @@ const WalletComposition = () => {
   const { nameAndCurrencyWallet, setNameAndCurrencyWallet } =
     useContext(AddWalletContext);
   const { theme } = useContext(ThemeContext);
-  const { displayDepositHandler, displayDeposit, setDisplayDeposit } =
-    useContext(DisplayContext);
+  const { displayDepositHandler, displayDeposit } = useContext(DisplayContext);
 
   useEffect(() => {
     const data = LocalStorage.get("wallet");

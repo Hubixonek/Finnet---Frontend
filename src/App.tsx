@@ -30,6 +30,9 @@ function AppContent() {
             <BrowserRouter>
               <NavigationBar />
               <ToastContainer />
+              <br></br>
+              <br></br>
+              <br></br>
 
               <Routes>
                 <Route path="/" element={<FundsForm />} />

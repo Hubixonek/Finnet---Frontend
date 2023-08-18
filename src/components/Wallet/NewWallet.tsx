@@ -1,10 +1,16 @@
-import { useContext, useEffect, useState, createContext } from "react";
+import { useContext, useEffect, useState, ChangeEvent } from "react";
 import styles from "../styles/NewWallet.module.scss";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { AddWalletContext } from "../../contexts/AddWalletContext";
 import { useNavigate } from "react-router-dom";
+
+interface INameAndCurrency {
+  name: string;
+  currency: string;
+}
+
 const NewWallet = () => {
   const [currencies, setCurrencies] = useState([]);
   const [nameWallet, setNameWallet] = useState("");
@@ -13,21 +19,24 @@ const NewWallet = () => {
   const { nameAndCurrencyWallet, setNameAndCurrencyWallet } =
     useContext(AddWalletContext);
 
-  const typeNameWalletHandler = (event) => {
+  const typeNameWalletHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const nameWallet = event.target.value;
     setNameWallet(nameWallet);
   };
-  const typeCurrencyWalletHandler = (event) => {
+  const typeCurrencyWalletHandler = (event: ChangeEvent<HTMLOptionElement>) => {
     const currencyWallet = event.target.value;
     setSelectCurrencyForNewWallet(currencyWallet);
   };
   const saveNameAndCurrency = () => {
     if (nameWallet && currencyForNewWallet) {
-      const data = {
+      const nameAndCurrency: INameAndCurrency = {
         name: nameWallet,
         currency: currencyForNewWallet,
       };
-      setNameAndCurrencyWallet((prevWallets) => [...prevWallets, data]);
+      setNameAndCurrencyWallet((prevWallets) => [
+        ...prevWallets,
+        nameAndCurrency,
+      ]);
       navigate("/compositionstructure");
     }
   };
@@ -36,7 +45,7 @@ const NewWallet = () => {
     const response = await axios.get(
       "https://api.nbp.pl/api/exchangerates/tables/A/"
     );
-    const allCurrencies = response.data[0].rates.map((rate) => ({
+    const allCurrencies = response.data[0].rates.map((rate: string) => ({
       code: rate.code,
       name: rate.currency,
       rate: rate.mid,

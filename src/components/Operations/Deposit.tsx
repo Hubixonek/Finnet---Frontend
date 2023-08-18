@@ -19,28 +19,28 @@ const Deposit = () => {
     setNote,
     brutto,
     setBrutto,
-    sumDeposit,
     handleSubmit,
+    sumDeposit,
     showToastMessage,
   } = useContext(DepositContext);
 
-  const operationHandler = (event: ChangeEvent) => {
+  const operationHandler = (event: ChangeEvent<HTMLOptionElement>) => {
     const operation = event.target.value;
     setOperation(operation);
   };
-  const dateHandler = (event: ChangeEvent) => {
+  const dateHandler = (event: ChangeEvent<HTMLDataElement>) => {
     const date = event.target.value;
     setDate(date);
   };
-  const timeHandler = (event: ChangeEvent) => {
+  const timeHandler = (event: ChangeEvent<HTMLTimeElement>) => {
     const time = event.target.value;
     setTime(time);
   };
-  const bruttoHandler = (event: ChangeEvent) => {
+  const bruttoHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const brutto = event.target.value;
     setBrutto(brutto);
   };
-  const noteHandler = (event: ChangeEvent) => {
+  const noteHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const note = event.target.value;
     setNote(note);
   };
