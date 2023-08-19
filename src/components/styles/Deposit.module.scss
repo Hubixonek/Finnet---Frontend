@@ -101,6 +101,27 @@
 
 @media (max-width: 768px) {
   .container {
-    margin-top: 5px;
+    margin-top: 10px;
+    height: 650px;
+    width: 380px;
+    h1 {
+      font-size: 26px;
+    }
+
+    .datePicker {
+      margin-top: 0px;
+      label,
+      input {
+        margin-top: 0px;
+      }
+    }
+
+    .amountInput {
+      margin-top: 0px;
+      label {
+        width: 250px;
+        text-align: left;
+      }
+    }
   }
 }
