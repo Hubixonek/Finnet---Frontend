@@ -1,6 +1,6 @@
 import styles from "../styles/Deposit.module.scss";
 import Form from "react-bootstrap/Form";
-import { useContext } from "react";
+import { useContext, ChangeEvent } from "react";
 import { ImCross } from "react-icons/im";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { DepositContext } from "../../contexts/DepositContext";
@@ -74,7 +74,10 @@ const DisplayedDeposit = () => {
       </div>
       <div className={styles["selectGroup"]}>
         <label>Stan konta:</label>
-        <Form.Control value={sumDeposit} onChange={event => setSumDeposit(event.target.value)}></Form.Control>
+        <Form.Control
+          value={sumDeposit}
+          onChange={(event) => setSumDeposit(event.target.value)}
+          readOnly></Form.Control>
       </div>
       <div className={styles["datePicker"]}>
         <label>Data i czas operacji:</label>

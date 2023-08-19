@@ -5,13 +5,15 @@ import Decimal from "decimal.js";
 
 const DepositContext = createContext();
 
+type Money = number & { readonly type: unique symbol };
+
 interface INewDepositDatas {
   operation: string;
   date: string;
   time: string;
-  brutto: number;
+  brutto: Money;
   note: string;
-  sumDeposit?: number;
+  sumDeposit: Money;
 }
 
 const DepositContextProvider = ({ children }) => {
@@ -19,9 +21,9 @@ const DepositContextProvider = ({ children }) => {
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<string>("");
   const [note, setNote] = useState<string>("");
-  const [brutto, setBrutto] = useState<number>(0);
+  const [brutto, setBrutto] = useState<Money>(0 as Money);
   const [depositDatas, setDepositDatas] = useState<any[]>([]);
-  const [sumDeposit, setSumDeposit] = useState<number>(
+  const [sumDeposit, setSumDeposit] = useState<Money>(
     LocalStorage.get("sumDeposit") || 0
   );
   const positionBottomRight = toast.POSITION.BOTTOM_RIGHT;
@@ -69,7 +71,12 @@ const DepositContextProvider = ({ children }) => {
     if (operation === "Wpłata") {
       setSumDeposit(decimalSumDeposit.plus(decimalBrutto).toNumber());
     } else if (operation === "Wypłata") {
-      setSumDeposit(decimalSumDeposit.minus(decimalBrutto).toNumber());
+      //gte - greater than or equal
+      if (decimalSumDeposit.gte(decimalBrutto)) {
+        setSumDeposit(decimalSumDeposit.minus(decimalBrutto).toNumber());
+      } else {
+        console.log("Nie masz wystarczającej ilości gotówki by wypłacić");
+      }
     }
   };
   useEffect(() => {
