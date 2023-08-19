@@ -27,6 +27,8 @@ const DepositContextProvider = ({ children }) => {
     LocalStorage.get("sumDeposit") || 0
   );
   const positionBottomRight = toast.POSITION.BOTTOM_RIGHT;
+  const decimalSumDeposit = new Decimal(sumDeposit);
+  const decimalBrutto = new Decimal(brutto);
 
   const handleSubmit = (event: FormEvent) => {
     if (!brutto || brutto === 0) {
@@ -53,21 +55,30 @@ const DepositContextProvider = ({ children }) => {
   };
   const showToastMessage = () => {
     const bruttoLargerThanZero = brutto > 0;
-
+    const greaterThanOrEqual = sumDeposit >= brutto;
     if (operation === "Wpłata" && bruttoLargerThanZero) {
-      toast.success(`Udało się wpłacić gotówkę o kwocie  ${brutto} PLN !`, {
+      toast.success(`Udało się wpłacić gotówkę o kwocie  ${brutto} PLN`, {
         position: positionBottomRight,
       });
-    } else if (operation === "Wypłata" && bruttoLargerThanZero) {
-      toast.success(`Udało się wypłacić gotówke o kwocie ${brutto} PLN !`, {
+    } else if (
+      operation === "Wypłata" &&
+      bruttoLargerThanZero &&
+      greaterThanOrEqual
+    ) {
+      toast.success(`Udało się wypłacić gotówke o kwocie ${brutto} PLN`, {
         position: positionBottomRight,
       });
+    } else {
+      toast.error(
+        "Nie masz wystarczającej ilości gotówki by wypłacić z konta",
+        {
+          position: positionBottomRight,
+        }
+      );
     }
   };
 
   const sumOfDeposit = () => {
-    const decimalSumDeposit = new Decimal(sumDeposit);
-    const decimalBrutto = new Decimal(brutto);
     if (operation === "Wpłata") {
       setSumDeposit(decimalSumDeposit.plus(decimalBrutto).toNumber());
     } else if (operation === "Wypłata") {
