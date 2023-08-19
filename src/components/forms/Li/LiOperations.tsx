@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 const LiOperations = ({ showNav, setShowNav }) => {
   const { theme } = useContext(ThemeContext);
-  //rebuild vite
   return (
     <li>
       <a>

@@ -21,9 +21,10 @@ const DisplayedDeposit = () => {
     setNote,
     setBrutto,
     sumDeposit,
+    operation,
+    setSumDeposit,
     handleSubmit,
     showToastMessage,
-    payout,
   } = useContext(DepositContext);
 
   const { displayDeposit, setDisplayDeposit } = useContext(DisplayContext);
@@ -52,7 +53,11 @@ const DisplayedDeposit = () => {
     const note = event.target.value;
     setNote(note);
   };
-
+  const handleSave = () => {
+    handleSubmit();
+    showToastMessage();
+  };
+  console.log(operation);
   return (
     <form
       className={`${styles["container"]} ${
@@ -69,7 +74,7 @@ const DisplayedDeposit = () => {
       </div>
       <div className={styles["selectGroup"]}>
         <label>Stan konta:</label>
-        <Form.Control value={sumDeposit}></Form.Control>
+        <Form.Control value={sumDeposit} onChange={event => setSumDeposit(event.target.value)}></Form.Control>
       </div>
       <div className={styles["datePicker"]}>
         <label>Data i czas operacji:</label>
@@ -92,8 +97,7 @@ const DisplayedDeposit = () => {
       <div className={styles["btnGroup"]}>
         <Button
           onClick={() => {
-            handleSubmit();
-            showToastMessage();
+            handleSave();
           }}>
           Zapisz
         </Button>

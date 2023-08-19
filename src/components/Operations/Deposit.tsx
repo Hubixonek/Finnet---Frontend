@@ -22,6 +22,7 @@ const Deposit = () => {
     handleSubmit,
     sumDeposit,
     showToastMessage,
+    setSumDeposit,
   } = useContext(DepositContext);
 
   const operationHandler = (event: ChangeEvent<HTMLOptionElement>) => {
@@ -44,7 +45,15 @@ const Deposit = () => {
     const note = event.target.value;
     setNote(note);
   };
-
+  const handleSave = () => {
+    handleSubmit();
+    showToastMessage();
+    if (operation === "Wypłata") {
+      setSumDeposit(sumDeposit - parseFloat(brutto));
+    } else {
+      console.log("Brak wystarczających środków do wypłaty!");
+    }
+  };
   return (
     <form
       className={`${styles["container"]} ${
@@ -53,7 +62,7 @@ const Deposit = () => {
       <h1>Wpłata / wypłata i inne</h1>
       <div className={styles["selectGroup"]}>
         <label>Operacja:</label>
-        <Form.Select onChange={operationHandler} value={operation}>
+        <Form.Select onChange={operationHandler}>
           <option value="Wpłata">Wpłata</option>
           <option value="Wypłata">Wypłata</option>
         </Form.Select>
@@ -69,7 +78,7 @@ const Deposit = () => {
       </div>
       <div className={styles["amountInput"]}>
         <label>Kwota brutto:</label>
-        <Form.Control onChange={bruttoHandler} value={brutto}></Form.Control>
+        <Form.Control onChange={bruttoHandler}></Form.Control>
       </div>
       <div className={styles["noteInput"]}>
         <label>Notatka:</label>
@@ -83,8 +92,7 @@ const Deposit = () => {
       <div className={styles["btnGroup"]}>
         <Button
           onClick={() => {
-            handleSubmit();
-            showToastMessage();
+            handleSave();
           }}>
           Zapisz
         </Button>

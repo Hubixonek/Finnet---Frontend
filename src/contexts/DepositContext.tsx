@@ -10,7 +10,6 @@ interface INewDepositDatas {
   brutto: number;
   note: string;
   sumDeposit?: number;
-  payout?: number;
 }
 
 const DepositContextProvider = ({ children }) => {
@@ -20,10 +19,18 @@ const DepositContextProvider = ({ children }) => {
   const [note, setNote] = useState<string>("");
   const [brutto, setBrutto] = useState<number>(0);
   const [depositDatas, setDepositDatas] = useState<any[]>([]);
-  const [sumDeposit, setSumDeposit] = useState<number>();
-  const [payout, setPayOut] = useState<number>();
+  const [sumDeposit, setSumDeposit] = useState<number>(
+    LocalStorage.get("sumDeposit")
+  );
+  const positionBottomRight = toast.POSITION.BOTTOM_RIGHT;
 
   const handleSubmit = (event: FormEvent) => {
+    if (!brutto || brutto === 0) {
+      return toast.error("Kwota musi być większa niż 0 !", {
+        position: positionBottomRight,
+      });
+    }
+
     const newDepositDatas: INewDepositDatas = {
       operation: operation,
       date: date,
@@ -31,58 +38,39 @@ const DepositContextProvider = ({ children }) => {
       brutto: brutto,
       note: note,
       sumDeposit: sumDeposit,
-      payout: payout,
     };
-    if (!brutto || brutto === 0) {
-      return toast.error("Kwota musi być większa niż 0 !", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-    }
 
     setDepositDatas((prevDepositDatas) => [
       ...prevDepositDatas,
       newDepositDatas,
     ]);
     console.log(newDepositDatas);
+    sumOfDeposit();
   };
   const showToastMessage = () => {
-    if (brutto > 0) {
+    const bruttoLargerThanZero = brutto > 0;
+
+    if (operation === "Wpłata" && bruttoLargerThanZero) {
       toast.success(`Udało się wpłacić gotówkę o kwocie  ${brutto} PLN !`, {
-        position: toast.POSITION.BOTTOM_RIGHT,
+        position: positionBottomRight,
+      });
+    } else if (operation === "Wypłata" && bruttoLargerThanZero) {
+      toast.success(`Udało się wypłacić gotówke o kwocie ${brutto} PLN !`, {
+        position: positionBottomRight,
       });
     }
   };
 
-  const bruttoArr = depositDatas.map((deposit) => deposit.brutto);
-  const sum = bruttoArr.reduce((acc, val) => acc + parseFloat(val), 0);
-
   const sumOfDeposit = () => {
     if (operation === "Wpłata") {
-      setSumDeposit(sum);
+      setSumDeposit(sumDeposit + parseFloat(brutto));
+    } else if (operation === "Wypłata") {
+      setSumDeposit(sumDeposit - parseFloat(brutto));
     }
   };
-  const payOut = () => {
-    if (operation === "Wypłata") {
-      setPayOut(sum - brutto);
-    }
-  };
-
   useEffect(() => {
-    sumOfDeposit();
-    payOut();
-  }, [bruttoArr]);
-
-  useEffect(() => {
-    const data = LocalStorage.get("sumDeposit");
-    if (data && data.length > 0) {
-      setDepositDatas(data);
-    }
-  }, []);
-  useEffect(() => {
-    if (depositDatas && depositDatas.length > 0) {
-      LocalStorage.set("sumDeposit", depositDatas);
-    }
-  }, [depositDatas]);
+    LocalStorage.set("sumDeposit", sumDeposit);
+  }, [sumDeposit]);
 
   return (
     <DepositContext.Provider
@@ -102,6 +90,7 @@ const DepositContextProvider = ({ children }) => {
         handleSubmit,
         showToastMessage,
         sumDeposit,
+        setSumDeposit,
       }}>
       {children}
     </DepositContext.Provider>
