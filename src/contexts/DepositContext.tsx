@@ -1,6 +1,8 @@
 import { useState, createContext, useEffect, FormEvent } from "react";
 import { toast } from "react-toastify";
 import { LocalStorage } from "../services/LocalStorage.service";
+import Decimal from "decimal.js";
+
 const DepositContext = createContext();
 
 interface INewDepositDatas {
@@ -20,7 +22,7 @@ const DepositContextProvider = ({ children }) => {
   const [brutto, setBrutto] = useState<number>(0);
   const [depositDatas, setDepositDatas] = useState<any[]>([]);
   const [sumDeposit, setSumDeposit] = useState<number>(
-    LocalStorage.get("sumDeposit")
+    LocalStorage.get("sumDeposit") || 0
   );
   const positionBottomRight = toast.POSITION.BOTTOM_RIGHT;
 
@@ -62,10 +64,12 @@ const DepositContextProvider = ({ children }) => {
   };
 
   const sumOfDeposit = () => {
+    const decimalSumDeposit = new Decimal(sumDeposit);
+    const decimalBrutto = new Decimal(brutto);
     if (operation === "Wpłata") {
-      setSumDeposit(sumDeposit + parseFloat(brutto));
+      setSumDeposit(decimalSumDeposit.plus(decimalBrutto).toNumber());
     } else if (operation === "Wypłata") {
-      setSumDeposit(sumDeposit - parseFloat(brutto));
+      setSumDeposit(decimalSumDeposit.minus(decimalBrutto).toNumber());
     }
   };
   useEffect(() => {
