@@ -1,10 +1,9 @@
-import { useContext } from "react";
 import styles from "../styles/Table.module.scss";
-import { ThemeContext } from "../../contexts/ThemeContext";
 
-const SummaryDataTable = ({ totalProfitOrLoss, totalRefreshedProfitLoss }) => {
-  const { theme } = useContext(ThemeContext);
-
+const SummaryDataTablePresenter = ({
+  totalProfitOrLoss,
+  totalRefreshedProfitLoss,
+}) => {
   return (
     <>
       <div className={styles["summarydatas_table--tr"]}>
@@ -35,4 +34,4 @@ const SummaryDataTable = ({ totalProfitOrLoss, totalRefreshedProfitLoss }) => {
   );
 };
 
-export default SummaryDataTable;
+export default SummaryDataTablePresenter;

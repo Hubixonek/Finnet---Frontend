@@ -1,13 +1,14 @@
 import { useFormik } from "formik";
-import validate from "../utils/helpers/validationregister.helpers";
+import validate from "../../utils/helpers/validationregister.helpers";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import RegisterFormPresenter from "./RegisterFormPresenter";
 
 type TError = {
   error?: string;
 };
 
-const useRegister = () => {
+const RegisterFormContainer = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -45,7 +46,7 @@ const useRegister = () => {
     },
   });
 
-  return { formik };
+  return <RegisterFormPresenter formik={formik} />;
 };
 
-export default useRegister;
+export default RegisterFormContainer;

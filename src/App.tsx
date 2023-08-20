@@ -1,19 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
-import FundsForm from "./components/FundsForm/FundsForm";
-import LoginForm from "./components/LoginForm/LoginForm";
 import NavigationBar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.css";
 import { AuthContextProvider } from "../src/contexts/AuthContext";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "./services/ProtectedRoute.service";
 import { ThemeContextProvider } from "../src/contexts/ThemeContext";
-import NewWallet from "./components/Wallet/NewWallet";
 import { AddWalletProvider } from "./contexts/AddWalletContext";
-import WalletComposition from "./components/Wallet/WalletComposition";
-import Deposit from "./components/Deposit/Deposit";
+import WalletCompositionContainer from "./components/Wallet/WalletCompositionContainer";
 import { DepositContextProvider } from "./contexts/DepositContext";
 import { DisplayDepositProvider } from "./contexts/DisplayDepositContext";
 import { ToastContainer } from "react-toastify";
+import DepositContainer from "./components/Deposit/DepositContainer";
+import LoginFormContainer from "./components/LoginForm/LoginFormContainer";
+import FundsFormContainer from "./components/FundsForm/FundsFormContainer";
+import RegisterFormContainer from "./components/RegisterForm/RegisterFormContainer";
+import NewWalletContainer from "./components/Wallet/NewWalletContainer";
 function App() {
   return (
     <ThemeContextProvider>
@@ -35,19 +35,19 @@ function AppContent() {
               <br></br>
 
               <Routes>
-                <Route path="/" element={<FundsForm />} />
+                <Route path="/" element={<FundsFormContainer />} />
                 <Route
                   path="/compositionstructure"
-                  element={<WalletComposition />}
+                  element={<WalletCompositionContainer />}
                 />
-                <Route path="/deposit" element={<Deposit />} />
-                <Route path="/newwallet" element={<NewWallet />} />
-                <Route path="/fundsform" element={<FundsForm />} />
+                <Route path="/deposit" element={<DepositContainer />} />
+                <Route path="/newwallet" element={<NewWalletContainer />} />
+                <Route path="/fundsform" element={<FundsFormContainer />} />
                 <Route
                   path="/loginform"
                   element={
                     <ProtectedRoute accessBy="non-authenticated">
-                      <LoginForm />
+                      <LoginFormContainer />
                     </ProtectedRoute>
                   }
                 />
@@ -55,7 +55,7 @@ function AppContent() {
                   path="/registerform"
                   element={
                     <ProtectedRoute accessBy="non-authenticated">
-                      <RegisterForm />
+                      <RegisterFormContainer />
                     </ProtectedRoute>
                   }
                 />

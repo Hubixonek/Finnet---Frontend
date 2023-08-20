@@ -1,25 +1,14 @@
 import { useState, useEffect, useContext } from "react";
-import styles from "../styles/FundsForm.module.scss";
-import DateField from "../forms/TextField/DateField";
-import AmountField from "../forms/TextField/AmountField";
-import SelectFromCurrency from "../forms/Select/SelectFromCurrency";
-import SelectToCurrency from "../forms/Select/SelectToCurrency";
-import RateField from "../forms/TextField/RateField";
-import ResultField from "../forms/TextField/ResultField";
-import RateOfApiField from "../forms/TextField/RateOfApiField";
-import FormikErrorValidation from "../forms/Errors/FormikErrorValidation";
-import TableWithFundsDatas from "../Table/TableWithFundsDatas";
-import Button from "../forms/Button/Button";
 import useFormikHook from "../../hooks/useFormik.hooks";
 import FromAndToCurrencyChangeHandler from "../../utils/helpers/fromandtocurrencychangehandler.helpers";
 import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/nbp.api";
 import { ThemeContext } from "../../contexts/ThemeContext";
-
+import FundsFormPresenter from "./FundsFormPresenter";
 type TThemeContext = {
   theme: boolean;
 };
-const FundsForm = () => {
+const FundsFormContainer = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("");
   const [toCurrency, setToCurrency] = useState<string>("");
   const [funds, setFunds] = useState<any[]>([]);
@@ -86,50 +75,19 @@ const FundsForm = () => {
   }, [selectedFromRate, selectedToRate, fromCurrency, toCurrency]);
 
   return (
-    <>
-      <form
-        className={`${styles["formHeader"]} ${
-          theme ? styles["dark"] : styles["light"]
-        }`}
-        onSubmit={formik.handleSubmit}>
-        <div className={styles["form_input--container"]}>
-          <h1 className={styles["h1-style"]}>Przelicz kursy</h1>
-          <DateField
-            formik={formik}
-            toCurrency={toCurrency}
-            fromCurrency={fromCurrency}
-          />
-          <AmountField formik={formik} />
-          <SelectFromCurrency
-            formik={formik}
-            fromCurrency={fromCurrency}
-            currencies={currencies}
-            fromCurrencyChangeHandler={fromCurrencyChangeHandler}
-          />
-          <RateField
-            formik={formik}
-            toCurrency={toCurrency}
-            fromCurrency={fromCurrency}
-          />
-          <SelectToCurrency
-            formik={formik}
-            currencies={currencies}
-            toCurrency={toCurrency}
-            toCurrencyChangeHandler={toCurrencyChangeHandler}
-          />
-          <ResultField formik={formik} />
-          <RateOfApiField toCurrency={toCurrency} rate={rate} />
-          <Button />
-          <FormikErrorValidation formik={formik} />
-        </div>
-      </form>
-      <TableWithFundsDatas
-        currencies={currencies}
-        funds={funds}
-        removeFundsData={handleRemoveFundsData}
-      />
-    </>
+    <FundsFormPresenter
+      fromCurrency={fromCurrency}
+      toCurrency={toCurrency}
+      funds={funds}
+      currencies={currencies}
+      rate={rate}
+      theme={theme}
+      handleRemoveFundsData={handleRemoveFundsData}
+      fromCurrencyChangeHandler={fromCurrencyChangeHandler}
+      toCurrencyChangeHandler={toCurrencyChangeHandler}
+      formik={formik}
+    />
   );
 };
 
-export default FundsForm;
+export default FundsFormContainer;

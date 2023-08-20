@@ -1,36 +1,17 @@
-import { AddWalletContext } from "../../contexts/AddWalletContext";
-import { useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import styles from "../styles/WalletComposition.module.scss";
-import { ThemeContext } from "../../contexts/ThemeContext";
 import Form from "react-bootstrap/Form";
-import { LocalStorage } from "../../services/LocalStorage.service";
 import { Link } from "react-router-dom";
 import WalletTable from "./WalletTable";
 import SecondWalletTable from "./SecondWalletTable";
-import { DisplayContext } from "../../contexts/DisplayDepositContext";
-import DisplayedDeposit from "../Deposit/DisplayedDeposit";
+import DisplayedDepositContainer from "../Deposit/DisplayedDepositContainer";
 
-const WalletComposition = () => {
-  const { nameAndCurrencyWallet, setNameAndCurrencyWallet } =
-    useContext(AddWalletContext);
-  const { theme } = useContext(ThemeContext);
-  const { displayDepositHandler, displayDeposit } = useContext(DisplayContext);
-
-  useEffect(() => {
-    const data = LocalStorage.get("wallet");
-    if (data && data.length > 0) {
-      setNameAndCurrencyWallet(data);
-    }
-  }, []);
-
-  useEffect(() => {
-    LocalStorage.set("wallet", nameAndCurrencyWallet);
-  }, [nameAndCurrencyWallet]);
-  if (nameAndCurrencyWallet == null) {
-    return;
-  }
-
+const WalletCompositionPresenter = ({
+  nameAndCurrencyWallet,
+  displayDepositHandler,
+  displayDeposit,
+  theme,
+}) => {
   return (
     <>
       <div
@@ -64,11 +45,11 @@ const WalletComposition = () => {
           className={`${styles["modalLayout"]} ${
             displayDeposit ? styles["modal"] : ""
           }`}>
-          <DisplayedDeposit />
+          <DisplayedDepositContainer />
         </div>
       </div>
     </>
   );
 };
 
-export default WalletComposition;
+export default WalletCompositionPresenter;

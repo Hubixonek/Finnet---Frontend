@@ -1,11 +1,9 @@
 import { useContext } from "react";
-import useRegister from "../../api/register.api";
 import styles from "../styles/RegisterForm.module.scss";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
-const RegisterForm = () => {
-  const { formik } = useRegister();
+const RegisterFormPresenter = ({ formik }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -154,4 +152,4 @@ const RegisterForm = () => {
     </>
   );
 };
-export default RegisterForm;
+export default RegisterFormPresenter;

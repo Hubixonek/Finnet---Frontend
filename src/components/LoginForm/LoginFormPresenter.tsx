@@ -1,30 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/LoginForm.module.scss";
-import { useContext } from "react";
-import { useFormik } from "formik";
-import AuthContext from "../../contexts/AuthContext";
-import { ThemeContext } from "../../contexts/ThemeContext"
-import validate from "../../utils/helpers/validationlogin.helpers"
-const LoginForm = () => {
-  const { loginApiCall } = useContext(AuthContext);
-  const {theme} = useContext(ThemeContext);
-  const loginHandler = async () => {
-    let payload = {
-      email: formik.values.email,
-      password: formik.values.password,
-    };
-    await loginApiCall(payload);
-  };
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validate,
-    onSubmit: loginHandler,
-  });
+
+const LoginFormPresenter = ({ theme, formik }) => {
   return (
-    <form className={`${styles["container"]} ${theme ? styles["dark"] : styles["light"]}`} onSubmit={formik.handleSubmit}>
+    <form
+      className={`${styles["container"]} ${
+        theme ? styles["dark"] : styles["light"]
+      }`}
+      onSubmit={formik.handleSubmit}>
       <div>
         <h1>Cześć, dobrze Cię widzieć</h1>
         <div className={styles.id}>
@@ -83,4 +66,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default LoginFormPresenter;
