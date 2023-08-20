@@ -1,37 +1,50 @@
 import styles from "../styles/Deposit.module.scss";
 import Form from "react-bootstrap/Form";
 import { useContext, ChangeEvent } from "react";
-import { ImCross } from "react-icons/im";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { DepositContext } from "../../contexts/DepositContext";
 import Button from "react-bootstrap/esm/Button";
 import "react-toastify/dist/ReactToastify.css";
-import { DisplayContext } from "../../contexts/DisplayDepositContext";
+type Money = number & { readonly type: unique symbol };
 
-const DisplayedDeposit = () => {
-  const { theme } = useContext(ThemeContext);
+type TDepositContext = {
+  operation: string;
+  date: string;
+  time: string;
+  note: string;
+  brutto: Money;
+  sumDeposit: Money;
+  setOperation: (value: string) => void;
+  setTime: (value: string) => void;
+  setDate: (value: string) => void;
+  setNote: (value: string) => void;
+  setBrutto: (value: Money) => void;
+  handleSubmit: () => void;
+  showToastMessage: () => void;
+  setSumDeposit: (value: Money) => void;
+};
+type TThemeContext = {
+  theme: boolean;
+};
+
+const Deposit = () => {
+  const { theme } = useContext(ThemeContext) as TThemeContext;
   const {
+    operation,
     date,
     time,
     note,
     brutto,
-    setOperation,
+    sumDeposit,
     setDate,
     setTime,
     setNote,
+    setOperation,
     setBrutto,
-    sumDeposit,
-    operation,
-    setSumDeposit,
     handleSubmit,
     showToastMessage,
-  } = useContext(DepositContext);
-
-  const { displayDeposit, setDisplayDeposit } = useContext(DisplayContext);
-
-  const hideDepositFormHandler = () => {
-    setDisplayDeposit(!displayDeposit);
-  };
+    setSumDeposit,
+  } = useContext(DepositContext) as TDepositContext;
 
   const operationHandler = (event: ChangeEvent<HTMLOptionElement>) => {
     const operation = event.target.value;
@@ -57,17 +70,15 @@ const DisplayedDeposit = () => {
     handleSubmit();
     showToastMessage();
   };
-  console.log(operation);
   return (
     <form
       className={`${styles["container"]} ${
         theme ? styles["dark"] : styles["light"]
       }`}>
-      <ImCross className={styles["cancel"]} onClick={hideDepositFormHandler} />
       <h1>Wpłata / wypłata i inne</h1>
       <div className={styles["selectGroup"]}>
         <label>Operacja:</label>
-        <Form.Select onChange={operationHandler}>
+        <Form.Select onChange={operationHandler} value={operation}>
           <option value="Wpłata">Wpłata</option>
           <option value="Wypłata">Wypłata</option>
         </Form.Select>
@@ -76,8 +87,9 @@ const DisplayedDeposit = () => {
         <label>Stan konta:</label>
         <Form.Control
           value={sumDeposit}
-          onChange={(event) => setSumDeposit(event.target.value)}
-          readOnly></Form.Control>
+          onChange={(event) =>
+            setSumDeposit(event.target.value)
+          }></Form.Control>
       </div>
       <div className={styles["datePicker"]}>
         <label>Data i czas operacji:</label>
@@ -109,4 +121,4 @@ const DisplayedDeposit = () => {
   );
 };
 
-export default DisplayedDeposit;
+export default Deposit;

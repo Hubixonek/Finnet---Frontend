@@ -10,7 +10,7 @@ import { ThemeContextProvider } from "../src/contexts/ThemeContext";
 import NewWallet from "./components/Wallet/NewWallet";
 import { AddWalletProvider } from "./contexts/AddWalletContext";
 import WalletComposition from "./components/Wallet/WalletComposition";
-import Deposit from "./components/Operations/Deposit";
+import Deposit from "./components/Deposit/Deposit";
 import { DepositContextProvider } from "./contexts/DepositContext";
 import { DisplayDepositProvider } from "./contexts/DisplayDepositContext";
 import { ToastContainer } from "react-toastify";

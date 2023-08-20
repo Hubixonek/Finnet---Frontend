@@ -6,10 +6,23 @@ import AuthContext from "../../contexts/AuthContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import SwitchThemeMode from "../forms/Switches/SwitchThemeMode";
 
+interface INavProps {
+  showNav: boolean;
+  setShowNav: (value: boolean) => void;
+}
 
-const Nav = ({ setShowNav, showNav }) => {
-  const { user, logoutApiCall } = useContext(AuthContext);
-  const { theme } = useContext(ThemeContext);
+type TAuthContext = {
+  user: Object;
+  logoutApiCall: (value: Function) => void;
+};
+
+type TThemeContext = {
+  theme: boolean;
+};
+
+const Nav = ({ setShowNav, showNav }: INavProps) => {
+  const { user, logoutApiCall } = useContext(AuthContext) as TAuthContext;
+  const { theme } = useContext(ThemeContext) as TThemeContext;
   return (
     <div>
       <nav
@@ -18,7 +31,7 @@ const Nav = ({ setShowNav, showNav }) => {
         } `}>
         <label>
           <FaBars
-            onClick={() =>   setShowNav(!showNav)}
+            onClick={() => setShowNav(!showNav)}
             className={styles["hamburger"]}
           />
         </label>

@@ -16,6 +16,9 @@ import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/nbp.api";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
+type TThemeContext = {
+  theme: boolean;
+};
 const FundsForm = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("");
   const [toCurrency, setToCurrency] = useState<string>("");
@@ -24,7 +27,7 @@ const FundsForm = () => {
   const [selectedToRate, setSelectedToRate] = useState<number>();
   const [selectedFromRate, setSelectedFromRate] = useState<number>();
   const [rate, setRate] = useState<number>(0);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
 
   useEffect(() => {
     const data = LocalStorage.get("fundsData");

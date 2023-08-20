@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import WalletTable from "./WalletTable";
 import SecondWalletTable from "./SecondWalletTable";
 import { DisplayContext } from "../../contexts/DisplayDepositContext";
-import DisplayedDeposit from "../Operations/DisplayedDeposit";
+import DisplayedDeposit from "../Deposit/DisplayedDeposit";
 
 const WalletComposition = () => {
   const { nameAndCurrencyWallet, setNameAndCurrencyWallet } =

@@ -3,8 +3,16 @@ import { ThemeContext } from "../../../contexts/ThemeContext";
 import styles from "../../styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-const LiOperations = ({ showNav, setShowNav }) => {
-  const { theme } = useContext(ThemeContext);
+
+interface ILiOperationsProps {
+  showNav: boolean;
+  setShowNav: (value: boolean) => void;
+}
+type TThemeContext = {
+  theme: boolean;
+};
+const LiOperations = ({ showNav, setShowNav }: ILiOperationsProps) => {
+  const { theme } = useContext(ThemeContext) as TThemeContext;
   return (
     <li>
       <a>
@@ -40,7 +48,7 @@ const LiOperations = ({ showNav, setShowNav }) => {
               Wpłata
             </Link>
             <Link
-              to="/"
+              to="/deposit"
               className={theme ? styles["dark"] : styles["light]"]}
               onClick={() => setShowNav(!showNav)}>
               Wypłata

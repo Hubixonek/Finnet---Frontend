@@ -3,8 +3,18 @@ import { ThemeContext } from "../../../contexts/ThemeContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/Navbar.module.scss";
-const LiWallet = ({ setShowNav, showNav, handleClick }) => {
-  const { theme } = useContext(ThemeContext);
+
+interface ILiWalletProps {
+  showNav: boolean;
+  setShowNav: (value: boolean) => void;
+  handleClick: (value: Function) => void;
+}
+type TThemeContext = {
+  theme: boolean;
+};
+
+const LiWallet = ({ setShowNav, showNav, handleClick }: ILiWalletProps) => {
+  const { theme } = useContext(ThemeContext) as TThemeContext;
   return (
     <li>
       <a>

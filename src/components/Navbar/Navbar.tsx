@@ -9,6 +9,11 @@ import LiWallet from "../forms/Li/LiWallet";
 import LiOperations from "../forms/Li/LiOperations";
 import LiTools from "../forms/Li/LiTools";
 import LiAccount from "../forms/Li/LiAccount";
+
+type TThemeContext = {
+  theme: boolean;
+};
+
 const NavigationBar = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
 
@@ -16,7 +21,7 @@ const NavigationBar = () => {
     setShowNav(!showNav);
   };
 
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
 
   return (
     <>

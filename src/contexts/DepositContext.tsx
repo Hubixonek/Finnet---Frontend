@@ -23,7 +23,7 @@ const DepositContextProvider = ({ children }) => {
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<string>("");
   const [note, setNote] = useState<string>("");
-  const [brutto, setBrutto] = useState<Money>(0 as Money);
+  const [brutto, setBrutto] = useState<Money>(0);
   const [depositDatas, setDepositDatas] = useState<any[]>([]);
   const [sumDeposit, setSumDeposit] = useState<Money>(
     LocalStorage.get("sumDeposit") || 0
@@ -41,13 +41,12 @@ const DepositContextProvider = ({ children }) => {
 
     const newDepositDatas: INewDepositDatas = {
       operation: operation,
-      date: date,
-      time: time,
+      dateTime: new Date(`${date}T${time}`),
       brutto: brutto,
       note: note,
       sumDeposit: sumDeposit,
     };
-
+    console.log(newDepositDatas);
     setDepositDatas((prevDepositDatas) => [
       ...prevDepositDatas,
       newDepositDatas,
@@ -82,17 +81,19 @@ const DepositContextProvider = ({ children }) => {
   //Actualization sum of deposit/payout depanding on type of operation
   const sumOfDeposit = () => {
     if (operation === "Wpłata") {
-      setSumDeposit(decimalSumDeposit.plus(decimalBrutto).toNumber());
+      setSumDeposit(decimalSumDeposit.plus(decimalBrutto).toNumber() as Money);
     } else if (operation === "Wypłata") {
       //gte - greater than or equal
       if (decimalSumDeposit.gte(decimalBrutto)) {
-        setSumDeposit(decimalSumDeposit.minus(decimalBrutto).toNumber());
+        setSumDeposit(
+          decimalSumDeposit.minus(decimalBrutto).toNumber() as Money
+        );
       } else {
         console.log("Nie masz wystarczającej ilości gotówki by wypłacić");
       }
     }
   };
-  
+
   useEffect(() => {
     LocalStorage.set("sumDeposit", sumDeposit);
   }, [sumDeposit]);

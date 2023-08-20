@@ -6,13 +6,23 @@ import PropTypes from "prop-types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import axios from "axios";
 
-const TableWithFundsDatas = ({ funds, removeFundsData }) => {
+interface ITableWithFundsDatasProps {
+  funds: Array<T>;
+  removeFundsData: (value: Function) => void;
+}
+type TThemeContext = {
+  theme: boolean;
+};
+const TableWithFundsDatas = ({
+  funds,
+  removeFundsData,
+}: ITableWithFundsDatasProps) => {
   const [profitOrLossInPln, setProfitOrLossInPln] = useState([]);
   const [totalProfitOrLoss, setTotalProfitOrLoss] = useState([]);
   const [refreshedProfitLoss, setRefreshedProfitLoss] = useState([]);
   const [refreshRateApi, setRefreshRateApi] = useState([]);
   const [totalRefreshedProfitLoss, setTotalRefreshedProfitLoss] = useState();
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
 
   const fetchDatasFromLocalStorage = async () => {
     try {
@@ -169,10 +179,6 @@ const TableWithFundsDatas = ({ funds, removeFundsData }) => {
       />
     </div>
   );
-};
-TableWithFundsDatas.propTypes = {
-  funds: PropTypes.array.isRequired,
-  removeFundsData: PropTypes.func.isRequired,
 };
 
 export default TableWithFundsDatas;

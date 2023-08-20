@@ -3,8 +3,15 @@ import { ThemeContext } from "../../../contexts/ThemeContext";
 import { useContext } from "react";
 // import { Link } from "react-router-dom";
 import styles from "../../styles/Navbar.module.scss";
-const LiTools = ({ setShowNav, showNav }) => {
-  const { theme } = useContext(ThemeContext);
+interface ILiToolsProps {
+  showNav: boolean;
+  setShowNav: (value: boolean) => void;
+}
+type TThemeContext = {
+  theme: boolean;
+};
+const LiTools = ({ setShowNav, showNav }: ILiToolsProps) => {
+  const { theme } = useContext(ThemeContext) as TThemeContext;
 
   return (
     <li>
