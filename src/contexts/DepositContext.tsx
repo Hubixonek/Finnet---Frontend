@@ -28,7 +28,7 @@ const DepositContextProvider = ({ children }) => {
   );
   const positionBottomRight = toast.POSITION.BOTTOM_RIGHT;
   const decimalSumDeposit = new Decimal(sumDeposit);
-  const decimalBrutto = new Decimal(brutto);
+  const decimalBrutto = new Decimal(parseFloat(brutto));
 
   const handleSubmit = (event: FormEvent) => {
     if (!brutto || brutto === 0) {
