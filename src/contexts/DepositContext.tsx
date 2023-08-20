@@ -5,8 +5,10 @@ import Decimal from "decimal.js";
 
 const DepositContext = createContext();
 
+//Definition of unusual type of "Money" based on number with unique symbol
 type Money = number & { readonly type: unique symbol };
 
+//Interface of definition data of new deposit datas
 interface INewDepositDatas {
   operation: string;
   date: string;
@@ -77,7 +79,7 @@ const DepositContextProvider = ({ children }) => {
       );
     }
   };
-
+  //Actualization sum of deposit/payout depanding on type of operation
   const sumOfDeposit = () => {
     if (operation === "Wpłata") {
       setSumDeposit(decimalSumDeposit.plus(decimalBrutto).toNumber());
@@ -90,6 +92,7 @@ const DepositContextProvider = ({ children }) => {
       }
     }
   };
+  
   useEffect(() => {
     LocalStorage.set("sumDeposit", sumDeposit);
   }, [sumDeposit]);
