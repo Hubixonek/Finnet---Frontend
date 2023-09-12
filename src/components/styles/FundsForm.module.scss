@@ -49,14 +49,14 @@
 }
 .dark {
   background-color: #22272ee5;
-  color: white;
+  color: (--white-font-color);
 }
 .light {
-  background-color: white;
+  background-color: var(--white-background-color);
 }
 
-@media screen and (max-width: 1457px){
-  .formHeader{
+@media screen and (max-width: 1457px) {
+  .formHeader {
     float: none;
     margin: 20px auto;
   }

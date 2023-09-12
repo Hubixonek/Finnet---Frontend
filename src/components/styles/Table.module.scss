@@ -1,6 +1,6 @@
 .main_table--container {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   margin-left: 950px;
   margin-top: 50px;
   padding: 10px;
@@ -11,10 +11,8 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .table {
-  
   border-collapse: collapse;
   text-align: start;
-
 }
 
 .h1_table {
@@ -30,11 +28,11 @@
   max-width: 600px;
   margin-right: auto;
 
-  h3{
+  h3 {
     font-size: 25px;
   }
 }
-.btnRefresh{
+.btnRefresh {
   margin-left: auto;
 }
 .cancel {
@@ -47,7 +45,7 @@
   text-align: left;
   font-size: 16px;
 }
-.pInfo{
+.pInfo {
   display: flex;
   width: 160px;
   margin-left: auto;
@@ -57,7 +55,7 @@
   color: rgb(253, 253, 253) !important;
 }
 .light {
-  background-color: white;
+  background-color: var(--white-background-color);
   color: black;
 }
 
@@ -65,6 +63,5 @@
   .main_table--container {
     margin: 0 auto;
     margin-top: 20px;
-  
   }
 }

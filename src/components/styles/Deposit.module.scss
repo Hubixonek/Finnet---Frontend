@@ -4,7 +4,7 @@
   margin-top: 10px;
   height: 750px;
   width: 380px;
-  background-color: white;
+  background-color: var(--white-background-color);
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   h1 {
     font-size: 36px;
@@ -86,16 +86,16 @@
   }
 }
 .light {
-  background-color: white;
+  background-color: var(--white-background-color);
 }
 .dark {
-  background-color: #22272e;
-  color: white;
+  background-color: var(--dark-theme-nav-background-color);
+  color: var(--white-font-color);
 }
 
 .cancel {
   display: flex;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   margin-left: auto;
 }
 

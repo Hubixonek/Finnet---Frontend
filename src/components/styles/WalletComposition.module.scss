@@ -52,11 +52,11 @@
   }
 }
 .light {
-  background-color: white;
+  background-color: var(--white-background-color);
 }
 .dark {
   background-color: #22272ee5;
-  color: white;
+  color: var(--white-font-color);
 }
 .modalLayout {
   display: none;

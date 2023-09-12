@@ -1,7 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit&family=Oswald:wght@200;300&family=Ubuntu:ital@1&family=Unbounded:wght@800&display=swap");
 * {
   font-family: "Kanit", sans-serif;
+  --white-font-color: white;
+  --black-font-color: black;
+  --white-background-color: white;
+  --dark-theme-nav-background-color: #22272e;
+  --cursor-pointer: pointer;
 }
+
 a:contains("Powered by MIKR.US") {
   display: none;
 }

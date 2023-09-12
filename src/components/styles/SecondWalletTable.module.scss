@@ -10,10 +10,10 @@
 }
 .dark {
   background-color: #22272ee5;
-  color: white;
+  color: var(--white-font-color);
 }
 .light {
-  background-color: white;
+  background-color: var(--white-background-color);
 }
 @media screen and (max-width: 457px) {
   .container {
