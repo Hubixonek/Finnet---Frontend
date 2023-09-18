@@ -30,6 +30,9 @@ const useFormikHook = ({
   selectedFromRate,
   selectedToRate,
   setFunds,
+  setResult,
+  setDate,
+  setAmount,
   funds,
 }: FormikHookProps) => {
   const formik = useFormik({
@@ -55,11 +58,13 @@ const useFormikHook = ({
         selectedFromRate,
         selectedToRate,
         resultByRateFromApi:
-        parseFloat(formik.values.amount) * rate -
-        parseFloat(formik.values.result),
+          parseFloat(formik.values.amount) * rate -
+          parseFloat(formik.values.result),
       };
+      setAmount(formik.values.amount);
+      setResult(formik.values.result);
+      setDate(formik.values.date);
       setFunds([...funds, fundsObject]);
-      console.log(JSON.stringify(values, null));
     },
   });
 

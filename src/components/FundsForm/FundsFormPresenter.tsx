@@ -20,6 +20,7 @@ const FundsFormPresenter = ({
   fromCurrencyChangeHandler,
   toCurrencyChangeHandler,
   formik,
+  postData,
 }) => {
   return (
     <>
@@ -55,7 +56,7 @@ const FundsFormPresenter = ({
           />
           <ResultField formik={formik} />
           <RateOfApiField toCurrency={toCurrency} rate={rate} />
-          <Button />
+          <Button postData={postData} />
           <FormikErrorValidation formik={formik} />
         </div>
       </form>

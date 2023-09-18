@@ -49,7 +49,7 @@
 }
 .dark {
   background-color: #22272ee5;
-  color: (--white-font-color);
+  color: var(--white-font-color);
 }
 .light {
   background-color: var(--white-background-color);
