@@ -17,11 +17,9 @@ const RateForSelectedDay = ({
   fromCurrency,
   error,
 }: rateForSelectedDayProps) => {
-  const formattedDate = moment(date || new Date().toISOString().substr(0, 10)).format("DD.MM.YYYY");
-
-
-
-
+  const formattedDate = moment(
+    date || new Date().toISOString().substr(0, 10)
+  ).format("DD.MM.YYYY");
 
   return (
     <div className={`input-group ${styles["inputStyle"]}`}>

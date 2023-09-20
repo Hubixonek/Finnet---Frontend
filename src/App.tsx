@@ -14,6 +14,7 @@ import LoginFormContainer from "./components/LoginForm/LoginFormContainer";
 import FundsFormContainer from "./components/FundsForm/FundsFormContainer";
 import RegisterFormContainer from "./components/RegisterForm/RegisterFormContainer";
 import NewWalletContainer from "./components/Wallet/NewWalletContainer";
+import CreateLokataPresenter from "./components/Lokata/CreateLokataPresenter";
 function App() {
   return (
     <ThemeContextProvider>
@@ -43,6 +44,7 @@ function AppContent() {
                 <Route path="/deposit" element={<DepositContainer />} />
                 <Route path="/newwallet" element={<NewWalletContainer />} />
                 <Route path="/fundsform" element={<FundsFormContainer />} />
+                <Route path="/lokata" element={<CreateLokataPresenter />} />
                 <Route
                   path="/loginform"
                   element={

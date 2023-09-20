@@ -55,11 +55,12 @@ const LiWallet = ({ setShowNav, showNav, handleClick }: ILiWalletProps) => {
             className={`${styles["secondSubmenu"]} ${
               theme ? styles["dark"] : styles["light"]
             }`}>
-            <a
+            <Link
+              to="/lokata"
               className={theme ? styles["dark"] : styles["light]"]}
               onClick={() => setShowNav(!showNav)}>
               Załóż lokatę
-            </a>
+            </Link>
             <a
               className={theme ? styles["dark"] : styles["light]"]}
               onClick={() => setShowNav(!showNav)}>
