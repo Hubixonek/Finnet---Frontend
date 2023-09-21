@@ -26,6 +26,11 @@ const LiAccount = ({ setShowNav, showNav }: ILiToolsProps) => {
         <li
           className={theme ? styles["dark"] : styles["light"]}
           onClick={() => setShowNav(!showNav)}>
+          <a>Moje konto</a>
+        </li>
+        <li
+          className={theme ? styles["dark"] : styles["light"]}
+          onClick={() => setShowNav(!showNav)}>
           <a>Usuń konto</a>
         </li>
         <li
