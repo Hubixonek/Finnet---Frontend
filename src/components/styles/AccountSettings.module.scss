@@ -1,0 +1,44 @@
+.container {
+  margin-top: 5%;
+  margin-left: 7.5%;
+  .itemGroup {
+    display: flex;
+    gap: 25px;
+  }
+  .inputGroup {
+    margin-top: 0.5%;
+  }
+  .inputGroup > input {
+    padding: 20px;
+  }
+  .inputGroup > a {
+    cursor: var(--cursor-pointer);
+    color: #e7537e;
+    text-decoration: underline;
+    padding: 45px;
+
+    &:hover {
+      cursor: var(--cursor-pointer);
+      color: #e7537e;
+      text-decoration: underline;
+    }
+  }
+  h3 {
+    margin-top: 10%;
+  }
+  .password {
+    margin-top: 8%;
+  }
+  button {
+    margin-top: 3.5%;
+    border-radius: 0;
+    &:hover {
+      background-color: rgb(2, 81, 199);
+    }
+  }
+  span:last-child {
+    color: #e7537e;
+    text-decoration: underline;
+    cursor: var(--cursor-pointer);
+  }
+}

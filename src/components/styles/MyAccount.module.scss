@@ -1,0 +1,14 @@
+.container {
+  margin-top: 5%;
+  margin-left: 7.5%;
+  .itemGroup {
+    display: flex;
+    gap: 25px;
+  }
+  .inputGroup {
+    margin-top: 4.5%;
+  }
+  .inputGroup > input {
+    padding: 20px;
+  }
+}

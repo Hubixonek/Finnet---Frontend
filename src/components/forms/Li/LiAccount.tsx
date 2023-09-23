@@ -1,8 +1,9 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import { RiAccountCircleFill } from "react-icons/ri";
 import styles from "../../styles/Navbar.module.scss";
-import { useContext } from "react";
 interface ILiToolsProps {
   showNav: boolean;
   setShowNav: (value: boolean) => void;
@@ -27,6 +28,11 @@ const LiAccount = ({ setShowNav, showNav }: ILiToolsProps) => {
           className={theme ? styles["dark"] : styles["light"]}
           onClick={() => setShowNav(!showNav)}>
           <a>Moje konto</a>
+        </li>
+        <li
+          className={theme ? styles["dark"] : styles["light"]}
+          onClick={() => setShowNav(!showNav)}>
+          <Link to="/usersettings">Ustawienia</Link>
         </li>
         <li
           className={theme ? styles["dark"] : styles["light"]}

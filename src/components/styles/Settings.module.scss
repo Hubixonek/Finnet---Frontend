@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  max-width: 1400px;
+  height: 80vh;
+  margin-top: 1.5%;
+  margin: 0 auto;
+  padding: 35px;
+  background-color: var(--white-background-color);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.123), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 13px;
+
+  .itemGroup {
+    ul {
+      width: 260px;
+      height: 70vh;
+      margin-left: 2.5%;
+
+      li {
+        margin-top: 3.5%;
+
+        &:hover {
+          font-weight: bold;
+          cursor: var(--cursor-pointer);
+        }
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--black-font-color);
+  }
+}
+.dark {
+  background-color: #22272e;
+  color: white;
+}
+.darkBorder {
+  border-right: 0.1px solid rgba(247, 247, 247, 0.308);
+}
+.lightBorder{
+    border-right: 0.1px solid rgba(0, 0, 0, 0.178);
+
+}
