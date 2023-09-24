@@ -48,7 +48,6 @@ li:hover .submenu {
     padding: 10px;
     text-align: left;
     text-decoration: none;
-    color: var(--black-font-color);
   }
 }
 
@@ -102,6 +101,7 @@ li {
   margin-left: auto;
   gap: 15px;
 }
+
 .registerNav {
   cursor: var(--cursor-pointer);
   a {

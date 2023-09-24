@@ -5,7 +5,7 @@
   margin-top: 1.5%;
   flex-direction: column;
   max-width: 1200px;
-  max-height: 800px;
+  height: 100%;
   padding: 60px;
   border-radius: 5px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -71,7 +71,20 @@
   z-index: 1000;
   transform: translate(-50%, -50%);
 }
-
+.textPieChart {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.349);
+  margin-top: 4%;
+}
+.textAreaChart {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.349);
+  margin-top: 4%;
+}
 @media screen and (max-width: 830px) {
   h2 {
     margin-right: 50px;
@@ -85,7 +98,6 @@
 }
 @media screen and (max-width: 606px) {
   .container {
-    max-height: 1110px;
     max-width: 510px;
 
     h2 {
@@ -105,7 +117,6 @@
 }
 @media screen and (max-width: 480px) {
   .container {
-    max-height: 1110px;
     max-width: 450px;
 
     h2 {

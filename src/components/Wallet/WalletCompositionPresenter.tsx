@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import WalletTable from "./WalletTable";
 import SecondWalletTable from "./SecondWalletTable";
 import DisplayedDepositContainer from "../Deposit/DisplayedDepositContainer";
-
+import PieChartPresenter from "./PieChartPresenter";
+import AreaChartPresenter from "./AreaChartPresenter";
 const WalletCompositionPresenter = ({
   nameAndCurrencyWallet,
   displayDepositHandler,
@@ -38,9 +39,17 @@ const WalletCompositionPresenter = ({
         <span>Data założenia portfela </span>
         <div className={styles["tableContainer"]}>
           <WalletTable />
-
           <SecondWalletTable />
         </div>
+        <label className={styles["textPieChart"]}>
+          Udział typów walorów w portfelu
+        </label>
+
+        <PieChartPresenter />
+        <label className={styles["textAreaChart"]}>
+          Wartość rolling return w czasie [%] - dane tygodniowe
+        </label>
+        <AreaChartPresenter />
         <div
           className={`${styles["modalLayout"]} ${
             displayDeposit ? styles["modal"] : ""

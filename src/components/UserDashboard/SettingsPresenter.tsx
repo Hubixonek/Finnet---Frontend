@@ -4,7 +4,6 @@ import MyAccountPresenter from "./MyAccountPresenter";
 import { useState, useContext } from "react";
 import AccountSettingsPresenter from "./AccountSettingsPresenter";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import FinnetProPresenter from "./FinnetProPresenter";
 
 const SettingsPresenter = () => {
   const { theme } = useContext(ThemeContext);
@@ -13,7 +12,8 @@ const SettingsPresenter = () => {
   const handleTabChange = (tabName) => {
     setSelectedTab(tabName);
   };
-
+  const myAccount = "myAccount";
+  const accountSettings = "accountSettings";
   return (
     <div
       className={`${styles["container"]} ${
@@ -22,16 +22,14 @@ const SettingsPresenter = () => {
       <div className={styles["itemGroup"]}>
         <ul className={theme ? styles["darkBorder"] : styles["lightBorder"]}>
           <h1>Ustawienia</h1>
-          <li onClick={() => handleTabChange("myAccount")}>Moje konto</li>
-          <li onClick={() => handleTabChange("accountSettings")}>
+          <li onClick={() => handleTabChange(myAccount)}>Moje konto</li>
+          <li onClick={() => handleTabChange(accountSettings)}>
             Ustawienia konta
           </li>
-          <li onClick={() => handleTabChange("finnetPro")}>Finnet PRO</li>
         </ul>
       </div>
-      {selectedTab === "myAccount" && <MyAccountPresenter />}
-      {selectedTab === "accountSettings" && <AccountSettingsPresenter />}
-      {selectedTab === "finnetPro" && <FinnetProPresenter />}
+      {selectedTab === myAccount && <MyAccountPresenter />}
+      {selectedTab === accountSettings && <AccountSettingsPresenter />}
     </div>
   );
 };

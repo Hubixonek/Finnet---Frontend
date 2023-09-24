@@ -9,6 +9,7 @@ import LiWallet from "../forms/Li/LiWallet";
 import LiOperations from "../forms/Li/LiOperations";
 import LiTools from "../forms/Li/LiTools";
 import LiAccount from "../forms/Li/LiAccount";
+import LiFinnetPro from "../forms/Li/LiFinnetPro";
 
 type TThemeContext = {
   theme: boolean;
@@ -40,6 +41,7 @@ const NavigationBar = () => {
             <LiOperations showNav={showNav} setShowNav={setShowNav} />
             <LiTools showNav={showNav} setShowNav={setShowNav} />
             <LiAccount showNav={showNav} setShowNav={setShowNav} />
+            <LiFinnetPro />
           </ul>
           <RegisterLink showNav={showNav} setShowNav={setShowNav} />
           <LoginLink showNav={showNav} setShowNav={setShowNav} />

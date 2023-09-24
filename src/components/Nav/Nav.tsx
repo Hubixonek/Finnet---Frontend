@@ -38,6 +38,7 @@ const Nav = ({ setShowNav, showNav }: INavProps) => {
         <div className={styles["logo"]}>
           <span>Finnet</span>
         </div>
+
         <div className={styles["buttonGroup"]}>
           <div className={styles["signInButton"]}>
             {user && (

@@ -25,24 +25,22 @@ const LiAccount = ({ setShowNav, showNav }: ILiToolsProps) => {
       )}
       <ul className={styles["submenu"]}>
         <li
-          className={theme ? styles["dark"] : styles["light"]}
-          onClick={() => setShowNav(!showNav)}>
-          <a>Moje konto</a>
+          onClick={() => setShowNav(!showNav)}
+          className={theme ? styles["dark"] : styles["light"]}>
+          <Link
+            to="/usersettings"
+            className={theme ? styles["dark"] : styles["light"]}>
+            Moje konto
+          </Link>
         </li>
         <li
-          className={theme ? styles["dark"] : styles["light"]}
-          onClick={() => setShowNav(!showNav)}>
-          <Link to="/usersettings">Ustawienia</Link>
-        </li>
-        <li
-          className={theme ? styles["dark"] : styles["light"]}
-          onClick={() => setShowNav(!showNav)}>
-          <a>Usuń konto</a>
-        </li>
-        <li
-          className={theme ? styles["dark"] : styles["light"]}
-          onClick={() => setShowNav(!showNav)}>
-          <a>Zmień hasło</a>
+          onClick={() => setShowNav(!showNav)}
+          className={theme ? styles["dark"] : styles["light"]}>
+          <Link
+            to="/usersettings"
+            className={theme ? styles["dark"] : styles["light"]}>
+            Ustawienia
+          </Link>
         </li>
       </ul>
     </li>

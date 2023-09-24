@@ -13,6 +13,7 @@ const AccountSettingsPresenter = () => {
       <div className={styles["itemGroup"]}>
         <div className={styles["inputGroup"]}>
           <h3>Adres Email</h3>
+
           {user ? (
             <p>
               Twój adres e-mail to <strong>{user.email}</strong>
@@ -27,6 +28,7 @@ const AccountSettingsPresenter = () => {
         </div>
       </div>
       <h3 className={styles["password"]}>Zresetuj swoje hasło</h3>
+
       <div className={styles["itemGroup"]}>
         <div className={styles["inputGroup"]}>
           <label>Nowe hasło</label>
