@@ -43,21 +43,20 @@
 }
 @media screen and (max-width: 855px) {
   .container {
-    display: flex;
     flex-direction: column;
     height: 100%;
     margin-top: 1.5%;
-    margin: 0 auto;
 
     .itemGroup {
       ul {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        text-align: center;
+        margin: 0 auto;
         height: 20vh;
         margin-bottom: 5%;
         width: 100%;
-        align-items: center;
 
         li {
           margin-top: 0.5%;
@@ -78,11 +77,9 @@
   .darkBorder {
     border-right: 0;
     border-bottom: 0.1px solid rgba(247, 247, 247, 0.308);
-    width: 100%;
   }
   .lightBorder {
     border-right: 0;
     border-bottom: 0.1px solid rgba(0, 0, 0, 0.178);
-    width: 100%;
   }
 }
