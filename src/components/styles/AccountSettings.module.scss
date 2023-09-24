@@ -42,3 +42,21 @@
     cursor: var(--cursor-pointer);
   }
 }
+
+@media screen and (max-width: 855px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0%;
+    margin-left: 0%;
+    .itemGroup {
+      flex-direction: column;
+    }
+    .inputGroup {
+      margin-top: 0%;
+    }
+    .inputGroup > a {
+      padding: 0px;
+    }
+  }
+}

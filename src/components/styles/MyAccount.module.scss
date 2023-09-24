@@ -35,3 +35,48 @@
     width: 100px;
   }
 }
+
+@media screen and (max-width: 643px) {
+  .container {
+    margin-top: 5%;
+    margin-left: 7.5%;
+
+    .itemGroup {
+
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    .inputGroup {
+      
+      margin-top: 0.5%;
+      width: 100%;
+      p {
+        text-align: left;
+        margin-top: 7%;
+      }
+    }
+    .inputGroup > input {
+      padding: 7px;
+    }
+    span {
+      
+      font-size: 18px;
+    }
+
+    .darkBorder {
+      margin-top: 2%;
+      width: 100%;
+      border-bottom: 0.1px solid rgba(247, 247, 247, 0.308);
+    }
+    .lightBorder {
+      margin-top: 2%;
+      width: 100%;
+      border-bottom: 0.1px solid rgba(0, 0, 0, 0.178);
+    }
+    button {
+      margin-top: 2%;
+      width: 100px;
+    }
+  }
+}
