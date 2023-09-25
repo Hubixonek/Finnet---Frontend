@@ -8,8 +8,10 @@ const WalletTable = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={styles["container"]}>
-      <Table responsive="sm">
+    <div
+      className={`${styles["container"]} 
+      }`}>
+      <Table responsive="sm" className={theme ? "table-dark" : "table-light"}>
         <thead>
           <tr>
             <th>Walor</th>

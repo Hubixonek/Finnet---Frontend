@@ -21,7 +21,10 @@ const SecondWalletTable = () => {
         className={styles["dropdownBtn"]}
         onClick={dropDownHandler}
       />
-      <Table responsive="sm">
+      <Table
+        responsive="sm"
+        className={theme ? "table-dark" : "table-light"}
+        onClick={dropDownHandler}>
         <thead>
           <tr>
             <th>Konta gotówkowe </th>

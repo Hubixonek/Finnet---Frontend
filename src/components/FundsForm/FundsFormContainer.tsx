@@ -6,6 +6,7 @@ import { LocalStorage } from "../../services/LocalStorage.service";
 import { fetchData } from "../../api/nbp.api";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import FundsFormPresenter from "./FundsFormPresenter";
+import { API_URL } from "../../utils/constants/api_tables_url";
 type TThemeContext = {
   theme: boolean;
 };
@@ -21,7 +22,6 @@ const FundsFormContainer = () => {
   const [selectedFromRate, setSelectedFromRate] = useState<number>();
   const [rate, setRate] = useState<number>(0);
   const { theme } = useContext(ThemeContext) as TThemeContext;
-  const API_URL = "https://finnet.bieda.it/api/tables";
 
   useEffect(() => {
     const data = LocalStorage.get("fundsData");
@@ -91,14 +91,13 @@ const FundsFormContainer = () => {
           rows: [
             {
               date: date,
-              rate: rate,
+              rate: parseInt(rate),
               amount: amount,
-              result: result,
+              result: parseInt(result),
               toCurrency: toCurrency,
               fromCurrency: fromCurrency,
             },
           ],
-          userId: 1,
           category: "currency",
         },
         {
@@ -106,7 +105,7 @@ const FundsFormContainer = () => {
         }
       );
 
-      console.log(response.data);
+      console.log(JSON.stringify(response.data));
     } catch (error) {
       console.log(error);
     }
