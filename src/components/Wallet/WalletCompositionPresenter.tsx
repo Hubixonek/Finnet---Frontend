@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import WalletTable from "./WalletTable";
 import SecondWalletTable from "./SecondWalletTable";
 import DisplayedDepositContainer from "../Deposit/DisplayedDepositContainer";
-import PieChartPresenter from "./PieChartPresenter";
+import PieChartPresenter from "./DoughnutPresenter";
 import AreaChartPresenter from "./AreaChartPresenter";
 const WalletCompositionPresenter = ({
   nameAndCurrencyWallet,
