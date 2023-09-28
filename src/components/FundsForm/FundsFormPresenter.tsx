@@ -9,6 +9,21 @@ import RateOfApiField from "../forms/TextField/RateOfApiField";
 import FormikErrorValidation from "../forms/Errors/FormikErrorValidation";
 import Button from "../forms/Button/Button";
 import TableWithFundsDatasContainer from "../Table/TableWithFundsDatasContainer";
+
+type TFundsFormPresenterProps = {
+  fromCurrency: string;
+  toCurrency: string;
+  funds: [];
+  currencies: [];
+  rate: number;
+  theme: boolean;
+  handleRemoveFundsData: void;
+  fromCurrencyChangeHandler: Function;
+  toCurrencyChangeHandler: Function;
+  formik: object;
+  postData: void;
+};
+
 const FundsFormPresenter = ({
   fromCurrency,
   toCurrency,
@@ -21,7 +36,7 @@ const FundsFormPresenter = ({
   toCurrencyChangeHandler,
   formik,
   postData,
-}) => {
+}: TFundsFormPresenterProps) => {
   return (
     <>
       <form

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-
 const AuthContext = createContext({});
 
 export const AuthContextProvider = ({ children }) => {
@@ -27,17 +26,21 @@ export const AuthContextProvider = ({ children }) => {
 
   const logoutApiCall = async () => {
     try {
-      await axios.post(
+      const response = await axios.post(
         "https://finnet.bieda.it/api/auth/logout",
         {},
         {
           withCredentials: true,
         }
       );
+      console.log("Odpowiedź z serwera:", response);
+
       localStorage.removeItem("user");
       setUser(null);
     } catch (error) {
-      console.log(error);
+      localStorage.removeItem("user");
+      setUser(null);
+      console.log("Błąd przy wylogowywaniu", error);
     }
   };
 

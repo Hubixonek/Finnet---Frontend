@@ -9,7 +9,9 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@tests/*": [ "./__tests__/*" ],
+
     }
   },
   "include": [

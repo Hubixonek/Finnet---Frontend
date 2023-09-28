@@ -3,6 +3,11 @@ import styles from "../styles/AccountSettings.module.scss";
 import Form from "react-bootstrap/Form";
 import AuthContext from "../../contexts/AuthContext";
 import Button from "react-bootstrap/esm/Button";
+
+type TUser = {
+  user: Object;
+};
+
 const AccountSettingsPresenter = () => {
   const { user } = useContext(AuthContext);
 

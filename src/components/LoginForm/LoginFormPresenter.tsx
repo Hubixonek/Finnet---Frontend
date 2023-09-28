@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/LoginForm.module.scss";
 
-const LoginFormPresenter = ({ theme, formik }) => {
+type TLoginFormPresenter = {
+  theme: boolean;
+  formik: any;
+};
+
+const LoginFormPresenter = ({ theme, formik }: TLoginFormPresenter) => {
   return (
     <form
       className={`${styles["container"]} ${
