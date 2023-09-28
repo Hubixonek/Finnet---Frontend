@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({});
 
@@ -11,6 +11,7 @@ export const AuthContextProvider = ({ children }) => {
     }
     return null;
   });
+
   const loginApiCall = async (payload) => {
     const apiResponse = await axios.post(
       "https://finnet.bieda.it/api/auth/login",
@@ -23,17 +24,23 @@ export const AuthContextProvider = ({ children }) => {
     setUser(apiResponse.data);
     localStorage.setItem("user", JSON.stringify(apiResponse.data));
   };
+
   const logoutApiCall = async () => {
-    await axios.post(
-      "https://finnet.bieda.it/api/auth/logout",
-      {},
-      {
-        withCredentials: true,
-      }
-    );
-    localStorage.removeItem("user");
-    setUser(null);
+    try {
+      await axios.post(
+        "https://finnet.bieda.it/api/auth/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      localStorage.removeItem("user");
+      setUser(null);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <AuthContext.Provider value={{ loginApiCall, user, logoutApiCall }}>
       {children}
