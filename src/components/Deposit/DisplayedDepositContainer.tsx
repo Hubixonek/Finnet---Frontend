@@ -2,6 +2,7 @@ import { useContext, ChangeEvent } from "react";
 import { DepositContext } from "../../contexts/DepositContext";
 import { DisplayContext } from "../../contexts/DisplayDepositContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { TThemeContext } from "../../types/themecontext";
 import DisplayedDepositPresenter from "./DisplayedDepositPresenter";
 
 type Money = number & { readonly type: unique symbol };
@@ -22,9 +23,7 @@ type TDepositContext = {
   showToastMessage: () => void;
   setSumDeposit: (value: Money) => void;
 };
-type TThemeContext = {
-  theme: boolean;
-};
+
 type TDisplayContext = {
   displayDeposit: boolean;
   setDisplayDeposit: (value: boolean) => void;

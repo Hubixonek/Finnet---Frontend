@@ -4,11 +4,12 @@ import { DisplayContext } from "../../contexts/DisplayDepositContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { LocalStorage } from "../../services/LocalStorage.service";
 import WalletCompositionPresenter from "./WalletCompositionPresenter";
+import { TThemeContext } from "../../types/themecontext";
 
 const WalletCompositionContainer = () => {
   const { nameAndCurrencyWallet, setNameAndCurrencyWallet } =
     useContext(AddWalletContext);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
   const { displayDepositHandler, displayDeposit } = useContext(DisplayContext);
 
   useEffect(() => {

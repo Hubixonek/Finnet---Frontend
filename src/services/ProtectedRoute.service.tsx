@@ -2,8 +2,17 @@ import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children, accessBy }) => {
-  const { user } = useContext(AuthContext);
+interface IProtectRouteProps {
+  children: any;
+  accessBy: any;
+}
+
+type TUser = {
+  user: object;
+};
+
+const ProtectedRoute = ({ children, accessBy }: IProtectRouteProps) => {
+  const { user } = useContext(AuthContext) as TUser;
   if (accessBy === "non-authenticated") {
     if (!user) {
       return children;

@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { LocalStorage } from "../services/LocalStorage.service";
-const ThemeContext = createContext();
+const ThemeContext = createContext<boolean | undefined>(undefined);
 
-const ThemeContextProvider = (props: boolean) => {
+const ThemeContextProvider = (props: { children: React.ReactNode }) => {
   const getTheme = () => {
     return JSON.parse(LocalStorage.get("dark")) || false;
   };

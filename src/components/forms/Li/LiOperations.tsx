@@ -3,14 +3,13 @@ import { ThemeContext } from "../../../contexts/ThemeContext";
 import styles from "../../styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { TThemeContext } from "../../../types/themecontext";
 
 interface ILiOperationsProps {
   showNav: boolean;
   setShowNav: (value: boolean) => void;
 }
-type TThemeContext = {
-  theme: boolean;
-};
+
 const LiOperations = ({ showNav, setShowNav }: ILiOperationsProps) => {
   const { theme } = useContext(ThemeContext) as TThemeContext;
   return (

@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import axios from "axios";
 import TableWithFundsDatasPresenter from "./TableWithFundsDatasPresenter";
-
+import { TThemeContext } from "../../types/themecontext";
 interface ITableWithFundsDatasProps {
-  funds: Array<T>;
-  removeFundsData: (value: Function) => void;
+  funds: [];
+  removeFundsData: Function;
 }
-type TThemeContext = {
-  theme: boolean;
-};
 
-const TableWithFundsDatasContainer = ({ funds, removeFundsData }) => {
+const TableWithFundsDatasContainer = ({
+  funds,
+  removeFundsData,
+}: ITableWithFundsDatasProps) => {
   const [profitOrLossInPln, setProfitOrLossInPln] = useState([]);
   const [totalProfitOrLoss, setTotalProfitOrLoss] = useState([]);
   const [refreshedProfitLoss, setRefreshedProfitLoss] = useState([]);

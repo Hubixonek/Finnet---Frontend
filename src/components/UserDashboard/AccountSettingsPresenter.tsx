@@ -2,14 +2,16 @@ import { useContext } from "react";
 import styles from "../styles/AccountSettings.module.scss";
 import Form from "react-bootstrap/Form";
 import AuthContext from "../../contexts/AuthContext";
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 
 type TUser = {
-  user: Object;
+  user: {
+    email: string;
+  };
 };
 
 const AccountSettingsPresenter = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext) as TUser;
 
   console.log(user);
   return (

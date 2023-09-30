@@ -4,6 +4,7 @@ import styles from "../styles/SecondWalletTable.module.scss";
 import { useContext, useState } from "react";
 import { DepositContext } from "../../contexts/DepositContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { TThemeContext } from "../../types/themecontext";
 
 const SecondWalletTable = () => {
   const [dropDown, setDropDown] = useState(false);
@@ -13,7 +14,7 @@ const SecondWalletTable = () => {
     console.log(dropDown);
   };
   const { sumDeposit } = useContext(DepositContext);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
 
   return (
     <div className={styles["container"]}>

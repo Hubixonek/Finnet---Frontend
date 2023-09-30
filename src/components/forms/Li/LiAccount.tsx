@@ -4,13 +4,12 @@ import AuthContext from "../../../contexts/AuthContext";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import { RiAccountCircleFill } from "react-icons/ri";
 import styles from "../../styles/Navbar.module.scss";
+import { TThemeContext } from "../../../types/themecontext";
 interface ILiToolsProps {
   showNav: boolean;
   setShowNav: (value: boolean) => void;
 }
-type TThemeContext = {
-  theme: boolean;
-};
+
 const LiAccount = ({ setShowNav, showNav }: ILiToolsProps) => {
   const { theme } = useContext(ThemeContext) as TThemeContext;
   const user = useContext(AuthContext);

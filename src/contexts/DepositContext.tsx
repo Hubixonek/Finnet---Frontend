@@ -11,8 +11,7 @@ type Money = number & { readonly type: unique symbol };
 //Interface of definition data of new deposit datas
 interface INewDepositDatas {
   operation: string;
-  date: string;
-  time: string;
+  dateTime: object;
   brutto: Money;
   note: string;
   sumDeposit: Money;

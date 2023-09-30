@@ -17,11 +17,11 @@ type TFundsFormPresenterProps = {
   currencies: [];
   rate: number;
   theme: boolean;
-  handleRemoveFundsData: void;
+  handleRemoveFundsData: Function;
   fromCurrencyChangeHandler: Function;
   toCurrencyChangeHandler: Function;
-  formik: object;
-  postData: void;
+  formik: any;
+  postData: Function;
 };
 
 const FundsFormPresenter = ({
@@ -76,7 +76,6 @@ const FundsFormPresenter = ({
         </div>
       </form>
       <TableWithFundsDatasContainer
-        currencies={currencies}
         funds={funds}
         removeFundsData={handleRemoveFundsData}
       />

@@ -1,27 +1,19 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { FaBars } from "react-icons/fa";
 import styles from "../styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import SwitchThemeMode from "../forms/Switches/SwitchThemeMode";
-
+import { TThemeContext } from "../../types/themecontext";
+import { TAuthWithLogoutContext } from "../../types/authWithLogoutContextTypes";
 interface INavProps {
   showNav: boolean;
   setShowNav: (value: boolean) => void;
 }
 
-type TAuthContext = {
-  user: Object;
-  logoutApiCall: (value: Function) => void;
-};
-
-type TThemeContext = {
-  theme: boolean;
-};
-
 const Nav = ({ setShowNav, showNav }: INavProps) => {
-  const { user, logoutApiCall } = useContext(AuthContext) as TAuthContext;
+  const { user, logoutApiCall } = useContext(AuthContext) as TAuthWithLogoutContext;
   const { theme } = useContext(ThemeContext) as TThemeContext;
   return (
     <div>
@@ -42,9 +34,9 @@ const Nav = ({ setShowNav, showNav }: INavProps) => {
         <div className={styles["buttonGroup"]}>
           <div className={styles["signInButton"]}>
             {user && (
-              <Link className={`${theme ? styles["dark"] : styles["light"]}`}>
+              <a className={`${theme ? styles["dark"] : styles["light"]}`}>
                 {user.email}
-              </Link>
+              </a>
             )}
             {!user && (
               <Link
@@ -60,12 +52,12 @@ const Nav = ({ setShowNav, showNav }: INavProps) => {
             )}
             <div>
               {user && (
-                <Link
+                <a
                   onClick={() => {
                     logoutApiCall();
                   }}>
                   Wyloguj się!
-                </Link>
+                </a>
               )}
             </div>
           </div>

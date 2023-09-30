@@ -3,6 +3,7 @@ import styles from "../styles/LokataPresenter.module.scss";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { TThemeContext } from "../../types/themecontext";
 const CreateLokataPresenter = () => {
   const [capitalization, setCapitalization] = useState([
     { value: "1 dzień", label: "1 dzień" },
@@ -26,7 +27,7 @@ const CreateLokataPresenter = () => {
     { value: "mBank", label: "mBank" },
     { value: "Gotówka", label: "Gotówka" },
   ]);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
 
   console.log(capitalization);
   return (

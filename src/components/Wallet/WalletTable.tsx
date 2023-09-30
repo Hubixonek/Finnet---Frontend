@@ -3,9 +3,10 @@ import { useContext } from "react";
 import { DepositContext } from "../../contexts/DepositContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import styles from "../styles/SecondWalletTable.module.scss";
+import { TThemeContext } from "../../types/themecontext";
 const WalletTable = () => {
   const { sumDeposit } = useContext(DepositContext);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
 
   return (
     <div

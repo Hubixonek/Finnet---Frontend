@@ -10,10 +10,7 @@ import LiOperations from "../forms/Li/LiOperations";
 import LiTools from "../forms/Li/LiTools";
 import LiAccount from "../forms/Li/LiAccount";
 import LiFinnetPro from "../forms/Li/LiFinnetPro";
-
-type TThemeContext = {
-  theme: boolean;
-};
+import { TThemeContext } from "../../types/themecontext";
 
 const NavigationBar = () => {
   const [showNav, setShowNav] = useState<boolean>(false);

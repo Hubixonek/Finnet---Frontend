@@ -1,8 +1,8 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 const AuthContext = createContext({});
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }: any) => {
   const [user, setUser] = useState(() => {
     let userProfile = localStorage.getItem("user");
     if (userProfile) {
@@ -11,7 +11,7 @@ export const AuthContextProvider = ({ children }) => {
     return null;
   });
 
-  const loginApiCall = async (payload) => {
+  const loginApiCall = async (payload: any) => {
     const apiResponse = await axios.post(
       "https://finnet.bieda.it/api/auth/login",
       payload,

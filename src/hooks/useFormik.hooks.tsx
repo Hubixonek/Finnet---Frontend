@@ -5,10 +5,13 @@ interface FormikHookProps {
   fromCurrency: string;
   toCurrency: string;
   rate: number;
-  selectedFromRate: number | undefined;
-  selectedToRate: number | undefined;
+  selectedFromRate: number;
+  selectedToRate: number;
   setFunds: (funds: FundsObject[]) => void;
   funds: FundsObject[];
+  setResult: (value: number) => void;
+  setDate: (value: string) => void;
+  setAmount: (value: number) => void;
 }
 interface FundsObject {
   id: number;
@@ -19,8 +22,8 @@ interface FundsObject {
   result: number;
   toCurrency: string;
   apiRate: number;
-  selectedFromRate: number | undefined;
-  selectedToRate: number | undefined;
+  selectedFromRate: number;
+  selectedToRate: number;
   resultByRateFromApi: number;
 }
 const useFormikHook = ({
@@ -38,28 +41,26 @@ const useFormikHook = ({
   const formik = useFormik({
     initialValues: {
       date: "",
-      amount: "",
-      rate: "",
+      amount: 0,
+      rate: 0,
       fromCurrency: "",
-      result: "",
+      result: 0,
       toCurrency: "",
     },
     validate,
-    onSubmit: (values) => {
+    onSubmit: () => {
       const fundsObject: FundsObject = {
         id: Math.random(),
         date: formik.values.date,
-        amount: parseFloat(formik.values.amount),
-        rate: parseFloat(formik.values.rate),
+        amount: formik.values.amount,
+        rate: formik.values.rate,
         fromCurrency,
-        result: parseFloat(formik.values.result),
+        result: formik.values.result,
         toCurrency,
         apiRate: rate,
         selectedFromRate,
         selectedToRate,
-        resultByRateFromApi:
-          parseFloat(formik.values.amount) * rate -
-          parseFloat(formik.values.result),
+        resultByRateFromApi: formik.values.amount * rate - formik.values.result,
       };
       setAmount(formik.values.amount);
       setResult(formik.values.result);

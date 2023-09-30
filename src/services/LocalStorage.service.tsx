@@ -1,12 +1,12 @@
 export const LocalStorage = {
-  get(key) {
+  get(key: any) {
     const value = localStorage.getItem(key);
     return value ? JSON.parse(value) : null;
   },
-  set(key, value) {
+  set(key: any, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
   },
-  remove(key) {
+  remove(key: any) {
     localStorage.removeItem(key);
   },
 };

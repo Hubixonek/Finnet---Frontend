@@ -7,19 +7,18 @@ import { fetchData } from "../../api/nbp.api";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import FundsFormPresenter from "./FundsFormPresenter";
 import { API_URL } from "../../utils/constants/api_tables_url";
-type TThemeContext = {
-  theme: boolean;
-};
+import { TThemeContext } from "../../types/themecontext";
+
 const FundsFormContainer = () => {
-  const [amount, setAmount] = useState();
-  const [result, setResult] = useState();
+  const [amount, setAmount] = useState<number>(0);
+  const [result, setResult] = useState<number>(0);
   const [date, setDate] = useState<string>();
   const [fromCurrency, setFromCurrency] = useState<string>("");
   const [toCurrency, setToCurrency] = useState<string>("");
-  const [funds, setFunds] = useState<any[]>([]);
-  const [currencies, setCurrencies] = useState<string[]>([]);
-  const [selectedToRate, setSelectedToRate] = useState<number>();
-  const [selectedFromRate, setSelectedFromRate] = useState<number>();
+  const [funds, setFunds] = useState<[]>([]);
+  const [currencies, setCurrencies] = useState<[]>([]);
+  const [selectedToRate, setSelectedToRate] = useState<number>(0);
+  const [selectedFromRate, setSelectedFromRate] = useState<number>(0);
   const [rate, setRate] = useState<number>(0);
   const { theme } = useContext(ThemeContext) as TThemeContext;
 

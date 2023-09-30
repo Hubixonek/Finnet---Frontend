@@ -2,9 +2,10 @@ import { useContext } from "react";
 import styles from "../styles/RegisterForm.module.scss";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { TThemeContext } from "../../types/themecontext";
 
 const RegisterFormPresenter = ({ formik }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
 
   return (
     <>

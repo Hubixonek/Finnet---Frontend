@@ -4,6 +4,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { AddWalletContext } from "../../contexts/AddWalletContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { TThemeContext } from "../../types/themecontext";
 
 interface INameAndCurrency {
   name: string;
@@ -11,7 +12,7 @@ interface INameAndCurrency {
 }
 
 const NewWalletContainer = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
   const { nameAndCurrencyWallet, setNameAndCurrencyWallet } = useContext(
     AddWalletContext
   ) as INameAndCurrency;

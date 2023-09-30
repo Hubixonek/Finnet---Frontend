@@ -1,10 +1,11 @@
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 import styles from "../styles/MyAccount.module.scss";
 import Form from "react-bootstrap/Form";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { useContext } from "react";
+import { TThemeContext } from "../../types/themecontext";
 const MyAccountPresenter = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
 
   return (
     <div className={styles["container"]}>

@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const AddWalletContext = createContext();
 
-const AddWalletProvider = ({ children }) => {
+const AddWalletProvider = ({ children }: any) => {
   const [nameAndCurrencyWallet, setNameAndCurrencyWallet] = useState([]);
 
   return (

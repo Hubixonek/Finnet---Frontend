@@ -1,15 +1,13 @@
 import { FaHammer } from "react-icons/fa";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import { useContext } from "react";
-// import { Link } from "react-router-dom";
 import styles from "../../styles/Navbar.module.scss";
+import { TThemeContext } from "../../../types/themecontext";
 interface ILiToolsProps {
   showNav: boolean;
   setShowNav: (value: boolean) => void;
 }
-type TThemeContext = {
-  theme: boolean;
-};
+
 const LiTools = ({ setShowNav, showNav }: ILiToolsProps) => {
   const { theme } = useContext(ThemeContext) as TThemeContext;
 

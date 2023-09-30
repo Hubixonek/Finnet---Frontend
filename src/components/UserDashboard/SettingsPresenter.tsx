@@ -4,12 +4,13 @@ import MyAccountPresenter from "./MyAccountPresenter";
 import { useState, useContext } from "react";
 import AccountSettingsPresenter from "./AccountSettingsPresenter";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { TThemeContext } from "../../types/themecontext";
 
 const SettingsPresenter = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as TThemeContext;
   const [selectedTab, setSelectedTab] = useState("myAccount");
 
-  const handleTabChange = (tabName) => {
+  const handleTabChange = (tabName: string) => {
     setSelectedTab(tabName);
   };
   const myAccount = "myAccount";
