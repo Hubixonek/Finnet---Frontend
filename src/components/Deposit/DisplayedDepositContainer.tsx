@@ -4,24 +4,23 @@ import { DisplayContext } from "../../contexts/DisplayDepositContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { TThemeContext } from "../../types/themecontext";
 import DisplayedDepositPresenter from "./DisplayedDepositPresenter";
-
-type Money = number & { readonly type: unique symbol };
+import { TMoney } from "../../types/money";
 
 type TDepositContext = {
   operation: string;
   date: string;
   time: string;
   note: string;
-  brutto: Money;
-  sumDeposit: Money;
+  brutto: TMoney;
+  sumDeposit: TMoney;
   setOperation: (value: string) => void;
   setTime: (value: string) => void;
   setDate: (value: string) => void;
   setNote: (value: string) => void;
-  setBrutto: (value: Money) => void;
+  setBrutto: (value: TMoney) => void;
   handleSubmit: () => void;
   showToastMessage: () => void;
-  setSumDeposit: (value: Money) => void;
+  setSumDeposit: (value: TMoney) => void;
 };
 
 type TDisplayContext = {

@@ -1,4 +1,4 @@
-module.exports = {
+export default  {
   roots: ["<rootDir>/src"],
   testEnvironment: "jsdom",
 
@@ -8,7 +8,7 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
-  setupFilesAfterEnv: ["@testing-library/react"],
+  setupFilesAfterEnv: ['./setupTests.tsx'],
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
 };

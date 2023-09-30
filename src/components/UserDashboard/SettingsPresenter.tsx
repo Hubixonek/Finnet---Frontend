@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styles from "../styles/Settings.module.scss";
 import MyAccountPresenter from "./MyAccountPresenter";
 import { useState, useContext } from "react";

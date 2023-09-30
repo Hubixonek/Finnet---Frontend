@@ -1,6 +1,6 @@
 import styles from "../../styles/FundsForm.module.scss";
 
-const Button = ({ postData }) => {
+const Button = ({ postData }: any) => {
   return (
     <div className="save-btn mt-2">
       <button

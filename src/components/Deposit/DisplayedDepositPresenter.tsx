@@ -3,7 +3,26 @@ import Form from "react-bootstrap/Form";
 import { ImCross } from "react-icons/im";
 import Button from "react-bootstrap/esm/Button";
 import "react-toastify/dist/ReactToastify.css";
+import { TMoney } from "../../types/money";
+import { ChangeEvent } from "react";
 
+type TDepositPresenterProps = {
+  setSumDeposit: (value: TMoney) => void;
+  operationHandler: ChangeEvent<HTMLOptionElement>;
+  dateHandler: ChangeEvent<HTMLDataElement>;
+  timeHandler: ChangeEvent<HTMLTimeElement>;
+  bruttoHandler: ChangeEvent<HTMLInputElement>;
+  noteHandler: ChangeEvent<HTMLTextAreaElement>;
+  handleSave: Function;
+  operation: string;
+  date: string;
+  time: string;
+  note: string;
+  brutto: TMoney;
+  sumDeposit: TMoney;
+  theme: boolean;
+  hideDepositFormHandler: Function;
+};
 const DisplayedDepositPresenter = ({
   operationHandler,
   dateHandler,
@@ -20,7 +39,7 @@ const DisplayedDepositPresenter = ({
   brutto,
   sumDeposit,
   theme,
-}) => {
+}: TDepositPresenterProps) => {
   return (
     <form
       className={`${styles["container"]} ${

@@ -2,29 +2,27 @@ import { useState, createContext, useEffect, FormEvent } from "react";
 import { toast } from "react-toastify";
 import { LocalStorage } from "../services/LocalStorage.service";
 import Decimal from "decimal.js";
-
+import { TMoney } from "../types/money";
 const DepositContext = createContext();
 
-//Definition of unusual type of "Money" based on number with unique symbol
-type Money = number & { readonly type: unique symbol };
 
 //Interface of definition data of new deposit datas
 interface INewDepositDatas {
   operation: string;
   dateTime: object;
-  brutto: Money;
+  brutto: TMoney;
   note: string;
-  sumDeposit: Money;
+  sumDeposit: TMoney;
 }
 
-const DepositContextProvider = ({ children }) => {
+const DepositContextProvider = ({ children }: any) => {
   const [operation, setOperation] = useState<string>("Wpłata");
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<string>("");
   const [note, setNote] = useState<string>("");
-  const [brutto, setBrutto] = useState<Money>(0);
+  const [brutto, setBrutto] = useState<TMoney>(0);
   const [depositDatas, setDepositDatas] = useState<any[]>([]);
-  const [sumDeposit, setSumDeposit] = useState<Money>(
+  const [sumDeposit, setSumDeposit] = useState<TMoney>(
     LocalStorage.get("sumDeposit") || 0
   );
   const positionBottomRight = toast.POSITION.BOTTOM_RIGHT;
@@ -80,12 +78,12 @@ const DepositContextProvider = ({ children }) => {
   //Actualization sum of deposit/payout depanding on type of operation
   const sumOfDeposit = () => {
     if (operation === "Wpłata") {
-      setSumDeposit(decimalSumDeposit.plus(decimalBrutto).toNumber() as Money);
+      setSumDeposit(decimalSumDeposit.plus(decimalBrutto).toNumber() as TMoney);
     } else if (operation === "Wypłata") {
       //gte - greater than or equal
       if (decimalSumDeposit.gte(decimalBrutto)) {
         setSumDeposit(
-          decimalSumDeposit.minus(decimalBrutto).toNumber() as Money
+          decimalSumDeposit.minus(decimalBrutto).toNumber() as TMoney
         );
       } else {
         console.log("Nie masz wystarczającej ilości gotówki by wypłacić");

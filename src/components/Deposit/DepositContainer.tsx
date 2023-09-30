@@ -2,26 +2,23 @@ import DepositPresenter from "./DepositPresenter";
 import { useContext, ChangeEvent } from "react";
 import { DepositContext } from "../../contexts/DepositContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
-type Money = number & { readonly type: unique symbol };
-
+import { TThemeContext } from "../../types/themecontext";
+import { TMoney } from "../../types/money";
 type TDepositContext = {
   operation: string;
   date: string;
   time: string;
   note: string;
-  brutto: Money;
-  sumDeposit: Money;
+  brutto: TMoney;
+  sumDeposit: TMoney;
   setOperation: (value: string) => void;
   setTime: (value: string) => void;
   setDate: (value: string) => void;
   setNote: (value: string) => void;
-  setBrutto: (value: Money) => void;
+  setBrutto: (value: TMoney) => void;
   handleSubmit: (value: Function) => void;
   showToastMessage: () => void;
-  setSumDeposit: (value: Money) => void;
-};
-type TThemeContext = {
-  theme: boolean;
+  setSumDeposit: (value: TMoney) => void;
 };
 
 const DepositContainer = () => {
