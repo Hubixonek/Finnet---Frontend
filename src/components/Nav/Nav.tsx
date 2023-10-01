@@ -13,7 +13,9 @@ interface INavProps {
 }
 
 const Nav = ({ setShowNav, showNav }: INavProps) => {
-  const { user, logoutApiCall } = useContext(AuthContext) as TAuthWithLogoutContext;
+  const { user, logoutApiCall } = useContext(
+    AuthContext
+  ) as TAuthWithLogoutContext;
   const { theme } = useContext(ThemeContext) as TThemeContext;
   return (
     <div>

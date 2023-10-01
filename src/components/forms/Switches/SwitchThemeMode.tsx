@@ -3,10 +3,8 @@ import styles from "../../styles/SwitchTheme.module.scss";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import { BsSunFill, BsFillMoonFill } from "react-icons/bs";
 
-
-
 const SwitchThemeMode = () => {
-  const { theme, toggleTheme } = useContext<boolean>(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext) as any;
   const handleClick = () => {
     toggleTheme();
   };
