@@ -4,11 +4,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/Navbar.module.scss";
 import { TThemeContext } from "../../../types/themecontext";
+import React, { MouseEventHandler } from "react";
+
 interface ILiWalletProps {
   showNav: boolean;
   setShowNav: (value: boolean) => void;
-  handleClick: (value: Function) => void;
-}
+  handleClick: MouseEventHandler<HTMLLIElement>}
 
 const LiWallet = ({ setShowNav, showNav, handleClick }: ILiWalletProps) => {
   const { theme } = useContext(ThemeContext) as TThemeContext;

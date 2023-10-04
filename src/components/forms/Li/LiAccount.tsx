@@ -9,40 +9,48 @@ interface ILiToolsProps {
   showNav: boolean;
   setShowNav: (value: boolean) => void;
 }
-
+type TAuthContext = {
+  user: {
+    email: string;
+  };
+};
 const LiAccount = ({ setShowNav, showNav }: ILiToolsProps) => {
   const { theme } = useContext(ThemeContext) as TThemeContext;
-  const user = useContext(AuthContext);
+  const { user } = useContext(AuthContext) as TAuthContext;
 
   return (
-    <li>
+    <>
       {!user ? null : (
-        <a>
-          <RiAccountCircleFill className={styles["icons"]} />
-          <span>Konto {user.email}</span>
-        </a>
+        <li>
+          {!user ? null : (
+            <a>
+              <RiAccountCircleFill className={styles["icons"]} />
+              <span>Konto {user.email}</span>
+            </a>
+          )}
+          <ul className={styles["submenu"]}>
+            <li
+              onClick={() => setShowNav(!showNav)}
+              className={theme ? styles["dark"] : styles["light"]}>
+              <Link
+                to="/usersettings"
+                className={theme ? styles["dark"] : styles["light"]}>
+                Moje konto
+              </Link>
+            </li>
+            <li
+              onClick={() => setShowNav(!showNav)}
+              className={theme ? styles["dark"] : styles["light"]}>
+              <Link
+                to="/usersettings"
+                className={theme ? styles["dark"] : styles["light"]}>
+                Ustawienia
+              </Link>
+            </li>
+          </ul>
+        </li>
       )}
-      <ul className={styles["submenu"]}>
-        <li
-          onClick={() => setShowNav(!showNav)}
-          className={theme ? styles["dark"] : styles["light"]}>
-          <Link
-            to="/usersettings"
-            className={theme ? styles["dark"] : styles["light"]}>
-            Moje konto
-          </Link>
-        </li>
-        <li
-          onClick={() => setShowNav(!showNav)}
-          className={theme ? styles["dark"] : styles["light"]}>
-          <Link
-            to="/usersettings"
-            className={theme ? styles["dark"] : styles["light"]}>
-            Ustawienia
-          </Link>
-        </li>
-      </ul>
-    </li>
+    </>
   );
 };
 export default LiAccount;

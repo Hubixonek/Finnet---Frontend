@@ -1,14 +1,21 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/Navbar.module.scss";
 import AuthContext from "../../../contexts/AuthContext";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import { TThemeContext } from "../../../types/themecontext";
-import { TAuthWithLogoutContext } from "../../../types/authWithLogoutContextTypes";
-const LoginLink = ({ showNav, setShowNav }) => {
-  const { user, logoutApiCall } = useContext(
-    AuthContext
-  ) as TAuthWithLogoutContext;
+
+type TLoginLinkProps = {
+  showNav: boolean;
+  setShowNav: (value: boolean) => void;
+};
+type TAuthContext = {
+  user: {};
+  logoutApiCall: (value: {}) => void;
+};
+
+const LoginLink = ({ showNav, setShowNav }: TLoginLinkProps) => {
+  const { user, logoutApiCall } = useContext(AuthContext) as TAuthContext;
   const { theme } = useContext(ThemeContext) as TThemeContext;
   return (
     <div>
@@ -23,14 +30,13 @@ const LoginLink = ({ showNav, setShowNav }) => {
         </Link>
       )}
       {user && (
-        <Link
+        <a
           className={`${styles["loginBtnSideBar"]} ${
             theme ? styles["dark"] : styles["light"]
           }`}
           onClick={logoutApiCall}>
-          {" "}
           Wyloguj się
-        </Link>
+        </a>
       )}
     </div>
   );

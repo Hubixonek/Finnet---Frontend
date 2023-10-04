@@ -10,16 +10,15 @@ import LiOperations from "../forms/Li/LiOperations";
 import LiTools from "../forms/Li/LiTools";
 import LiAccount from "../forms/Li/LiAccount";
 import LiFinnetPro from "../forms/Li/LiFinnetPro";
-import { TThemeContext } from "../../types/themecontext";
 
-const NavigationBar = () => {
-  const [showNav, setShowNav] = useState<boolean>(false);
+const NavBar = () => {
+  const [showNav, setShowNav] = useState(false);
 
   const handleClick = () => {
     setShowNav(!showNav);
   };
 
-  const { theme } = useContext(ThemeContext) as TThemeContext;
+  const { theme }: any = useContext(ThemeContext);
 
   return (
     <>
@@ -48,4 +47,4 @@ const NavigationBar = () => {
   );
 };
 
-export default NavigationBar;
+export default NavBar;

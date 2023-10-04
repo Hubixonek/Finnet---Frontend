@@ -5,18 +5,19 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import SwitchThemeMode from "../forms/Switches/SwitchThemeMode";
-import { TThemeContext } from "../../types/themecontext";
-import { TAuthWithLogoutContext } from "../../types/authWithLogoutContextTypes";
 interface INavProps {
   showNav: boolean;
   setShowNav: (value: boolean) => void;
 }
-
+type TAuthContext = {
+  user: {
+    email: string;
+  };
+  logoutApiCall: Function;
+};
 const Nav = ({ setShowNav, showNav }: INavProps) => {
-  const { user, logoutApiCall } = useContext(
-    AuthContext
-  ) as TAuthWithLogoutContext;
-  const { theme } = useContext(ThemeContext) as TThemeContext;
+  const { user, logoutApiCall } = useContext(AuthContext) as TAuthContext;
+  const { theme }: any = useContext(ThemeContext);
   return (
     <div>
       <nav

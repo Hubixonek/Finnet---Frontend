@@ -18,6 +18,9 @@ describe("Component Button", () => {
     expect(container.querySelector("button")).toBeInTheDocument();
     expect(postDataMock).toHaveBeenCalledTimes(0);
   });
-
   afterAll(cleanup);
 });
+
+const obj = {
+  hubi: "dupa",
+};

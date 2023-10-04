@@ -1,6 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import { LocalStorage } from "../services/LocalStorage.service";
-const ThemeContext = createContext<boolean | undefined>(undefined);
+interface TThemeContextProvider {
+  theme: boolean;
+  toggleTheme: (value: boolean) => void;
+}
+const ThemeContext = createContext<TThemeContextProvider | null>(null);
 
 const ThemeContextProvider = (props: { children: React.ReactNode }) => {
   const getTheme = () => {

@@ -1,6 +1,17 @@
 import styles from "../styles/Table.module.scss";
 import SummaryDataTable from "./SummaryDataTablePresenter";
 
+type TTableWithFundsDatasPresenter = {
+  funds: [];
+  removeFundsData: Function;
+  profitOrLossInPln: string;
+  totalProfitOrLoss: string;
+  refreshedProfitLoss: string;
+  refreshRateApi: string;
+  totalRefreshedProfitLoss: string;
+  theme: boolean;
+};
+
 const TableWithFundsDatasPresenter = ({
   funds,
   removeFundsData,
@@ -10,7 +21,7 @@ const TableWithFundsDatasPresenter = ({
   refreshRateApi,
   totalRefreshedProfitLoss,
   theme,
-}) => {
+}: TTableWithFundsDatasPresenter) => {
   return (
     <div
       className={`${styles["main_table--container"]} ${
@@ -36,7 +47,7 @@ const TableWithFundsDatasPresenter = ({
             </tr>
           </thead>
           <tbody>
-            {funds.map((fund, index) => (
+            {funds.map((fund: any, index: number) => (
               <tr key={fund.id}>
                 <td>
                   {fund.date
@@ -85,7 +96,6 @@ const TableWithFundsDatasPresenter = ({
       </div>
       <SummaryDataTable
         totalProfitOrLoss={totalProfitOrLoss}
-        funds={funds}
         totalRefreshedProfitLoss={totalRefreshedProfitLoss}
       />
     </div>
