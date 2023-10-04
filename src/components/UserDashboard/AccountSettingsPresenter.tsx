@@ -4,16 +4,15 @@ import Form from "react-bootstrap/Form";
 import AuthContext from "../../contexts/AuthContext";
 import Button from "react-bootstrap/Button";
 
-type TUser = {
+type TAuthContext = {
   user: {
     email: string;
   };
 };
 
 const AccountSettingsPresenter = () => {
-  const { user } = useContext(AuthContext) as TUser;
+  const { user } = useContext(AuthContext) as TAuthContext;
 
-  console.log(user);
   return (
     <div className={styles["container"]}>
       <h2>Ustawienia konta</h2>
