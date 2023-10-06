@@ -2,15 +2,14 @@ import { FaDollarSign } from "react-icons/fa";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import styles from "../../styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { MouseEventHandler, useContext } from "react";
 import { TThemeContext } from "../../../types/themecontext";
 
 interface ILiOperationsProps {
-  showNav: boolean;
-  setShowNav: (value: boolean) => void;
+  handleClick: MouseEventHandler;
 }
 
-const LiOperations = ({ showNav, setShowNav }: ILiOperationsProps) => {
+const LiOperations = ({ handleClick }: ILiOperationsProps) => {
   const { theme } = useContext(ThemeContext) as TThemeContext;
   return (
     <li>
@@ -21,7 +20,7 @@ const LiOperations = ({ showNav, setShowNav }: ILiOperationsProps) => {
       <ul className={styles["submenu"]}>
         <li
           className={theme ? styles["dark"] : styles["light"]}
-          onClick={() => setShowNav(!showNav)}>
+          onClick={handleClick}>
           <Link to="/" className={theme ? styles["dark"] : styles["light"]}>
             Historia i modyfikacja operacji
           </Link>
@@ -30,7 +29,7 @@ const LiOperations = ({ showNav, setShowNav }: ILiOperationsProps) => {
           <Link
             to="/"
             className={theme ? styles["dark"] : styles["light"]}
-            onClick={() => setShowNav(!showNav)}>
+            onClick={handleClick}>
             Kupno walorów
           </Link>
         </li>
@@ -43,19 +42,19 @@ const LiOperations = ({ showNav, setShowNav }: ILiOperationsProps) => {
             <Link
               to="/deposit"
               className={theme ? styles["dark"] : styles["light]"]}
-              onClick={() => setShowNav(!showNav)}>
+              onClick={handleClick}>
               Wpłata
             </Link>
             <Link
               to="/deposit"
               className={theme ? styles["dark"] : styles["light]"]}
-              onClick={() => setShowNav(!showNav)}>
+              onClick={handleClick}>
               Wypłata
             </Link>
             <Link
               to="/"
               className={theme ? styles["dark"] : styles["light]"]}
-              onClick={() => setShowNav(!showNav)}>
+              onClick={handleClick}>
               Uzgodnij stan konta
             </Link>
           </li>

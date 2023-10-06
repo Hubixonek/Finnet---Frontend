@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { MouseEventHandler, useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
 import { ThemeContext } from "../../../contexts/ThemeContext";
@@ -6,15 +6,14 @@ import { RiAccountCircleFill } from "react-icons/ri";
 import styles from "../../styles/Navbar.module.scss";
 import { TThemeContext } from "../../../types/themecontext";
 interface ILiToolsProps {
-  showNav: boolean;
-  setShowNav: (value: boolean) => void;
+  handleClick: MouseEventHandler
 }
 type TAuthContext = {
   user: {
     email: string;
   };
 };
-const LiAccount = ({ setShowNav, showNav }: ILiToolsProps) => {
+const LiAccount = ({ handleClick }: ILiToolsProps) => {
   const { theme } = useContext(ThemeContext) as TThemeContext;
   const { user } = useContext(AuthContext) as TAuthContext;
 
@@ -30,7 +29,7 @@ const LiAccount = ({ setShowNav, showNav }: ILiToolsProps) => {
           )}
           <ul className={styles["submenu"]}>
             <li
-              onClick={() => setShowNav(!showNav)}
+              onClick={handleClick}
               className={theme ? styles["dark"] : styles["light"]}>
               <Link
                 to="/usersettings"
@@ -39,7 +38,7 @@ const LiAccount = ({ setShowNav, showNav }: ILiToolsProps) => {
               </Link>
             </li>
             <li
-              onClick={() => setShowNav(!showNav)}
+              onClick={handleClick}
               className={theme ? styles["dark"] : styles["light"]}>
               <Link
                 to="/usersettings"

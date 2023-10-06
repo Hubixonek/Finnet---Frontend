@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 import styles from "../../styles/Navbar.module.scss";
-import { useContext } from "react";
+import { MouseEventHandler, useContext } from "react";
 import AuthContext from "../../../contexts/AuthContext";
 type TLoginLinkProps = {
-  showNav: boolean;
-  setShowNav: (value: boolean) => void;
+  handleClick: MouseEventHandler;
 };
 type TAuthContext = {
   user: {};
 };
-const RegisterLink = ({ setShowNav, showNav }: TLoginLinkProps) => {
+const RegisterLink = ({ handleClick }: TLoginLinkProps) => {
   const { user } = useContext(AuthContext) as TAuthContext;
   return (
     <>
@@ -18,7 +17,7 @@ const RegisterLink = ({ setShowNav, showNav }: TLoginLinkProps) => {
           <Link
             to="/registerform"
             className={styles["registerBtnSideBar"]}
-            onClick={() => setShowNav(!showNav)}>
+            onClick={handleClick}>
             Korzystaj z Finnet za darmo
           </Link>
         )}

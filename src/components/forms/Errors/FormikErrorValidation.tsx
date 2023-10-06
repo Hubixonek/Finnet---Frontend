@@ -1,5 +1,4 @@
 import styles from "../../styles/FundsForm.module.scss";
-import React from "react";
 
 type formikErrorValidationProps = {
   formik: any;

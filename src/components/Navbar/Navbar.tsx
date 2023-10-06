@@ -12,7 +12,7 @@ import LiAccount from "../forms/Li/LiAccount";
 import LiFinnetPro from "../forms/Li/LiFinnetPro";
 
 const NavBar = () => {
-  const [showNav, setShowNav] = useState(false);
+  const [showNav, setShowNav] = useState<boolean>(false);
 
   const handleClick = () => {
     setShowNav(!showNav);
@@ -22,25 +22,21 @@ const NavBar = () => {
 
   return (
     <>
-      <Nav showNav={showNav} setShowNav={setShowNav} />
+      <Nav handleClick={handleClick} />
       <div
         className={`${styles["sidebar"]} ${showNav ? styles["show"] : ""} ${
           theme ? styles["dark"] : styles["light"]
         }`}>
         <div className={styles["liList"]}>
           <ul>
-            <LiWallet
-              showNav={showNav}
-              setShowNav={setShowNav}
-              handleClick={handleClick}
-            />
-            <LiOperations showNav={showNav} setShowNav={setShowNav} />
-            <LiTools showNav={showNav} setShowNav={setShowNav} />
-            <LiAccount showNav={showNav} setShowNav={setShowNav} />
+            <LiWallet handleClick={handleClick} />
+            <LiOperations handleClick={handleClick} />
+            <LiTools handleClick={handleClick} />
+            <LiAccount handleClick={handleClick} />
             <LiFinnetPro />
           </ul>
-          <RegisterLink showNav={showNav} setShowNav={setShowNav} />
-          <LoginLink showNav={showNav} setShowNav={setShowNav} />
+          <RegisterLink handleClick={handleClick} />
+          <LoginLink handleClick={handleClick} />
         </div>
       </div>
     </>

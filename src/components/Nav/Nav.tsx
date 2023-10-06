@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import SwitchThemeMode from "../forms/Switches/SwitchThemeMode";
+import { MouseEventHandler } from "react";
+
 interface INavProps {
-  showNav: boolean;
-  setShowNav: (value: boolean) => void;
+  handleClick: MouseEventHandler;
 }
 type TAuthContext = {
   user: {
@@ -15,9 +16,10 @@ type TAuthContext = {
   };
   logoutApiCall: Function;
 };
-const Nav = ({ setShowNav, showNav }: INavProps) => {
+const Nav = ({ handleClick }: INavProps) => {
   const { user, logoutApiCall } = useContext(AuthContext) as TAuthContext;
   const { theme }: any = useContext(ThemeContext);
+
   return (
     <div>
       <nav
@@ -25,10 +27,7 @@ const Nav = ({ setShowNav, showNav }: INavProps) => {
           theme ? styles["dark"] : styles["light"]
         } `}>
         <label>
-          <FaBars
-            onClick={() => setShowNav(!showNav)}
-            className={styles["hamburger"]}
-          />
+          <FaBars onClick={handleClick} className={styles["hamburger"]} />
         </label>
         <div className={styles["logo"]}>
           <span>Finnet</span>

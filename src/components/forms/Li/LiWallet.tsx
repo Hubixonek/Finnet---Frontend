@@ -4,14 +4,13 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/Navbar.module.scss";
 import { TThemeContext } from "../../../types/themecontext";
-import React, { MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 
 interface ILiWalletProps {
-  showNav: boolean;
-  setShowNav: (value: boolean) => void;
-  handleClick: MouseEventHandler<HTMLLIElement>}
+  handleClick: MouseEventHandler;
+}
 
-const LiWallet = ({ setShowNav, showNav, handleClick }: ILiWalletProps) => {
+const LiWallet = ({ handleClick }: ILiWalletProps) => {
   const { theme } = useContext(ThemeContext) as TThemeContext;
   return (
     <li>
@@ -31,7 +30,7 @@ const LiWallet = ({ setShowNav, showNav, handleClick }: ILiWalletProps) => {
         </li>
         <li
           className={theme ? styles["dark"] : styles["light"]}
-          onClick={() => setShowNav(!showNav)}>
+          onClick={handleClick}>
           <Link
             to="/compositionstructure"
             className={theme ? styles["dark"] : styles["light"]}>
@@ -40,7 +39,7 @@ const LiWallet = ({ setShowNav, showNav, handleClick }: ILiWalletProps) => {
         </li>
         <li
           className={theme ? styles["dark"] : styles["light"]}
-          onClick={() => setShowNav(!showNav)}>
+          onClick={handleClick}>
           <Link
             to="/fundsform"
             className={theme ? styles["dark"] : styles["light"]}>
@@ -56,17 +55,17 @@ const LiWallet = ({ setShowNav, showNav, handleClick }: ILiWalletProps) => {
             <Link
               to="/lokata"
               className={theme ? styles["dark"] : styles["light]"]}
-              onClick={() => setShowNav(!showNav)}>
+              onClick={handleClick}>
               Załóż lokatę
             </Link>
             <a
               className={theme ? styles["dark"] : styles["light]"]}
-              onClick={() => setShowNav(!showNav)}>
+              onClick={handleClick}>
               Dodaj odsetki z lokaty
             </a>
             <a
               className={theme ? styles["dark"] : styles["light]"]}
-              onClick={() => setShowNav(!showNav)}>
+              onClick={handleClick}>
               Zamknij lokatę
             </a>
           </li>

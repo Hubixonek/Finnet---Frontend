@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { MouseEventHandler, useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/Navbar.module.scss";
 import AuthContext from "../../../contexts/AuthContext";
@@ -6,15 +6,14 @@ import { ThemeContext } from "../../../contexts/ThemeContext";
 import { TThemeContext } from "../../../types/themecontext";
 
 type TLoginLinkProps = {
-  showNav: boolean;
-  setShowNav: (value: boolean) => void;
+  handleClick: MouseEventHandler;
 };
 type TAuthContext = {
   user: {};
   logoutApiCall: (value: {}) => void;
 };
 
-const LoginLink = ({ showNav, setShowNav }: TLoginLinkProps) => {
+const LoginLink = ({ handleClick }: TLoginLinkProps) => {
   const { user, logoutApiCall } = useContext(AuthContext) as TAuthContext;
   const { theme } = useContext(ThemeContext) as TThemeContext;
   return (
@@ -25,7 +24,7 @@ const LoginLink = ({ showNav, setShowNav }: TLoginLinkProps) => {
           className={`${styles["loginBtnSideBar"]} ${
             theme ? styles["dark"] : styles["light"]
           }`}
-          onClick={() => setShowNav(!showNav)}>
+          onClick={handleClick}>
           Zaloguj się
         </Link>
       )}
