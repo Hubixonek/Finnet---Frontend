@@ -25,50 +25,52 @@ function App() {
 }
 function AppContent() {
   return (
-    <AuthContextProvider>
-      <AddWalletProvider>
-        <DepositContextProvider>
-          <DisplayDepositProvider>
-            <BrowserRouter>
-              <NavigationBar />
-              <ToastContainer />
-              <br></br>
-              <br></br>
-              <br></br>
+    <ThemeContextProvider>
+      <AuthContextProvider>
+        <AddWalletProvider>
+          <DepositContextProvider>
+            <DisplayDepositProvider>
+              <BrowserRouter>
+                <NavigationBar />
+                <ToastContainer />
+                <br></br>
+                <br></br>
+                <br></br>
 
-              <Routes>
-                <Route path="/" element={<FundsFormContainer />} />
-                <Route
-                  path="/compositionstructure"
-                  element={<WalletCompositionContainer />}
-                />
-                <Route path="/deposit" element={<DepositContainer />} />
-                <Route path="/newwallet" element={<NewWalletContainer />} />
-                <Route path="/fundsform" element={<FundsFormContainer />} />
-                <Route path="/lokata" element={<CreateLokataPresenter />} />
-                <Route path="/usersettings" element={<SettingsPresenter />} />
-                <Route
-                  path="/loginform"
-                  element={
-                    <ProtectedRoute accessBy="non-authenticated">
-                      <LoginFormContainer />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/registerform"
-                  element={
-                    <ProtectedRoute accessBy="non-authenticated">
-                      <RegisterFormContainer />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </BrowserRouter>
-          </DisplayDepositProvider>
-        </DepositContextProvider>
-      </AddWalletProvider>
-    </AuthContextProvider>
+                <Routes>
+                  <Route path="/" element={<FundsFormContainer />} />
+                  <Route
+                    path="/compositionstructure"
+                    element={<WalletCompositionContainer />}
+                  />
+                  <Route path="/deposit" element={<DepositContainer />} />
+                  <Route path="/newwallet" element={<NewWalletContainer />} />
+                  <Route path="/fundsform" element={<FundsFormContainer />} />
+                  <Route path="/lokata" element={<CreateLokataPresenter />} />
+                  <Route path="/usersettings" element={<SettingsPresenter />} />
+                  <Route
+                    path="/loginform"
+                    element={
+                      <ProtectedRoute accessBy="non-authenticated">
+                        <LoginFormContainer />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/registerform"
+                    element={
+                      <ProtectedRoute accessBy="non-authenticated">
+                        <RegisterFormContainer />
+                      </ProtectedRoute>
+                    }
+                  />
+                </Routes>
+              </BrowserRouter>
+            </DisplayDepositProvider>
+          </DepositContextProvider>
+        </AddWalletProvider>
+      </AuthContextProvider>
+    </ThemeContextProvider>
   );
 }
 

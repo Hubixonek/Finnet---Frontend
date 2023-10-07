@@ -4,7 +4,7 @@ interface TThemeContextProvider {
   theme: boolean;
   toggleTheme: (value: boolean) => void;
 }
-const ThemeContext = createContext<TThemeContextProvider | null>(null);
+const ThemeContext = createContext<TThemeContextProvider | string>("");
 
 const ThemeContextProvider = (props: { children: React.ReactNode }) => {
   const getTheme = () => {
