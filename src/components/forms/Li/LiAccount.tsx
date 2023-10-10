@@ -1,12 +1,19 @@
 import { MouseEventHandler, useContext } from "react";
-import { Link } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import { RiAccountCircleFill } from "react-icons/ri";
 import styles from "../../styles/Navbar.module.scss";
 import { TThemeContext } from "../../../types/themecontext";
+import ProtectedRoute from "../../../services/ProtectedRoute.service";
 interface ILiToolsProps {
-  handleClick: MouseEventHandler
+  handleClick: MouseEventHandler;
 }
 type TAuthContext = {
   user: {
@@ -16,17 +23,16 @@ type TAuthContext = {
 const LiAccount = ({ handleClick }: ILiToolsProps) => {
   const { theme } = useContext(ThemeContext) as TThemeContext;
   const { user } = useContext(AuthContext) as TAuthContext;
+  const navigate = useNavigate();
 
   return (
     <>
       {!user ? null : (
         <li>
-          {!user ? null : (
-            <a>
-              <RiAccountCircleFill className={styles["icons"]} />
-              <span>Konto {user.email}</span>
-            </a>
-          )}
+          <a>
+            <RiAccountCircleFill className={styles["icons"]} />
+            <span>Konto</span>
+          </a>
           <ul className={styles["submenu"]}>
             <li
               onClick={handleClick}
