@@ -7,11 +7,13 @@ import { TThemeContext } from "../../types/themecontext";
 import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import ProtectedRoute from "../../services/ProtectedRoute.service";
-
+type TAuthContext = {
+  user: {};
+};
 const SettingsPresenter = () => {
   const { theme } = useContext(ThemeContext) as TThemeContext;
   const [selectedTab, setSelectedTab] = useState("myAccount");
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext) as TAuthContext;
   const navigate = useNavigate();
   const handleTabChange = (tabName: string) => {
     setSelectedTab(tabName);

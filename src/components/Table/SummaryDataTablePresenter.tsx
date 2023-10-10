@@ -4,6 +4,7 @@ const SummaryDataTablePresenter = ({
   totalProfitOrLoss,
   totalRefreshedProfitLoss,
 }) => {
+  console.log(totalRefreshedProfitLoss);
   return (
     <>
       <div className={styles["summarydatas_table--tr"]}>
@@ -20,7 +21,7 @@ const SummaryDataTablePresenter = ({
         <p
           className={styles["profitOrLoss"]}
           style={{
-            color: parseFloat(totalRefreshedProfitLoss) < 0 ? "red" : "lime",
+            color: parseFloat(totalRefreshedProfitLoss) > 0 ? "lime" : "red",
           }}>
           {totalRefreshedProfitLoss &&
             `${
