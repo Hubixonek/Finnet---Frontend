@@ -10,6 +10,7 @@ import LiOperations from "../forms/Li/LiOperations";
 import LiTools from "../forms/Li/LiTools";
 import LiAccount from "../forms/Li/LiAccount";
 import LiFinnetPro from "../forms/Li/LiFinnetPro";
+import LiDebtors from "../forms/Li/LiDebtors";
 
 const NavBar = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
@@ -34,6 +35,7 @@ const NavBar = () => {
             <LiTools handleClick={handleClick} />
             <LiAccount handleClick={handleClick} />
             <LiFinnetPro />
+            <LiDebtors />
           </ul>
           <RegisterLink handleClick={handleClick} />
           <LoginLink handleClick={handleClick} />

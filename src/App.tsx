@@ -16,6 +16,7 @@ import RegisterFormContainer from "./components/RegisterForm/RegisterFormContain
 import NewWalletContainer from "./components/Wallet/NewWalletContainer";
 import CreateLokataPresenter from "./components/Lokata/CreateLokataPresenter";
 import SettingsPresenter from "./components/UserDashboard/SettingsPresenter";
+import DebtorListPresenter from "./components/DebtorsList/DebtorListPresenter";
 function App() {
   return (
     <ThemeContextProvider>
@@ -48,6 +49,11 @@ function AppContent() {
                   <Route path="/fundsform" element={<FundsFormContainer />} />
                   <Route path="/lokata" element={<CreateLokataPresenter />} />
                   <Route path="/usersettings" element={<SettingsPresenter />} />
+                  <Route
+                    path="/debtorslist"
+                    element={<DebtorListPresenter />}
+                  />
+
                   <Route
                     path="/loginform"
                     element={

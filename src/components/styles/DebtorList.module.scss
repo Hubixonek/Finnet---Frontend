@@ -1,0 +1,52 @@
+.container {
+  margin: 0 auto;
+  margin-top: 1%;
+  height: 750px;
+  background-color: white;
+  width: 1300px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  .secondContainer {
+    padding: 50px;
+    color: black;
+    height: 250px;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.281);
+  }
+  h1 {
+    display: flex;
+    margin-left: 0.4%;
+    font-size: 30px;
+    margin-top: 3%;
+    align-items: center;
+  }
+  .itemGroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
+    gap: 15px;
+
+    .PLN {
+      display: flex;
+    }
+    .wrapItems {
+      display: flex;
+      gap: 5px;
+      .PLN {
+        font-size: 25px;
+        align-items: center;
+        width: 14%;
+      }
+    }
+    .btnAdd {
+      width: 100px;
+      border-radius: 3px;
+    }
+  }
+  .light {
+    background-color: var(--white-background-color);
+  }
+  .dark {
+    background-color: var(--dark-theme-nav-background-color);
+    color: var(--white-font-color);
+  }
+}

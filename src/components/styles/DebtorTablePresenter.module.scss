@@ -1,0 +1,30 @@
+.container {
+  margin: 0 auto;
+  margin-top: 3%;
+  max-width: 1050px;
+  .btnAdd {
+    font-size: 25px;
+
+    color: rgb(22, 209, 22);
+    cursor: var(--cursor-pointer);
+    &:hover {
+      color: rgb(6, 255, 6);
+    }
+  }
+  .btnDelete {
+    font-size: 25px;
+    color: rgb(221, 20, 20);
+    cursor: var(--cursor-pointer);
+    &:hover {
+      color: rgb(253, 4, 4);
+    }
+  }
+  .btnEdit {
+    font-size: 16px;
+    color: rgb(52, 88, 196);
+    cursor: var(--cursor-pointer);
+    &:hover {
+      color: rgb(0, 64, 255);
+    }
+  }
+}
