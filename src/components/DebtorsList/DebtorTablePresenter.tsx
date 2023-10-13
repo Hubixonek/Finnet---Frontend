@@ -6,25 +6,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styles from "../styles/DebtorTablePresenter.module.scss";
-import { IoMdCheckmark, IoMdClose } from "react-icons/io";
-function createData(
-  name: string,
-  calories: string,
-  fat: string,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
+import { IoMdCheckmark } from "react-icons/io";
 
-const rows = [
-  createData("Rafał", "20.10.2023", "30.10.2023", 24, 4.0),
-  createData("Hubert", "20.10.2023", "30.10.2023", 37, 4.3),
-  createData("Maciek", "20.10.2023", "30.10.2023", 24, 6.0),
-  createData("Szymon", "20.10.2023", "30.10.2023", 67, 4.3),
-  createData("Mateusz", "20.10.2023", "30.10.2023", 49, 3.9),
-];
-const DebtorTablePresenter = () => {
+const DebtorTablePresenter = ({ row, removeRow }) => {
+  console.log(row);
   return (
     <TableContainer component={Paper} className={styles["container"]}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -34,25 +19,26 @@ const DebtorTablePresenter = () => {
             <TableCell>Data pożyczki</TableCell>
             <TableCell>Termin spłaty</TableCell>
             <TableCell>Kwota pożyczki</TableCell>
-            <TableCell></TableCell>
+            <TableCell>Cel pożyczki</TableCell>
             <TableCell></TableCell>
             <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
+          {row.map((rows) => (
+            <TableRow key={rows.id}>
+              <TableCell component="td" scope="row">
+                {rows.name}
               </TableCell>
-              <TableCell>{row.calories}</TableCell>
-              <TableCell>{row.fat}</TableCell>
-              <TableCell>{row.carbs} PLN</TableCell>
+              <TableCell>{rows.dateOfDebtor}</TableCell>
+              <TableCell>{rows.repayment}</TableCell>
+              <TableCell>{rows.amount} PLN</TableCell>
+              <TableCell>{rows.typeLoan}</TableCell>
+
               <TableCell>
-                <IoMdCheckmark className={styles["btnAdd"]}></IoMdCheckmark>
-              </TableCell>
-              <TableCell>
-                <IoMdClose className={styles["btnDelete"]}></IoMdClose>
+                <IoMdCheckmark
+                  className={styles["btnAdd"]}
+                  onClick={() => removeRow(rows.id)}></IoMdCheckmark>
               </TableCell>
               <TableCell>
                 <span className={styles["btnEdit"]}>Edytuj</span>

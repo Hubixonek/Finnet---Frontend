@@ -1,19 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import styles from "../styles/DebtorList.module.scss";
 import Form from "react-bootstrap/Form";
 import DebtorTablePresenter from "./DebtorTablePresenter";
 import Button from "react-bootstrap/Button";
-import { ThemeContext } from "../../contexts/ThemeContext";
-const DebtorListPresenter = () => {
-  const [reasonForLoan, setReasonForLoan] = useState([
-    { value: "Wybierz typ pożyczki", label: "Wybierz typ pożyczki" },
-    { value: "Konsumpcja", label: "Konsumpcja" },
-    { value: "Założenie inwestycji", label: "Założenie inwestycji" },
-  ]);
-  const { theme } = useContext(ThemeContext);
-
+const DebtorListPresenter = ({
+  removeRow,
+  reasonForLoan,
+  handleDebtor,
+  handleSubmit,
+  row,
+  theme,
+}) => {
   return (
-    <div
+    <form
+      onSubmit={handleSubmit}
       className={`${styles["container"]} ${
         theme ? styles["dark"] : styles["light"]
       }`}>
@@ -25,26 +25,43 @@ const DebtorListPresenter = () => {
         <div className={styles["itemGroup"]}>
           <div className={styles["item"]}>
             <span>Imię dłużnika</span>
-            <Form.Control type="text" placeholder="Imię dłużnika" />
+            <Form.Control
+              type="text"
+              placeholder="Imię dłużnika"
+              name="name"
+              onChange={handleDebtor}
+            />
           </div>
           <div className={styles["item"]}>
             <span>Data pożyczki</span>
-            <Form.Control type="date" />
+            <Form.Control
+              type="date"
+              onChange={handleDebtor}
+              name="dateOfDebtor"
+            />
           </div>
           <div className={styles["item"]}>
             <span>Termin spłaty</span>
-            <Form.Control type="date" />
+            <Form.Control
+              type="date"
+              onChange={handleDebtor}
+              name="repayment"
+            />
           </div>
           <div className={styles["item"]}>
-            <span>Kwota pożyczki</span>
+            <span>Kwota pożyczki w PLN</span>
             <div className={styles["wrapItems"]}>
-              <Form.Control type="number" placeholder="Np. 500 PLN" />
-              <span className={styles["PLN"]}>PLN</span>
+              <Form.Control
+                type="number"
+                placeholder="Np. 500 PLN"
+                onChange={handleDebtor}
+                name="amount"
+              />
             </div>
           </div>
           <div className={styles["item"]}>
             <br></br>
-            <Form.Select>
+            <Form.Select onChange={handleDebtor} name="typeLoan">
               {reasonForLoan.map((reason) => {
                 return (
                   <option key={reason.value} value={reason.value}>
@@ -56,14 +73,17 @@ const DebtorListPresenter = () => {
           </div>
           <div className={styles["item"]}>
             <br></br>
-            <Button variant="primary" className={styles["btnAdd"]}>
+            <Button
+              variant="primary"
+              className={styles["btnAdd"]}
+              type="submit">
               Dodaj
             </Button>{" "}
           </div>
         </div>
       </div>
-      <DebtorTablePresenter />
-    </div>
+      <DebtorTablePresenter row={row} removeRow={removeRow} />
+    </form>
   );
 };
 export default DebtorListPresenter;

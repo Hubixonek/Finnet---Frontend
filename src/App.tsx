@@ -17,6 +17,7 @@ import NewWalletContainer from "./components/Wallet/NewWalletContainer";
 import CreateLokataPresenter from "./components/Lokata/CreateLokataPresenter";
 import SettingsPresenter from "./components/UserDashboard/SettingsPresenter";
 import DebtorListPresenter from "./components/DebtorsList/DebtorListPresenter";
+import DebtorListContainer from "./components/DebtorsList/DebtorListContainer";
 function App() {
   return (
     <ThemeContextProvider>
@@ -51,7 +52,7 @@ function AppContent() {
                   <Route path="/usersettings" element={<SettingsPresenter />} />
                   <Route
                     path="/debtorslist"
-                    element={<DebtorListPresenter />}
+                    element={<DebtorListContainer />}
                   />
 
                   <Route
