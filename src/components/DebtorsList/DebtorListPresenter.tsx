@@ -10,6 +10,9 @@ const DebtorListPresenter = ({
   handleSubmit,
   row,
   theme,
+  setRow,
+  debtorList,
+  setDebtorList,
 }) => {
   return (
     <form
@@ -17,12 +20,14 @@ const DebtorListPresenter = ({
       className={`${styles["container"]} ${
         theme ? styles["dark"] : styles["light"]
       }`}>
-      <div
-        className={`${styles["secondContainer"]} ${
-          theme ? styles["dark"] : styles["light"]
-        }`}>
-        <h1>Dodaj dłużnika do listy</h1>
-        <div className={styles["itemGroup"]}>
+      <div className={styles["secondContainer"]}>
+        <h1 className={theme ? styles["dark"] : styles["light"]}>
+          Dodaj dłużnika do listy
+        </h1>
+        <div
+          className={`${styles["itemGroup"]} ${
+            theme ? styles["dark"] : styles["light"]
+          }`}>
           <div className={styles["item"]}>
             <span>Imię dłużnika</span>
             <Form.Control
@@ -82,7 +87,14 @@ const DebtorListPresenter = ({
           </div>
         </div>
       </div>
-      <DebtorTablePresenter row={row} removeRow={removeRow} />
+      <DebtorTablePresenter
+        row={row}
+        removeRow={removeRow}
+        reasonForLoan={reasonForLoan}
+        setRow={setRow}
+        debtorList={debtorList}
+        setDebtorList={setDebtorList}
+      />
     </form>
   );
 };

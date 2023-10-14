@@ -5,6 +5,7 @@
   background-color: white;
   width: 1300px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
   .secondContainer {
     padding: 50px;
     color: black;
@@ -13,7 +14,7 @@
   }
   h1 {
     display: flex;
-    margin-left: 0.4%;
+    margin-left: 2.3%;
     font-size: 30px;
     margin-top: 3%;
     align-items: center;
@@ -42,11 +43,11 @@
       border-radius: 3px;
     }
   }
-  .light {
-    background-color: var(--white-background-color);
-  }
-  .dark {
-    background-color: var(--dark-theme-nav-background-color);
-    color: var(--white-font-color);
-  }
+}
+.light {
+  background-color: var(--white-background-color);
+}
+.dark {
+  background-color: var(--dark-theme-nav-background-color);
+  color: var(--white-font-color);
 }

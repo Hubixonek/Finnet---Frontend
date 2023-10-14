@@ -16,6 +16,16 @@ html {
 }
 body {
   min-height: 100vh;
-
   padding: 0;
+}
+::-webkit-scrollbar {
+  width: 3.5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00000031;
 }
