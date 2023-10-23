@@ -8,7 +8,6 @@ const DebtorListContainer = () => {
     { value: "Konsumpcja", label: "Konsumpcja" },
     { value: "Założenie inwestycji", label: "Założenie inwestycji" },
   ]);
-  const [editId, setEditId] = useState();
 
   const { theme } = useContext(ThemeContext);
 
@@ -47,9 +46,6 @@ const DebtorListContainer = () => {
   const removeRow = (id) => {
     setRow(row.filter((row) => row.id !== id));
   };
-  const handleEdit = (id) => {
-    setEditId(id);
-  };
 
   return (
     <DebtorListPresenter
@@ -59,11 +55,8 @@ const DebtorListContainer = () => {
       removeRow={removeRow}
       row={row}
       debtorList={debtorList}
-      editId={editId}
       theme={theme}
       setRow={setRow}
-      debtorList={debtorList}
-      handleEdit={handleEdit}
       setDebtorList={setDebtorList}
     />
   );

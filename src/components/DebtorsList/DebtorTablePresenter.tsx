@@ -1,34 +1,22 @@
 import Table from "react-bootstrap/Table";
 import styles from "../styles/DebtorTablePresenter.module.scss";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { IoMdCheckmark } from "react-icons/io";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-const DebtorTablePresenter = ({ row, removeRow, reasonForLoan, setRow }) => {
+const DebtorTablePresenter = ({
+  removeRow,
+  handleEdit,
+  handleEditDebtor,
+  setUpdatedData,
+  updatedData,
+  row,
+  reasonForLoan,
+  editId
+}) => {
   const { theme } = useContext(ThemeContext);
-  const [editId, setEditId] = useState(-1);
-
-  const [updatedData, setUpdatedData] = useState({});
-
-  console.log(row);
-
-  const handleEdit = (id) => {
-    setEditId(id);
-  };
-
-  const handleEditDebtor = (id) => {
-    const updatedRows = row.map((rows) => {
-      if (rows.id === id) {
-        return { ...rows, ...updatedData };
-      }
-      return rows;
-    });
-    setRow(updatedRows);
-    setEditId(-1);
-  };
-  console.log(updatedData);
 
   return (
     <div className={styles["container"]}>

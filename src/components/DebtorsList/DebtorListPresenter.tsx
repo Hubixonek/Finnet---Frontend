@@ -1,8 +1,8 @@
-import { useContext } from "react";
 import styles from "../styles/DebtorList.module.scss";
 import Form from "react-bootstrap/Form";
 import DebtorTablePresenter from "./DebtorTablePresenter";
 import Button from "react-bootstrap/Button";
+import DebtorTableContainer from "./DebtorTableContainer";
 const DebtorListPresenter = ({
   removeRow,
   reasonForLoan,
@@ -11,8 +11,6 @@ const DebtorListPresenter = ({
   row,
   theme,
   setRow,
-  debtorList,
-  setDebtorList,
 }) => {
   return (
     <form
@@ -87,13 +85,11 @@ const DebtorListPresenter = ({
           </div>
         </div>
       </div>
-      <DebtorTablePresenter
+      <DebtorTableContainer
         row={row}
         removeRow={removeRow}
         reasonForLoan={reasonForLoan}
         setRow={setRow}
-        debtorList={debtorList}
-        setDebtorList={setDebtorList}
       />
     </form>
   );
