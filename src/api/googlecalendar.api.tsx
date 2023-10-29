@@ -1,10 +1,6 @@
 // import { OAuth2Client } from "google-auth-library";
 
 // const GoogleCalendarApi = () => {
-//   const CLIENT_ID =
-//     "119510672222-7niihirklqd6j9k6kn4vjcrl8q260qus.apps.googleusercontent.com";
-//   const CLIENT_SECRET = "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";
-//   const REDIRECT_URL = "http://localhost:5173";
 
 //   const oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 
