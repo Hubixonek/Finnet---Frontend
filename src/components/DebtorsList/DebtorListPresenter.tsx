@@ -1,6 +1,5 @@
 import styles from "../styles/DebtorList.module.scss";
 import Form from "react-bootstrap/Form";
-import DebtorTablePresenter from "./DebtorTablePresenter";
 import Button from "react-bootstrap/Button";
 import DebtorTableContainer from "./DebtorTableContainer";
 const DebtorListPresenter = ({
