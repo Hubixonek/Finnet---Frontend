@@ -2,6 +2,8 @@ import styles from "../styles/DebtorList.module.scss";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import DebtorTableContainer from "./DebtorTableContainer";
+import GoogleButton from "react-google-button";
+
 const DebtorListPresenter = ({
   removeRow,
   reasonForLoan,
@@ -10,13 +12,17 @@ const DebtorListPresenter = ({
   row,
   theme,
   setRow,
+  login,
+  logOut,
+  profile,
 }) => {
   return (
     <form
       onSubmit={handleSubmit}
       className={`${styles["container"]} ${
         theme ? styles["dark"] : styles["light"]
-      }`}>
+      }`}
+    >
       <div className={styles["secondContainer"]}>
         <h1 className={theme ? styles["dark"] : styles["light"]}>
           Dodaj dłużnika do listy
@@ -24,7 +30,8 @@ const DebtorListPresenter = ({
         <div
           className={`${styles["itemGroup"]} ${
             theme ? styles["dark"] : styles["light"]
-          }`}>
+          }`}
+        >
           <div className={styles["item"]}>
             <span>Imię dłużnika</span>
             <Form.Control
@@ -73,14 +80,27 @@ const DebtorListPresenter = ({
               })}
             </Form.Select>
           </div>
-          <div className={styles["item"]}>
-            <br></br>
+          <div className={styles["btn"]}>
             <Button
               variant="primary"
               className={styles["btnAdd"]}
-              type="submit">
+              type="submit"
+            >
               Dodaj
-            </Button>{" "}
+            </Button>
+            {profile ? (
+              <>
+                <img src={profile.picture} alt="User Picture" />
+                <Button onClick={logOut}>Wyloguj się</Button>
+                <p>{profile.email}</p>
+              </>
+            ) : (
+              <GoogleButton
+                onClick={login}
+                label="Zautoryzuj się z Google"
+                className={styles["googleBtn"]}
+              />
+            )}
           </div>
         </div>
       </div>

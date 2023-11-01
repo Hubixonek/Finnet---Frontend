@@ -12,6 +12,7 @@
     height: 250px;
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.281);
   }
+
   h1 {
     display: flex;
     margin-left: 2.3%;
@@ -19,34 +20,47 @@
     margin-top: 3%;
     align-items: center;
   }
+
   .itemGroup {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1%;
     gap: 15px;
 
     .PLN {
       display: flex;
     }
+
     .wrapItems {
       display: flex;
       gap: 5px;
+
       .PLN {
         font-size: 25px;
         align-items: center;
         width: 14%;
       }
     }
+  }
+
+  .btn {
+    display: flex;
+    gap: 10px;
+    min-width: 320px;
+    margin-top: 2%;
+
     .btnAdd {
-      width: 100px;
-      border-radius: 3px;
+      border-radius: 0px;
+      border-color: royalblue;
+      height: 50px;
     }
   }
 }
+
 .light {
   background-color: var(--white-background-color);
 }
+
 .dark {
   background-color: var(--dark-theme-nav-background-color);
   color: var(--white-font-color);
