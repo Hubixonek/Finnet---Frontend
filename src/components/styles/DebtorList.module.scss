@@ -3,8 +3,10 @@
   margin-top: 1%;
   height: 750px;
   background-color: white;
-  width: 1300px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  max-width: 1300px;
+  box-shadow:
+    0 0 20px 0 rgba(0, 0, 0, 0.2),
+    0 5px 5px 0 rgba(0, 0, 0, 0.24);
 
   .secondContainer {
     padding: 50px;
@@ -15,9 +17,9 @@
 
   h1 {
     display: flex;
-    margin-left: 2.3%;
     font-size: 30px;
     margin-top: 3%;
+    margin-left: 2%;
     align-items: center;
   }
 
@@ -26,6 +28,7 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
+    margin-left: 2%;
 
     .PLN {
       display: flex;

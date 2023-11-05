@@ -4,29 +4,49 @@
   max-width: 1050px;
   max-height: 400px;
   overflow-y: auto;
+
   .btnAdd {
     font-size: 25px;
 
     color: rgb(22, 209, 22);
     cursor: var(--cursor-pointer);
+
     &:hover {
       color: rgb(6, 255, 6);
     }
   }
+
   .btnDelete {
     font-size: 25px;
     color: rgb(221, 20, 20);
     cursor: var(--cursor-pointer);
+
     &:hover {
       color: rgb(253, 4, 4);
     }
   }
+
   .btnEdit {
     font-size: 16px;
-    color: rgb(52, 88, 196);
+    color: #0e71eb;
     cursor: var(--cursor-pointer);
+
     &:hover {
-      color: rgb(0, 64, 255);
+      color: #0073ff;
     }
+  }
+
+  .btnGoogle {
+    font-size: 16px;
+    color: #0e71eb;
+    cursor: var(--cursor-pointer);
+
+    &:hover {
+      color: #0073ff;
+    }
+  }
+
+  .btnCalendar {
+    font-size: 25px;
   }
 }

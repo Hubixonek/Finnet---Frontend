@@ -3,6 +3,7 @@ import styles from "../styles/DebtorTablePresenter.module.scss";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { IoMdCheckmark } from "react-icons/io";
+import { BsCalendarDate } from "react-icons/bs";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -14,7 +15,10 @@ const DebtorTablePresenter = ({
   updatedData,
   row,
   reasonForLoan,
-  editId
+  editId,
+  login,
+  logOut,
+  profile,
 }) => {
   const { theme } = useContext(ThemeContext);
 
@@ -28,6 +32,7 @@ const DebtorTablePresenter = ({
             <th>Termin spłaty</th>
             <th>Kwota pożyczki</th>
             <th>Cel pożyczki</th>
+            <th></th>
             <th></th>
             <th></th>
           </tr>
@@ -101,6 +106,7 @@ const DebtorTablePresenter = ({
                   </Form.Select>
                 </td>
                 <td></td>
+                <td></td>
                 <td>
                   <Button onClick={() => handleEditDebtor(rows.id)}>
                     Zatwierdź
@@ -114,6 +120,7 @@ const DebtorTablePresenter = ({
                 <td>{rows.repayment}</td>
                 <td>{rows.amount}</td>
                 <td>{rows.typeLoan}</td>
+
                 <td>
                   <IoMdCheckmark
                     className={styles["btnAdd"]}
@@ -124,6 +131,10 @@ const DebtorTablePresenter = ({
                   className={styles["btnEdit"]}
                   onClick={() => handleEdit(rows.id)}>
                   Edytuj
+                </td>
+                <td className={styles["btnGoogle"]} onClick={login}>
+                  <BsCalendarDate className={styles["btnCalendar"]} />{" "}
+                  &nbsp;Kalendarz Google
                 </td>
               </tr>
             )
