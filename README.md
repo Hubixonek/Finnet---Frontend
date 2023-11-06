@@ -12,7 +12,28 @@
 
 
 ## Opis projektu 🎉
+Nasza aplikacja powstaje z potrzeby uporządkowania operacji (inwestycji) finansowych wykonywanych z różnych źródeł, oraz:
+- ułatwienie nauki o świecie finansów, ułatwienie podejmowania decyzji, dostarczenie jak największej ilości przydatnych użytkownikowi informacji.
+  
+Najważniejsze funkcje aplikacji:
+- Rejestracja i logowanie: Użytkownicy mogą utworzyć
+konto lub zalogować się na istniejące. Pracowaliśmy z
+zespołem aby przygotować dedykowane API. Moją rolą
+było wykorzystanie stworzonych endpointów po stronie
+front-endu.
 
+- Zapisywanie wyników transakcji walutowych w tabeli:
+Użytkownicy mogą zapisać wyniki swoich transakcji
+walutowych w tabeli w celu śledzenia czy operację
+przyniosły im zysk lub stratę.
+
+- Walidacja formularza: Aplikacja posiada pełną
+walidację formularzy wraz z obsługą błędów.
+
+- Tryb ciemny i jasny: Aplikacja obsługuje dwa tryby -
+tryb ciemny i tryb jasny. Użytkownicy mogą przełączać
+się między tymi trybami w zależności od swoich
+preferencji.
 ## Użyte Technologie/frameworki🔧
 
 | Technologie                                             | Opis                                     |
@@ -28,6 +49,7 @@
 ## Zdjęcia aplikacji 📺
 
 <p align="center">
+  Tu niedługo będą zdjęcia z Finnet :D
 </p>
 
 <p align="center">
