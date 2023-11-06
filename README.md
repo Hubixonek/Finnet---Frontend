@@ -50,10 +50,11 @@ preferencji.
 ## Zdjęcia aplikacji 📺
 
 <p align="center">
-  Tu niedługo będą zdjęcia z Finnet :D
+  <img src="/images/Finnet-Main-Light.PNG" alt="Finnet-Main-Light">
 </p>
 
 <p align="center">
+    <img src="/images/Finnet-Main-Dark.PNG" alt="Finnet-Main-Dark">
 </p>
 
 <p align="center">
