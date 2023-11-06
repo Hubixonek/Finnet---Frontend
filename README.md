@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+<h1 align="center">Finnet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+<p align="center">
+</p>
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+</h1>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Opis projektu 🎉
+Nasza aplikacja powstaje z potrzeby uporządkowania operacji (inwestycji) finansowych wykonywanych z różnych źródeł, oraz:
+- ułatwienie nauki o świecie finansów, ułatwienie podejmowania decyzji, dostarczenie jak największej ilości przydatnych użytkownikowi informacji.
+  
+Najważniejsze funkcje aplikacji:
+- Rejestracja i logowanie: Użytkownicy mogą utworzyć
+konto lub zalogować się na istniejące. Pracowaliśmy z
+zespołem aby przygotować dedykowane API. Moją rolą
+było wykorzystanie stworzonych endpointów po stronie
+front-endu.
 
-### `npm run build`
+- Zapisywanie wyników transakcji walutowych w tabeli:
+Użytkownicy mogą zapisać wyniki swoich transakcji
+walutowych w tabeli w celu śledzenia czy operację
+przyniosły im zysk lub stratę.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Walidacja formularza: Aplikacja posiada pełną
+walidację formularzy wraz z obsługą błędów.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Tryb ciemny i jasny: Aplikacja obsługuje dwa tryby -
+tryb ciemny i tryb jasny. Użytkownicy mogą przełączać
+się między tymi trybami w zależności od swoich
+preferencji.
+## Użyte Technologie/frameworki🔧
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Technologie                                             | Opis                                     |
+| ------------------------------------------------------- | ---------------------------------------- |
+| React.js                          |       |
+| Typescript                        |       |
+| SCSS moduły                       |       |
+| Jest                              |       |
+| Vite                              |       |
+| Docker                            |       |
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Zdjęcia aplikacji 📺
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<p align="center">
+  Tu niedługo będą zdjęcia z Finnet :D
+</p>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<p align="center">
+</p>
 
-## Learn More
+<p align="center">
+</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Instalacja💾
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Komendy                   |  Opis                         |     |
+| ------------------------- | ----------------------------- | --- |
+| `npm start`               | Otwórz lokalny serwer         |     |
+| `npm run build`           | Kompiluj                      |     |
+| `npm test`                | Rozpocznij testy              |     |
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Live 📍
+<p>https://finnet.bieda.it/</p>
