@@ -43,6 +43,7 @@ preferencji.
 | SCSS moduły                       |       |
 | Jest                              |       |
 | Vite                              |       |
+| Docker                            |       |
 
 
 
