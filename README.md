@@ -1,23 +1,15 @@
-<h1 align="center">
+<h1 align="center">Finnet
 
 <br>
 
 <p align="center">
-<img src=""  alt="Logo">
 </p>
 
-<br>
 
-<br>
 
 </h1>
 
-<h4 align="center">Project title</h4>
 
-<p align="center">
-  <a >
-  </a>
-</p>
 
 ## Opis projektu 🎉
 
@@ -25,9 +17,12 @@
 
 | Technologie                                             | Opis                                     |
 | ------------------------------------------------------- | ---------------------------------------- |
-| [X](X)                           | XYZ   |
-| [X](X)                           | XYZ   |
-| [X](X)                           | XYZ   |
+| React.js                          |       |
+| Typescript                        |       |
+| SCSS moduły                       |       |
+| Jest                              |       |
+| Vite                              |       |
+
 
 
 ## Zdjęcia aplikacji 📺
