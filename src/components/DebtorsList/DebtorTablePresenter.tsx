@@ -6,7 +6,8 @@ import { IoMdCheckmark } from "react-icons/io";
 import { BsCalendarDate } from "react-icons/bs";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
+import { useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 const DebtorTablePresenter = ({
   removeRow,
   handleEdit,
@@ -18,12 +19,27 @@ const DebtorTablePresenter = ({
   editId,
   login,
   logOut,
-  profile,
 }) => {
   const { theme } = useContext(ThemeContext);
-
+  const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  const handleCallbackResponse = (response) => {
+    console.log("JWT ID token: " + response.credential);
+    const userObject = jwtDecode(response.credential);
+    console.log(userObject);
+  };
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id: CLIENT_ID,
+      callback: handleCallbackResponse,
+    });
+    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+      theme: "outline",
+      size: "large",
+    });
+  }, []);
   return (
     <div className={styles["container"]}>
+      <div id="signInDiv"></div>
       <Table responsive="sm" className={theme ? "table-dark" : "table-light"}>
         <thead>
           <tr>
