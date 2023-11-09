@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 import styles from "../styles/DebtorTablePresenter.module.scss";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { IoMdCheckmark } from "react-icons/io";
 import { BsCalendarDate } from "react-icons/bs";
@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 const DebtorTablePresenter = ({
   removeRow,
   handleEdit,
@@ -17,29 +18,33 @@ const DebtorTablePresenter = ({
   row,
   reasonForLoan,
   editId,
-  login,
-  logOut,
 }) => {
   const { theme } = useContext(ThemeContext);
   const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-  const handleCallbackResponse = (response) => {
-    console.log("JWT ID token: " + response.credential);
-    const userObject = jwtDecode(response.credential);
-    console.log(userObject);
+  const SCOPE = "https://www.googleapis.com/auth/calendar";
+  const [token, setToken] = useState("");
+  const client = google.accounts.oauth2.initTokenClient({
+    client_id: CLIENT_ID,
+    scope: SCOPE,
+    callback: (response) => {
+      setToken(response.access_token);
+    },
+  });
+
+  const api = async () => {
+    const response = await axios.post(
+      "https://www.googleapis.com/calendar/v3/calendars/primary/acl",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response.data);
   };
-  useEffect(() => {
-    google.accounts.id.initialize({
-      client_id: CLIENT_ID,
-      callback: handleCallbackResponse,
-    });
-    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-      theme: "outline",
-      size: "large",
-    });
-  }, []);
+
   return (
     <div className={styles["container"]}>
-      <div id="signInDiv"></div>
       <Table responsive="sm" className={theme ? "table-dark" : "table-light"}>
         <thead>
           <tr>
@@ -148,7 +153,9 @@ const DebtorTablePresenter = ({
                   onClick={() => handleEdit(rows.id)}>
                   Edytuj
                 </td>
-                <td className={styles["btnGoogle"]} onClick={login}>
+                <td
+                  className={styles["btnGoogle"]}
+                  onClick={() => client.requestAccessToken()}>
                   <BsCalendarDate className={styles["btnCalendar"]} />{" "}
                   &nbsp;Kalendarz Google
                 </td>
