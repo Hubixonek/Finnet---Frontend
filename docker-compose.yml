@@ -3,7 +3,7 @@ version: "3.5"
 services:
   frontend:
     container_name: finnet-frontend
-    image: finnet-frontend
+    image: ${DOCKER_HUB_REPO}/finnet-frontend
     networks:
       - finnet
     build:
@@ -19,5 +19,3 @@ networks:
   finnet:
     external: true
     name: finnet
-
-#test commit
