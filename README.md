@@ -66,8 +66,8 @@ preferencji.
 
 | Komendy                   |  Opis                         |     |
 | ------------------------- | ----------------------------- | --- |
-| `npm start`               | Otwórz lokalny serwer         |     |
 | `npm run build`           | Kompiluj                      |     |
+| `npm start`               | Otwórz lokalny serwer         |     |
 | `npm test`                | Rozpocznij testy              |     |
 
 
